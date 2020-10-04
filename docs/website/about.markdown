@@ -1,18 +1,9 @@
 ---
 layout: page
-title: About
+title: Rudolf Arseni Braun 
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+At the end of my Bachelor's in engineering got fascinated by and started a career in speech recognition. Formerly part of Speechmatics in Cambridge, did consulting/contracting through my own company Ark Research Ltd, single-handedly created a speech-to-text app from scratch for Android, now doing research at Idiap Research Institute Switzerland. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Have a lot of hobbies: Into boxing, (modern) dance and bouldering. Love discussing movies books TV shows and music. Used to play violin and french horn, now play bass guitar. Living in beautiful Montreux at the moment!
