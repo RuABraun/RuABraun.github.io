@@ -5,11 +5,11 @@ date:   2020-10-04 14:40:02 +0200
 categories: jekyll update
 ---
 
-Both file types are organized by having keys and values for each key.
+Both file types are organized by having keys and values (for each key).
 
 # Scp files
 
-Scp files, usually ending with the ".scp" suffix, always reserve the first field in a line (a field is a word separated by spaces, you could also call it column) for a key (usually an utterance ID). The rest of the line is treated as a pointer to data (is the value). 
+Scp files, usually ending with the ".scp" suffix, the first column (or field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
 What this means is that the scp file never contains any data, it just contains something which points to it (the data). See for example the wav.scp file which will look something like this usually:
 
 ```
@@ -59,3 +59,4 @@ It's not possible to create just a `scp` file from an `ark` file, you have to cr
 copy-feats scp:/path/to/feats.ark ark,scp:copied_feats.ark,copied_feats.scp 
 ```
 
+For more details check out the official documentation of [kaldi io](http://kaldi-asr.org/doc/io.html). Probably the section "from a command-line perspective" is more relevant to you.

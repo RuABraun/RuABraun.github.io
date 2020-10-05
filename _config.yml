@@ -20,7 +20,9 @@
 
 title: Blog? blog 
 email: rab014@gmail.com 
-description: More words # this means to ignore newlines until "baseurl:"
+description: >- # this means to ignore newlines until "baseurl:"
+
+theme: jekyll-theme-hamilton
    
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
