@@ -10,4 +10,4 @@ Decided I wanted to ASR towards the end of my Bachelor's. Then worked at Speechm
 
 Probably going to go back to industry soon.
 
-Have a lot of hobbies: Boxing, (modern) dance and bouldering. Love discussing movies books TV shows and music. Used to play violin and french horn, now play bass guitar. Used to play a lot of video games (RTS & FPS), still like chatting about them.
+Like doing a lot of different things: Boxing, (modern) dance and bouldering. Love discussing movies books TV shows and music. Used to play violin and french horn, now play bass guitar. Used to play a lot of video games (RTS & FPS), still like chatting about them.
