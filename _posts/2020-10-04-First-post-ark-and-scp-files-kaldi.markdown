@@ -5,12 +5,12 @@ date:   2020-10-04 14:40:02 +0200
 categories: jekyll update
 ---
 
-Both file types are organized by having keys and values (for each key).
+Both file types are structured by having keys and a value for each key.
 
 # Scp files
 
-Scp files, usually ending with the ".scp" suffix, the first column (or field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
-What this means is that the scp file never contains any data, it just contains something which points to it (the data). See for example the wav.scp file which will look something like this usually:
+In scp files, usually ending with the ".scp" suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
+What this means is that the scp file never contains any data, it just contains something which points to the data you will eventually use. See for example the wav.scp file which will look something like this usually:
 
 ```
 wav-id-1 /path/to/file-1.wav
@@ -22,7 +22,7 @@ It can be a file path, but can also be more complex like:
 ```
 wav-id-1 sox /path/to/file-1.wav -r 8k - |
 ```
-Kaldi's code is written so that it will recognize and execute the above command (starting from after the key), which results in the wav file being read with a sampling rate of 8kHz. This is a convenient way of doing the resampling on the fly (instead of resampling and having to waste space storing it somewhere).
+Kaldi's code is written so that it will recognize and execute the above command (starting from after the key), which results in the wav file being read with a sampling rate of 8kHz. This is a convenient way of doing the resampling on the fly (instead of resampling and having to waste space storing a file somewhere).
 
 Another file one will see a lot when using kaldi is the `feats.scp` file which looks like:
 ```
@@ -43,6 +43,8 @@ copy-feats ark:/path/to/file-1.ark ark,t:/path/to/file-1.ark.txt
 Note the `ark,t` means that the values in the output will be written in textual format, so you can open the file and see what the values for the (example) MFCC coefficients are for each frame.
 
 Another example of an ark style file, although it doesn't have the ".ark" suffix, is the `text` file you will find in kaldi data folders. The first field/column is the utterance ID, the rest of the line is the words belonging to that utterance. The words are the data.
+
+You can use `cat` to concatenate ark files. And kaldi binaries accepts commands and wildcards in the arguments, so this is valid: `ark:gunzip -c lat.*.gz|`.
 
 ---
 
