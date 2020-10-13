@@ -20,7 +20,7 @@
 
 title: Blog? blog 
 email: rab014@gmail.com 
-description: >- # this means to ignore newlines until "baseurl:"
+description: Blog on speech recognition and maybe other things by Rudolf Braun # this means to ignore newlines until "baseurl:"
 
 remote_theme: ngzhio/jekyll-theme-hamilton
    
