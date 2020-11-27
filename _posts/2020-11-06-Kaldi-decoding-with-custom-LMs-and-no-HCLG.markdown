@@ -5,6 +5,8 @@ date: 2020-11-06 12:06:02 +0200
 categories: jekyll update
 ---
 
+WIP
+
 Here I'm going to describe methods for using kaldi for decoding when you want to do something a bit custom.
 
 ## No HCLG just G
