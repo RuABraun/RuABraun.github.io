@@ -44,11 +44,11 @@ This has no impact on the WER, as in both cases there are two (one insertion/del
 
 As just mentioned, the traditional method of alignment (which we need to do to get statistics for the different error types) leads to ambiguous alignments with no sensible way of resolving them. `texterrors` is meant to be a tool for getting detailed error metrics which are sensitive to suboptimal alignments. It deals with this issue by, instead of having a cost of 1 for the substitution cost (in the cost matrix), incorporating the character edit distance between the words compared.
 
-Concretely, the substitution cost is set to the edit distance between two words divided by the maximum edit distance possible (length of the longer word), so it is a value between 0 and 1. That way alignments will be favored where words which are similar to each other are substitution errors instead of deletion/insertion errors.\\
+Concretely, the substitution cost is set to the edit distance between two words divided by the maximum edit distance possible (length of the longer word), so it is a value between 0 and 1 (actually not true, you'll see later why). That way alignments will be favored where words which are similar to each other are substitution errors instead of deletion/insertion errors.\\
 Example cost matrix:
 
 |          |   | first | ward | sentence |
-|:--------:|:-:|:-----:|:----:|----------|
+|:---:|:-:|:---:|:---:|---|
 |          | 0 |   1   |   2  | 3        |
 | first    | 1 | 0     | 1    | 2        |
 | word     | 2 | 1     | 0.25 | 1.25     |
@@ -58,4 +58,42 @@ Example cost matrix:
 As one can see here, one incurs less cost by pairing "word"/"ward" instead of "in"/"ward".
 To backtrace you find the `cell_x` so that `cell_x` + `transition_cost` = `current_cell`, where `cell_x` is either to the left, diagonal or above the `current_cell`.
 
+There is still one last issue to deal with, see this example:
+
+|           |    | hello | speedbird |  six  |  two  |
+|:---:|:--:|:---:|:---:|:---:|:---:|
+|           |  0 |   1   |     2     |   3   |   4.  |
+| speedbird | 1. | 0.89 |     1     |   2   |   3   |
+|   eight   | 2. | 1.89 |   1.78   |  1.8  |  2.8  |
+|    six    | 3. | 2.89 |   2.67   | 1.78 | 2.78 |
+|    two    |  4 |  3.8  |   3.67   | 2.78 | 1.78 |
+
+The alignment will end up being
+
+| speedbird | eight | six | two |
+|:-----:|:------:|:---------:|:-----:|
+| hello | speedbird | six | two |
+
+Note this happens here because using the edit distance leads to the substitution cost often being smaller than the insertion/deletion cost and therefore alignments with more substitutions are favored.\\
+This could also happen with normal costs of 1/1/1 for ins/del/sub but is ambiguous in that case. Such tools deal with the issue by increasing the substitution cost, we can do the same. `texterrors` will after the previously mentioned calculation times the cost by 1.5. This will lead to the following cost matrix
+
+|           |    | hello | speedbird | six | two |
+|:---------:|:--:|:-----:|:---------:|:---:|:---:|
+|           |  0 |   1   |     2     |  3  |  4. |
+| speedbird | 1. |  1.3  |     1     |  2  |  3. |
+|   eight   | 2. |  2.3  |     2.    | 2.2 | 3.2 |
+|    six    | 3. |  3.3  |     3.    |  2. |  3. |
+|    two    |  4 |  4.2  |     4.    |  3. |  2. |
+
+And the following (obviously superior) alignment.
+
+| - | speedbird | eight | six | two |
+|:-----:|:------:|:---------:|:-----:|:---:|
+| hello | speedbird | - | six | two |
+
 This leads to better alignments, and therefore better error statistics. 
+
+## The easy way
+
+One can actually get around all the ambiguity if one has time stamps since that automatically gives you a form of alignment. `texterrors` also supports using `ctm` files so you can use that option if you want.
+

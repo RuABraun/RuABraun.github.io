@@ -5,9 +5,7 @@ date: 2020-11-06 12:06:02 +0200
 categories: jekyll update
 ---
 
-WIP
-
-Here I'm going to describe methods for using kaldi for decoding when you want to do something a bit custom.
+Here I'm going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found [here](https://github.com/RuABraun/fst-util).
 
 ## No HCLG just G
 
