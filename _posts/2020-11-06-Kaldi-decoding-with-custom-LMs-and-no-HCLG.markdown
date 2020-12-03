@@ -7,6 +7,31 @@ categories: jekyll update
 
 Here I'm going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found [here](https://github.com/RuABraun/fst-util).
 
+## Adding words to HCLG
+
+Some scripts you will need can be found [here](https://github.com/RuABraun/icassp-oov-recognition).
+
+This method requires you to use a monophone model. Additionally, your language model needs to have been trained with pocolm, the `--limit-unk-history` option, and there should have been some OOVs in the training text.
+
+For simplicity, the modification is done on a graph without self-loops. So you need to modify `utils/mkgraph.sh` and comment L167: `rm $dir/HCLGa.fst $dir/Ha.fst 2>/dev/null || true` because we will use `HCLGa.fst`.
+
+Inside the graph dir where the HCLG is there is a `words.txt`. You need to assign IDs to the new words you're adding and append these to `words.txt` file (these should be larger than the existing ones obviously).
+
+Assuming all this is ready you can use `script/compose_hcl.sh` to create the HCL from a lexicon of the OOV words you want to add. Check the script for the input arguments, `model` is the `final.mdl`, isym is phones osym words. Notice it uses `create_lfst.py` so you need the fst wrapper installed. There is one hardcoded parameter on L25, `303`, see [here](https://groups.google.com/g/kaldi-help/c/jL8VnwKGRWs/m/-Pe29-G9AgAJ) for what's about. You can set it to any number larger than the existing phone IDs.
+
+After calling the script and creating the `HCL.fst` you use the fst wrapper to modify the `HCLGa.fst`.
+
+```
+from wrappedfst import WrappedFst
+fst = WrappedFst('HCLGa.fst')
+ifst = WrappedFst('HCL.fst')
+unk_id =  # unk symbol
+fst.replace_single(unk_id, ifst)
+fst.write('HCLGa_new.fst')
+```
+
+Then add the self-loops (check `mkgraph.sh` for how to do that) and you are done. Replace an existing `HCLG.fst` with the new version and you can run decoding as you would normally.
+
 ## No HCLG just G
 
 Imagine you have an acoustic model that you created via pytorch, and you want to then evaluate how well it does at recognizing phonemes (TIMIT for example). You have a phone LM that you want to incorporate. I'm going to show you how you can do that with kaldi.
