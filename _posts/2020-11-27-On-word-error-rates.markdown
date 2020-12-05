@@ -1,7 +1,7 @@
 ---
 layout: post
 title: On WER in ASR 
-date: 2020-11-06 12:06:02 +0200
+date: 2020-11-27 12:06:02 +0200
 categories: jekyll update
 ---
 
@@ -13,7 +13,7 @@ This post is going to be a refresher on WER calculation, and then an introductio
 
 Given a model that outputs a hypothesis the Word-Error-Rate is defined as the number of insertion, deletion and substitution errors the model makes over the count of words in the reference.  
 
-To find out the types of errors one has to align the hypothesis to the reference, this is typically done by creating a cost matrix and backtracing from the bottom right to the start (top left) to find the alignment. Example:
+To find out the types of errors one has to align the hypothesis to the reference, this is typically done by creating a cost matrix and backtracing from the end (bottom right) to the start (top left) to find the alignment. Example:
 
 |        |   | first | third |
 |:--------:|---:|:-------:|:-------:|
@@ -22,9 +22,9 @@ To find out the types of errors one has to align the hypothesis to the reference
 | second | 2 | 1     | 2     |
 | third  | 3 | 2     | 1     |
 
-If word i != word j, going to position costs 1, otherwise 0. "second" is an insertion and which is why at the end the cost in the bottom right is 1. Notice that if all we want to know is WER, you can actually just take that value (1) and divide by the count of reference words (3) to get the WER (33.3%).
+Taking a horizontal or vertical (deletion/insertion) transition costs 1. Taking a diagonal to position `i, j` costs 1 if word i != word j, else 0. "second" is not recognized by the model (a deletion error) which is why at the end the cost in the bottom right is 1. Notice that if all we want to know is WER, you can actually just take that value (1) and divide by the count of reference words (3) to get the WER (33.3%).
 
-However, usually one wants to know how many errors of each type there are, and to do that one needs to get the alignment to then count them. This can be ambiguous, for example consider two sentences "first second insertion third" and "first other third". There are different ways to align this that are equally valid:
+However, usually one wants to know how many errors of each type there are, and to do that one needs to get the alignment to then count them. This can be ambiguous, for example consider two sentences "first word in sentence third" and "first ward sentence". There are different ways to align this:
 
 | first | word | in | sentence |
 |:-----:|:------:|:---------:|:-----:|
@@ -42,9 +42,9 @@ This has no impact on the WER, as in both cases there are two (one insertion/del
 
 ## Getting better alignments
 
-As just mentioned, the traditional method of alignment (which we need to do to get statistics for the different error types) leads to ambiguous alignments with no sensible way of resolving them. `texterrors` is meant to be a tool for getting detailed error metrics which are sensitive to suboptimal alignments. It deals with this issue by, instead of having a cost of 1 for the substitution cost (in the cost matrix), incorporating the character edit distance between the words compared.
+As just mentioned, the traditional method of alignment (which we need to do to get statistics for the different error types) leads to ambiguous alignments with no sensible way of resolving them. `texterrors` is meant to be a tool for getting detailed error metrics. As these are sensitive to suboptimal alignments, it uses a smarter method to get better alignments: Instead of having a cost of 1 for the substitution cost (in the cost matrix), it incorporates the character edit distance between the words compared.
 
-Concretely, the substitution cost is set to the edit distance between two words divided by the maximum edit distance possible (length of the longer word), so it is a value between 0 and 1 (actually not true, you'll see later why). That way alignments will be favored where words which are similar to each other are substitution errors instead of deletion/insertion errors.\\
+Concretely, the substitution cost is set to the edit distance between two words divided by the maximum edit distance possible (length of the longer word), so it is a value between 0 and 1 (slightly more complicated in practice, you'll see later why). That way alignments will be favored where words which are similar to each other are substitution errors instead of deletion/insertion errors.\\
 Example cost matrix:
 
 |          |   | first | ward | sentence |
@@ -74,8 +74,8 @@ The alignment will end up being
 |:-----:|:------:|:---------:|:-----:|
 | hello | speedbird | six | two |
 
-Note this happens here because using the edit distance leads to the substitution cost often being smaller than the insertion/deletion cost and therefore alignments with more substitutions are favored.\\
-This could also happen with normal costs of 1/1/1 for ins/del/sub but is ambiguous in that case. Such tools deal with the issue by increasing the substitution cost, we can do the same. `texterrors` will after the previously mentioned calculation times the cost by 1.5. This will lead to the following cost matrix
+This happens here because using the edit distance leads to the substitution cost often being smaller than the insertion/deletion cost and therefore alignments with more substitutions are favored.\\
+This sort of bad alignment also happens with normal costs of 1/1/1 for ins/del/sub (consider the above example, as the costs are the same for different errors it depends on the implementation which alignment is chosen, you can think of it as random). That's why such tools, when meant to be used for getting detailed error metrics, will increase the substitution cost to improve alignments. We can do the same! `texterrors` will after the previously mentioned calculation times the cost by 1.5. This will lead to the following cost matrix:
 
 |           |    | hello | speedbird | six | two |
 |:---------:|:--:|:-----:|:---------:|:---:|:---:|
