@@ -93,7 +93,16 @@ And the following (obviously superior) alignment.
 
 This leads to better alignments, and therefore better error statistics. 
 
-## The easy way
-
 One can actually get around all the ambiguity if one has time stamps since that automatically gives you a form of alignment. `texterrors` also supports using `ctm` files so you can use that option if you want.
 
+## Error metrics available in texterrors
+
+This section is for explaining the novel error metrics that `texterrors` can output: OOV-CER (`-oov-list-f`) and phrase based WER (`-phrase-f`).
+
+Here is an example output alignment:
+
+| iceair | four | one | six | descend | to | flight | level | eight | zero |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ryanair | four | one | six | descending | - | flight | level | eight | zero |
+
+If the phrase for the utterance was the callsign, then it would just compare "iceair four one six" to "ryanair four one six". If "iceair" was OOV, then to get OOV-CER the edit distance between "iceair" and "ryanair" would be calculated.
