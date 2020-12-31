@@ -5,12 +5,12 @@ date: 2020-11-27 12:06:02 +0200
 categories: jekyll update
 ---
 
-This post will be about the [tool ("texterrors")](https://github.com/RuABraun/texterrors) I created for getting error metrics (relevant for ASR). It is split in two parts: 
-First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the different approach I use which fixes the problems and gets better error metrics. You can skip to the second part by clicking [here](#newtool) if you feel you already know the content.
+This post will be about the python-based [tool ("texterrors")](https://github.com/RuABraun/texterrors) I created for getting error metrics (relevant for ASR). It is split in two parts: 
+First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking [here](#newtool) if you feel you already know the content.
 
 ## WER calculation recap
 
-Given a model that outputs a hypothesis the Word-Error-Rate is defined as the number of insertion, deletion and substitution errors the model makes over the count of words in the reference.  
+Given a hypothesized sentence the Word-Error-Rate is defined as the number of insertion, deletion and substitution errors with the respect to a reference sentence, divided by the count of words in the reference.  
 
 To find out the types of errors one has to align the hypothesis to the reference, this is typically done by creating a cost matrix (where the cost of a cell depends on the transition cost plus the lowest cost from the left, top or diagonal cells) and backtracing from the end (bottom right) to the start (top left) to find the alignment. Example:
 
@@ -97,8 +97,8 @@ The alignment will end up being
 |:-----:|:------:|:---------:|:-----:|
 | hello | speedbird | six | two |
 
-This happens here because using the edit distance leads to the substitution cost often being smaller than the insertion/deletion cost and therefore alignments with more substitutions are favored.\\
-This sort of bad alignment also happens with normal costs of 1/1/1 for ins/del/sub (consider the above example, as the costs are the same for different errors it depends on the implementation which alignment is chosen, you can think of it as random). That's why such tools, when meant to be used for getting detailed error metrics, will increase the substitution cost to improve alignments. We can do the same: `texterrors` will after the previously mentioned calculation times the cost by 1.5. This will lead to the following cost matrix:
+This happens here because using the character edit distance leads to the substitution cost often being smaller than the insertion/deletion cost and therefore alignments with more substitutions are favored.\\
+This sort of bad alignment can also happen with normal costs of 1/1/1 for ins/del/sub (consider the above example, as the costs are the same for different errors it depends on the implementation which alignment is chosen, you can think of it as random). That's why such tools, when meant to be used for getting detailed error metrics, will increase the substitution cost to improve alignments. We can do the same: `texterrors` will after the previously mentioned calculation times the cost by 1.5. This will lead to the following cost matrix:
 
 |           |    | hello | speedbird | six | two |
 |:---------:|:--:|:-----:|:---------:|:---:|:---:|
@@ -115,4 +115,6 @@ And the following (obviously superior) alignment.
 | hello | speedbird | - | six | two |
 
 
-Finally, `texterrors` also supports ctm files where the time stamps for reference and hypothesis words will be used for alignment. If you *really* care about having the most accurate alignment possible, that is what you should use! :)
+Finally, `texterrors` also supports ctm files where the time stamps for reference and hypothesis words will be used for alignment. If you *really* care about having the most accurate alignment possible, that is what you should use! But it won't make a big difference. :)
+
+[Here is a link to it.](https://github.com/RuABraun/texterrors) Thank you for reading.
