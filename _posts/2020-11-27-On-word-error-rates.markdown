@@ -6,11 +6,11 @@ categories: jekyll update
 ---
 
 This post will be about the python-based [tool ("texterrors")](https://github.com/RuABraun/texterrors) I created for getting error metrics (relevant for ASR). It is split in two parts: 
-First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking [here](#newtool) if you feel you already know the content.
+First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking [here](#newtool).
 
 ## WER calculation recap
 
-Given a hypothesized sentence the Word-Error-Rate is defined as the number of insertion, deletion and substitution errors with the respect to a reference sentence, divided by the count of words in the reference.  
+Given a hypothesized sentence the Word-Error-Rate is defined as the number of insertion, deletion and substitution errors with the respect to a reference sentence, divided by the count of words in the reference. Insertion/Deletion is defined from the perspective of the model, so for example if the model outputs a word when it shouldn't, that's an insertion error. 
 
 To find out the types of errors one has to align the hypothesis to the reference, this is typically done by creating a cost matrix (where the cost of a cell depends on the transition cost plus the lowest cost from the left, top or diagonal cells) and backtracing from the end (bottom right) to the start (top left) to find the alignment. Example:
 
