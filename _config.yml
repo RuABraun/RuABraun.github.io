@@ -25,7 +25,7 @@ description: Blog on speech recognition and maybe other things by Rudolf Braun #
 remote_theme: ngzhio/jekyll-theme-hamilton
    
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://ruabraun.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 author: Rudolf Arseni Braun
 location: Montreux
