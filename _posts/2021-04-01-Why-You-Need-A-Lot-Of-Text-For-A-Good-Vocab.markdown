@@ -21,10 +21,10 @@ It is kind of expected for this to happen, since it is well known that word coun
 
 <img src="{{site.url}}/images/words.png" style="display: block; margin: auto;" />
 
-Look at it (yes I know log scale bla bla, shush pedants)! Very quickly the counts drop to nothing. The additional thing to realise is that because the counts are so low there will be a **ton** of noise in the results. Depending on the corpus some words whose "true" probability is higher will be much lower and vice versa. Which is obviously also bad.
+Look at it! (yes I know log scale bla bla, shush pedants) Very quickly the counts drop to nothing. The additional thing to realise is that because the counts are so low there will be a **ton** of noise in the results. Depending on the corpus some words whose "true" probability is higher will be much lower and vice versa. This is bad.
 
-But the main point is that it is self-evident that you need to have seen a word a couple times to know how it is used. But because in language in there is a looong tail of words that are used infrequently (but are still normal enough that you do want to estimate them!) you need a **lot** of text to get counts to a reasonable level.
+But the main point is that you need to have seen a word a couple times to know how it is used. But because in language there is a looong tail of words that are used infrequently (but are still normal enough that you do want to estimate them!) you need a **lot** of text to get the counts to a reasonable level.
 
 This is why you need to train on billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.
 
-<sup>1</sup> The total count is around 400k by the way (a good chunk of them are rubbish though).
+<sup>1</sup> The total count is around 400k by the way (a good chunk of them are rubbish).
