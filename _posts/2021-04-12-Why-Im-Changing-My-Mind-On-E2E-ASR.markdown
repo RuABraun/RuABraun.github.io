@@ -21,11 +21,12 @@ Traditional ASR is split up into at least two components, the AM and LM. The AM 
 
 Of course, people with some ASR experience will know that in reality traditional ASR does not have a problem with outputting clean transcripts. The LM alone should make sure only reasonable word sequences are output. And in practice the AM learns from the training data which has no disfluencies, so then the AM learns to map those sounds, which really correspond to some phone, to silence (the LM also matters of course).
 
-But the point is that the traditional approach has imperfections. And if our AM is not actually modeling sounds, well then why not just make it model letters? 
+But if our AM is not actually modeling sounds, well then why not just make it model letters? 
 
 While disfluencies are never wanted, it's pretty common to have "you know" missing in a transcript and those words are definitely something the model should recognize correctly. How is a traditional ASR system supposed to deal with these sorts of errors? \\
 It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that it looks as much more context (basically seeing the entire input), and that it models letters/subwords directly, it can (for example) learn that a certain sound sequence said quickly at the end of certain sentences ("I really like him yaknow") can be ignored. This is much harder for traditional system to learn this because the AM does not have so much context it can look at, and even if it did the internal representations would have little to do with words - so it doesn't know what sentence is being said - as its task is discriminating phones. 
 
 This makes me wonder whether E2E ASR might be more robust to "imperfect" training transcripts? Note I put imperfect in quotes, based on the motivation of having a clean transcript outputting "I really like him" could be considered the perfect transcript! Regardless, the point is the E2E system is better suited for learning the sort of outputs a user wants to see. 
 
-I plan on putting significantly more time in trying out E2E models. One flaw I still see no solution for is dealing with OOV words, these are often proper nouns and therefore it's unlikely the internal p2g model an E2E model must learn will work. But the possibilities of multilingual models with CTC excite me a lot...
+In short, previously it seemed to me the only advantage of E2E ASR was having a simpler pipeline (but in exchange for requiring more resources). Now though I'm starting to think there are some real advantages to the flexibilities of the approach.
+
