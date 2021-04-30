@@ -23,11 +23,12 @@ Of course, people with some ASR experience will know that in reality traditional
 But if our AM is not actually modeling sounds, and we're already forcing it do some more complicated memorization, well then why not just make it model letters? 
 
 While fillers like "um" are never wanted, it's pretty common to have "you know" missing in a transcript and those words are definitely something the model should not learn to ignore. How is a traditional ASR system supposed to deal with these sorts of errors? \\
-It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that it looks as much more context (basically seeing the entire input), and that it models letters/subwords directly, it can (for example) learn that a certain sound sequence said quickly at the end of certain sentences ("I really like him yaknow") can be ignored. This is much harder for a traditional ASR system to learn because the AM does not have so much context it can look at, and even if it did the internal representations would have little to do with words - so it doesn't know what sentence is being said - as its task is discriminating phones. 
+It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that it looks at much more context (basically seeing the entire input), and that it models letters/subwords directly, it can (for example) learn that a certain sound sequence said quickly at the end of certain sentences ("I really like him yaknow") can be ignored. This is much harder for a traditional ASR system to learn because the AM does not have so much context it can look at, and even if it did the internal representations would have little to do with words - so it doesn't know what sentence is being said - as its task is discriminating phones. 
 
 So there's two points I'm making here: (1) With the training data we use we force the AM to learn an ill-defined task (it has to learn to classify phones while classifying some of the nonsilence ones as silence). (2) E2E systems that use lots of context are better suited to outputting clean transcripts because they combine the AM and LM, so they can learn to ignore sounds because of words that were said before and/or after. 
 
 Clean transcripts isn't better just for a human reader, it also makes post processing easier for any downstream ML system. And in my experience quite often where you can earn the big bucks doing ASR is also exactly the sort of place that will do some NLU on top of the output.
 
-Previously it seemed to me the only advantage of E2E ASR was having a simpler pipeline (but in exchange requiring more resources). Now I'm starting to think there are some real advantages to the approach.
+
+reviously it seemed to me the only advantage of E2E ASR was having a simpler pipeline (but in exchange requiring more resources). Now I'm starting to think there are some real advantages to the approach.
 

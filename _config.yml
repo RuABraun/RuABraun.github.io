@@ -31,6 +31,8 @@ author: Rudolf Arseni Braun
 location: Montreux
 skin: daylight
 
+markdown: kramdown
+
 plugins:
   - jekyll-feed
 # Exclude from processing.
