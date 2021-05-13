@@ -5,8 +5,6 @@ date: 2021-04-12 12:06:02 +0200
 categories: jekyll update
 ---
 
-WIP
-
 I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there was an advantage to it other than simplicity (which by itself will not help performance).
 
 First let's clarify what E2E ASR means for me: No phones, the model outputs are letters or subword units. No alignment needed. Using an LM is optional, the model will have already learned an internal LM.
@@ -32,4 +30,4 @@ Clean transcripts aren't just better for a human reader, it also makes post proc
 
 I feel like some people have spent so much time thinking about how to model phones that they've forgotten that we don't actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sound was created should only be a means to an end. 
 
-Of course, it's not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2, I feel a good solution has been found. And so I don't plan on investing more time on traditional ASR!
+Of course, it's not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2 I feel a good solution has been found as the performance is very good! This combined with the above perspective has changed my mind on E2E-ASR: I believe it is the way forward. 
