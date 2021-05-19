@@ -3,15 +3,15 @@ layout: post
 title: Why the Temperature Matters for Contrastive Loss 
 ---
 
-Contrastive learning has become very popular recently, see [here](https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md) for a good overview of $$L$$ recent papers.
+Contrastive learning has become very popular recently, see [here](https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md) for a good overview of recent papers.
 
 However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think it matters.
 
 As a reminder this is what the equation looks like:
 
-$$L=-\log \frac{e^{x_p \cdot x_+ \over \tau }}{\sum_i e^{x_p \cdot x_i \over \tau}}$$
+$$L=-\log \frac{e^{x_a \cdot x_p \over \tau }}{\sum_i e^{x_a \cdot x_i \over \tau}}$$
 
-Where the numerator contains the comparison between the positive pair $$x_p$$ and $$x_+$$, and the denominator has all the comparisons (all negative pairs except one). Minimizing the loss means maximizing the value in the numerator (maximizing $$x_p \cdot x_+$$) and minimizing the denominator (minimizing all $$x_p \cdot x_i$$).
+Where the numerator contains the comparison between the positive pair $$x_a$$ and $$x_p$$, and the denominator has all the comparisons (all negative pairs except one). Minimizing the loss means maximizing the value in the numerator (maximizing $$x_a \cdot x_p$$) and minimizing the denominator (minimizing all $$x_a \cdot x_p$$).
 
 Now imagine $$\tau=1$$. Remember the similarity function is the cosine distance, which with normalized vectors goes from -1 to 1. After applying $$exp$$ the range goes from 1/e to e.
 
