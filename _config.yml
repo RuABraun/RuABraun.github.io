@@ -72,11 +72,11 @@ defaults:
       comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
       ext-js: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" 
+      show-avatar: false
   -
     scope:
       path: "" # all files
     values:
       layout: "page"
-      show-avatar: true
 
 link-tags: false
