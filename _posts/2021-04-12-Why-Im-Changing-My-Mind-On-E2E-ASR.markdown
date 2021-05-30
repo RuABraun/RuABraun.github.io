@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Why I'm Changing My Mind on E2E ASR 
+title: Changing My Mind On E2E ASR 
 date: 2021-04-12 12:06:02 +0200
 categories: jekyll update
 ---
 
 I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there was an advantage to it other than simplicity (which by itself will not help performance).
 
-First let's clarify what E2E ASR means for me: No phones, the model outputs are letters or subword units. No alignment needed. Using an LM is optional, the model will have already learned an internal LM.
+First let's clarify what E2E ASR means for me: No phones, the model outputs are letters or subword units. No alignment needed and the model learns an internal LM.
 
 Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to have the network be forced to memorize that. 
 
