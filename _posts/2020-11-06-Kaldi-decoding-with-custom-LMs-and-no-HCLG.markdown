@@ -9,7 +9,7 @@ Here I'm going to describe methods for using kaldi for decoding when you want to
 
 ## Adding words to HCLG
 
-Some scripts you will need can be found [here](https://github.com/RuABraun/icassp-oov-recognition).
+Some scripts you will need can be found [here](https://github.com/idiap/icassp-oov-recognition).
 
 This method requires you to use a monophone model. Additionally, your language model needs to have been trained with pocolm, the `--limit-unk-history` option, and there should have been some OOVs in the training text.
 
