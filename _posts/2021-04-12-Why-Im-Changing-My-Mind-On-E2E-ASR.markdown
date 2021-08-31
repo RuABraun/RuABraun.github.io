@@ -31,3 +31,5 @@ Clean transcripts aren't just better for a human reader, it also makes post proc
 I feel like some people have spent so much time thinking about how to model phones that they've forgotten that we don't actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sounds were in the audio should only be a means to an end. 
 
 Of course, it's not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2 I feel a good solution has been found as the performance is very good! This combined with the above perspective has changed my mind on E2E-ASR: I believe it is the way forward. 
+
+edit: In hindsight one thing I want to clarify, although I keep mentioning transformer models those are not really required. What really matters is just that the model is bidirectional, therefore can see into both the past and future, and of course that the outputs are character based and the model learns an internal LM.
