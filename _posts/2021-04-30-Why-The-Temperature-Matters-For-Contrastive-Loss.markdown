@@ -15,7 +15,7 @@ Where the numerator contains the comparison between the positive pair $$x_a$$ an
 
 Now imagine $$\tau=1$$. Remember the similarity function is the cosine distance, which with normalized vectors goes from -1 to 1. After applying $$exp$$ the range goes from 1/e to e.
 
-Note how small that range is, and note that if the vectors were orthogonal to each other than the similarity is 0 and then $$e^{0}=1$$.
+Note how small that range is, and note that if the vectors were orthogonal to each other then the similarity is 0 and then $$e^{0}=1$$.
 
 So making negative pairs orthogonal to each other is not enough to minimize the loss, because the numerator can at most be $$e$$ while the denominator would be (if all pairs were orthogonal) $$\sum_i 1$$. What the model would have to try and do is make the negative pairs all be antiparallel to each other. That's obviously not ideal, if two vectors are orthogonal that should be enough of a separation.
 
