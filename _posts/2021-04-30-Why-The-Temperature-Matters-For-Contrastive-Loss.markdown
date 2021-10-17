@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Why the Temperature Matters for Contrastive Loss 
+date: 2021-04-30 12:06:02 +0200
+categories: jekyll update
 ---
 
 Contrastive learning has become very popular recently, see [here](https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md) for a good overview of recent papers.
