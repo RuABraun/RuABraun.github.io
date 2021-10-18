@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Notes on Decoupled Contrastive Learning 
-date: 2021-15-15 12:06:02 +0200
+date: 2021-10-15 12:06:02 +0200
 categories: jekyll update
 ---
 

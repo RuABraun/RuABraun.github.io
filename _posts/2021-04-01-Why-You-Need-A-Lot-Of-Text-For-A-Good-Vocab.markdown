@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Why you need a lot of text to get a good language model 
+title: Why you need a billion words to get a good language model 
 date: 2021-04-01 12:06:02 +0200
 categories: jekyll update
 ---
 
 WIP
 
-I have a text corpus with nearly 90 million words. Seems enough to get a decent model no? Let's see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let's what happens when I get a count of all words and see what is at the nth position.
+I have a text corpus with nearly 90 million words. Seems enough to get a decent model no? Let's see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let's see what happens when I get a count of all words and see what is at the nth position.
 ```
 199989 krisenbewältigungen 2
 199999 gendersensitiv 2
@@ -17,7 +17,7 @@ I have a text corpus with nearly 90 million words. Seems enough to get a decent 
 ```
 Some of these are completely legitimite words. Good we have them in our vocabulary! But (!) the thing to realize is that their counts are very low. We will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!<sup>1</sup>
 
-It is kind of expected for this to happen, since it is well known that word counts follow zipf's law, which very simply states that as you go down a table of words sorted by count, their counts decrease very rapidly, meaning a very large amount of the probability mass is covered by the top words. Here is an image
+It is kind of expected for this to happen, since it is well known that word counts follow zipf's law, which put very simply states that as you go down a table of words sorted by count, their counts decrease very rapidly, meaning a very large amount of the probability mass is covered by the top words. Here is an image
 
 <img src="{{site.url}}/images/words.png" style="display: block; margin: auto;" />
 
