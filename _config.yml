@@ -17,7 +17,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-baseurl: "/jekyll-github-actions" # the subpath of your site, e.g. /blog
+baseurl: "/ruabraun.github.io" # the subpath of your site, e.g. /blog
 url: "https://ruabraun.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 title: Blog 
@@ -28,22 +28,8 @@ author:
 
 remote_theme: zivong/jekyll-theme-hydure
 
-navbar-links:
-  Home: "index"
-  Posts: "blog"
-   
-
-location: Montreux
-skin: daylight
-
-avatar: images/profpic.jpg
-
+#avatar: images/profpic.jpg
 
 exerpt_length: 10
 
 title-separator: "-"
-
-
-markdown: kramdown
-mathjax: true
-
