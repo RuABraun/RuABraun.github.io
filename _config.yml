@@ -26,7 +26,6 @@ description: Blog on speech recognition and maybe other things # this means to i
 author:
     name: Rudolf Arseni Braun
 
-
 remote_theme: zivong/jekyll-theme-hydure
 
 navbar-links:
@@ -48,26 +47,3 @@ title-separator: "-"
 markdown: kramdown
 mathjax: true
 
-plugins:
-  - jekyll-remote-theme
-  - jekyll-paginate
-  - jekyll-sitemap
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      comments: true  # add comments to all blog posts
-      social-share: true # add social media sharing buttons to all blog posts
-      ext-js: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" 
-      show-avatar: false
-  -
-    scope:
-      path: "" # all files
-    values:
-      layout: "page"
-
-link-tags: false
