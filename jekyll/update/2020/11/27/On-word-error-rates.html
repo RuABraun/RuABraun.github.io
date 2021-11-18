@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>On WER in ASR</title>
+
+  
+  <meta name="author" content="{"name"=>"Rudolf Arseni Braun"}">
+  
+
+  <meta name="description" content="This post will be about the python-based tool (“texterrors”) I created for getting error metrics (relevant for ASR). It is split in two parts: First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Blog" href="https://ruabraun.github.io/ruabraun.github.io/feed.xml">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Blog">
+  <meta property="og:title" content="On WER in ASR">
+  <meta property="og:description" content="This post will be about the python-based tool (“texterrors”) I created for getting error metrics (relevant for ASR). It is split in two parts: First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the...">
+
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="{"name"=>"Rudolf Arseni Braun"}">
+  <meta property="og:article:published_time" content="2020-11-27T10:06:02+00:00">
+  <meta property="og:url" content="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html">
+  <link rel="canonical" href="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="On WER in ASR">
+  <meta property="twitter:description" content="This post will be about the python-based tool (“texterrors”) I created for getting error metrics (relevant for ASR). It is split in two parts: First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the...">
+
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="https://ruabraun.github.io/ruabraun.github.io">Blog</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto"></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>On WER in ASR</h1>
+          
+
+          
+            <span class="post-meta">Posted on November 27, 2020</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>This post will be about the python-based <a href="https://github.com/RuABraun/texterrors">tool (“texterrors”)</a> I created for getting error metrics (relevant for ASR). It is split in two parts: 
+First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking <a href="#newtool">here</a>.</p>
+
+<h2 id="wer-calculation-recap">WER calculation recap</h2>
+
+<p>Given a hypothesized sentence the Word-Error-Rate is defined as the number of insertion, deletion and substitution errors with the respect to a reference sentence, divided by the count of words in the reference. Insertion/Deletion is defined from the perspective of the model, so for example if the model outputs a word when it shouldn’t, that’s an insertion error.</p>
+
+<p>To find out the types of errors one has to align the hypothesis to the reference, this is typically done by creating a cost matrix (where the cost of a cell depends on the transition cost plus the lowest cost from the left, top or diagonal cells) and backtracing from the end (bottom right) to the start (top left) to find the alignment. Example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: right"> </th>
+      <th style="text-align: center">first</th>
+      <th style="text-align: center">third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">first</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">second</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">third</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Taking a horizontal or vertical (deletion/insertion) transition costs 1. Taking a diagonal to position <code class="language-plaintext highlighter-rouge">i, j</code> costs 1 if word i != word j, else 0. “second” is not recognized by the model (a deletion error) which is why at the end the cost in the bottom right is 1. Notice that if all we want to know is the WER, you can actually just take that value (1) and divide by the count of reference words (3) to get the WER (33.3%).</p>
+
+<p>However, usually one wants to know how many errors of each type there are, and to do that one needs to get the alignment to then count them. This requires backtracing which is done by finding the <code class="language-plaintext highlighter-rouge">cell_x</code> so that <code class="language-plaintext highlighter-rouge">cell_x</code> + <code class="language-plaintext highlighter-rouge">transition_cost</code> = <code class="language-plaintext highlighter-rouge">current_cell</code>, where <code class="language-plaintext highlighter-rouge">cell_x</code> is either to the left, diagonal or above the <code class="language-plaintext highlighter-rouge">current_cell</code> (then repeat the process until the start is reached).<br />
+This can be ambiguous, for example consider two sentences “first word in sentence” and “first ward sentence”. There are different ways to align this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">first</th>
+      <th style="text-align: center">word</th>
+      <th style="text-align: center">in</th>
+      <th style="text-align: center">sentence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">first</td>
+      <td style="text-align: center">ward</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">sentence</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>and</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">first</th>
+      <th style="text-align: center">word</th>
+      <th style="text-align: center">in</th>
+      <th style="text-align: center">sentence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">first</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">ward</td>
+      <td style="text-align: center">sentence</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Clearly the pair “word”/”ward” is a more likely substitution error than “in”/”ward”, but this alignment method has no way of identifying that since the cumulative costs are the same, see cost matrix:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">first</th>
+      <th style="text-align: center">ward</th>
+      <th style="text-align: center">sentence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">first</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">word</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">in</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sentence</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This has no impact on the WER, as in both cases there are two (one insertion/deletion depending on which sentence is considered the reference, one substitution), but from the perspective of analysing what sorts of errors a model is making - which sorts of words the model is failing to recognize (deletions), which words are confused with each other (substitutions) - having a different alignment will change the result.</p>
+
+<h2 id="getting-better-alignments-with-texterrors-">Getting better alignments with “texterrors” <a name="newtool"></a></h2>
+
+<p>As just mentioned, the traditional method of alignment (which we need to do to get statistics for the different error types) leads to ambiguous alignments with no sensible way of resolving them. <a href="https://github.com/RuABraun/texterrors">“texterrors”</a> is meant to be a tool for getting detailed error metrics. As these are sensitive to suboptimal alignments it uses a smarter method: Instead of having a cost of 1 for the substitution cost (in the cost matrix), it incorporates the character edit distance between the words compared.</p>
+
+<p>Concretely, the substitution cost is set to the edit distance between two words divided by the maximum edit distance possible (length of the longer word), so it is a value between 0 and 1 (slightly more complicated in practice, you’ll see later why). That way alignments will be favoured when words which are similar to each other are substitution errors instead of deletion/insertion errors.</p>
+
+<p>Example cost matrix:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">first</th>
+      <th style="text-align: center">ward</th>
+      <th>sentence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">first</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">word</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0.25</td>
+      <td>1.25</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">in</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1.25</td>
+      <td>1.125</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sentence</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2.25</td>
+      <td>1.25</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As one can see here, the best (lowest) cumulative cost is achieved by pairing “word”/”ward”.</p>
+
+<p>One should be aware, this method can result in a higher WER. 
+In the below example a normal WER calculation would do a one-to-one mapping and arrive at a WER of 66.67\%.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>test</th>
+      <th>sentence</th>
+      <th>okay</th>
+      <th>words</th>
+      <th>ending</th>
+      <th>now</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>test</td>
+      <td>a</td>
+      <td>sentenc</td>
+      <td>ok</td>
+      <td>endin</td>
+      <td>now</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>But character aware alignment would result in the following alignment:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>test</th>
+      <th>-</th>
+      <th>sentence</th>
+      <th>okay</th>
+      <th>words</th>
+      <th>ending</th>
+      <th>now</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>test</td>
+      <td>a</td>
+      <td>sentenc</td>
+      <td>ok</td>
+      <td>-</td>
+      <td>endin</td>
+      <td>now</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This results in a WER of 83.3\% because of the extra insertion and deletion. <code class="language-plaintext highlighter-rouge">texterrors</code> has an option to turn character-aware alignment off (<code class="language-plaintext highlighter-rouge">-no-chardiff</code>) to get identical results with kaldi. But the difference is small for a normal sized test set, and obviously without the feature the alignments and therefore statistics like the most frequent substitution error will not be as accurate!</p>
+
+<p>There is still one last issue to deal with, see this example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">hello</th>
+      <th style="text-align: center">speedbird</th>
+      <th style="text-align: center">six</th>
+      <th style="text-align: center">two</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">4.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">speedbird</td>
+      <td style="text-align: center">1.</td>
+      <td style="text-align: center">0.89</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">eight</td>
+      <td style="text-align: center">2.</td>
+      <td style="text-align: center">1.89</td>
+      <td style="text-align: center">1.78</td>
+      <td style="text-align: center">1.8</td>
+      <td style="text-align: center">2.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">six</td>
+      <td style="text-align: center">3.</td>
+      <td style="text-align: center">2.89</td>
+      <td style="text-align: center">2.67</td>
+      <td style="text-align: center">1.78</td>
+      <td style="text-align: center">2.78</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">two</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3.8</td>
+      <td style="text-align: center">3.67</td>
+      <td style="text-align: center">2.78</td>
+      <td style="text-align: center">1.78</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The alignment will end up being</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">speedbird</th>
+      <th style="text-align: center">eight</th>
+      <th style="text-align: center">six</th>
+      <th style="text-align: center">two</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">hello</td>
+      <td style="text-align: center">speedbird</td>
+      <td style="text-align: center">six</td>
+      <td style="text-align: center">two</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This happens here because using the character edit distance leads to the substitution cost often being smaller than the insertion/deletion cost and therefore alignments with more substitutions are favored.<br />
+This sort of bad alignment can also happen with normal costs of 1/1/1 for ins/del/sub (consider the above example, as the costs are the same for different errors it depends on the implementation which alignment is chosen, you can think of it as random). That’s why such tools, when meant to be used for getting detailed error metrics, will increase the substitution cost to improve alignments. We can do the same: <code class="language-plaintext highlighter-rouge">texterrors</code> will after the previously mentioned calculation times the cost by 1.5. This will lead to the following cost matrix:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">hello</th>
+      <th style="text-align: center">speedbird</th>
+      <th style="text-align: center">six</th>
+      <th style="text-align: center">two</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">4.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">speedbird</td>
+      <td style="text-align: center">1.</td>
+      <td style="text-align: center">1.3</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">eight</td>
+      <td style="text-align: center">2.</td>
+      <td style="text-align: center">2.3</td>
+      <td style="text-align: center">2.</td>
+      <td style="text-align: center">2.2</td>
+      <td style="text-align: center">3.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">six</td>
+      <td style="text-align: center">3.</td>
+      <td style="text-align: center">3.3</td>
+      <td style="text-align: center">3.</td>
+      <td style="text-align: center">2.</td>
+      <td style="text-align: center">3.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">two</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">4.2</td>
+      <td style="text-align: center">4.</td>
+      <td style="text-align: center">3.</td>
+      <td style="text-align: center">2.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And the following (obviously superior) alignment.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">-</th>
+      <th style="text-align: center">speedbird</th>
+      <th style="text-align: center">eight</th>
+      <th style="text-align: center">six</th>
+      <th style="text-align: center">two</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">hello</td>
+      <td style="text-align: center">speedbird</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">six</td>
+      <td style="text-align: center">two</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finally, <code class="language-plaintext highlighter-rouge">texterrors</code> also supports ctm files where the time stamps for reference and hypothesis words will be used for alignment. If you <em>really</em> care about having the most accurate alignment possible, that is what you should use! But it won’t make a big difference. :)</p>
+
+<p><a href="https://github.com/RuABraun/texterrors">Here is a link to it.</a> Thank you for reading.</p>
+
+      </article>
+
+      
+
+      
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html" data-toggle="tooltip" data-placement="top" title="Doing non-standard stuff with kaldi decoding">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html" data-toggle="tooltip" data-placement="top" title="Why does BPE work?">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        {"name"=>"Rudolf Arseni Braun"}
+        &nbsp;&bull;&nbsp;
+      
+      2021
+
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/ruabraun.github.io/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

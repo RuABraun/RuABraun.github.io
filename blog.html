@@ -1,14 +1,298 @@
----
-layout: default
-title: Posts 
----
-<ul>
-  {% for post in site.posts %}
-  <a hidden>{{ post.title }} {{ post.date | date_to_long_string }} {{ post.url }} </a>
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Posts</title>
+
+  
+  <meta name="author" content="{"name"=>"Rudolf Arseni Braun"}">
+  
+
+  <meta name="description" content="{% for post in site.posts %}
+  {{ post.title }} {{ post.date | date_to_long_string }} {{ post.url }} 
   {% if post.invisible == null %}
-    <li class="spaced">
-      <a href="{{ post.url }}">{{ post.title }}</a> {{ post.date | date_to_long_string }}
-    </li>
+    
+      {{ post.title }} {{ post.date | date_to_long_string }}
+    
   {% endif %}
-  {% endfor %}
+  {% endfor %}">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Blog" href="https://ruabraun.github.io/ruabraun.github.io/feed.xml">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Blog">
+  <meta property="og:title" content="Posts">
+  <meta property="og:description" content="{% for post in site.posts %}
+  {{ post.title }} {{ post.date | date_to_long_string }} {{ post.url }} 
+  {% if post.invisible == null %}
+    
+      {{ post.title }} {{ post.date | date_to_long_string }}
+    
+  {% endif %}
+  {% endfor %}">
+
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ruabraun.github.io/ruabraun.github.io/blog.html">
+  <link rel="canonical" href="https://ruabraun.github.io/ruabraun.github.io/blog.html">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Posts">
+  <meta property="twitter:description" content="{% for post in site.posts %}
+  {{ post.title }} {{ post.date | date_to_long_string }} {{ post.url }} 
+  {% if post.invisible == null %}
+    
+      {{ post.title }} {{ post.date | date_to_long_string }}
+    
+  {% endif %}
+  {% endfor %}">
+
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="https://ruabraun.github.io/ruabraun.github.io">Blog</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto"></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+  <div class="intro-header"></div>
+
+<div role="main" class=" container-md ">
+  
+
+  <ul>
+  
+  <a hidden>The black code formatter is disgustingly ugly 18 November 2021 /jekyll/update/2021/11/18/black-is-disgusting.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/11/18/black-is-disgusting.html">The black code formatter is disgustingly ugly</a> 18 November 2021
+    </li>
+  
+  
+  <a hidden>Notes on Decoupled Contrastive Learning 15 October 2021 /jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html">Notes on Decoupled Contrastive Learning</a> 15 October 2021
+    </li>
+  
+  
+  <a hidden>ICLR 2021 Papers 07 June 2021 /jekyll/update/2021/06/07/ICLR-2021-Papers.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/06/07/ICLR-2021-Papers.html">ICLR 2021 Papers</a> 07 June 2021
+    </li>
+  
+  
+  <a hidden>Why the Temperature Matters for Contrastive Loss 30 April 2021 /jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">Why the Temperature Matters for Contrastive Loss</a> 30 April 2021
+    </li>
+  
+  
+  <a hidden>Changing My Mind On E2E ASR 12 April 2021 /jekyll/update/2021/04/12/Why-Im-Changing-My-Mind-On-E2E-ASR.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/04/12/Why-Im-Changing-My-Mind-On-E2E-ASR.html">Changing My Mind On E2E ASR</a> 12 April 2021
+    </li>
+  
+  
+  <a hidden>Why you need a billion words to get a good language model 01 April 2021 /jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html">Why you need a billion words to get a good language model</a> 01 April 2021
+    </li>
+  
+  
+  <a hidden>Why does BPE work? 09 February 2021 /jekyll/update/2021/02/09/Why-does-BPE-work.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2021/02/09/Why-does-BPE-work.html">Why does BPE work?</a> 09 February 2021
+    </li>
+  
+  
+  <a hidden>On WER in ASR 27 November 2020 /jekyll/update/2020/11/27/On-word-error-rates.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2020/11/27/On-word-error-rates.html">On WER in ASR</a> 27 November 2020
+    </li>
+  
+  
+  <a hidden>Doing non-standard stuff with kaldi decoding 06 November 2020 /jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html">Doing non-standard stuff with kaldi decoding</a> 06 November 2020
+    </li>
+  
+  
+  <a hidden>First post: Ark and scp files in kaldi 04 October 2020 /jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html </a>
+  
+    <li class="spaced">
+      <a href="/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html">First post: Ark and scp files in kaldi</a> 04 October 2020
+    </li>
+  
+  
 </ul>
+
+
+  
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        {"name"=>"Rudolf Arseni Braun"}
+        &nbsp;&bull;&nbsp;
+      
+      2021
+
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/ruabraun.github.io/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

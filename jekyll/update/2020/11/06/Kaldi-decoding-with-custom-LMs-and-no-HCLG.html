@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Doing non-standard stuff with kaldi decoding</title>
+
+  
+  <meta name="author" content="{"name"=>"Rudolf Arseni Braun"}">
+  
+
+  <meta name="description" content="Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here. Adding words to HCLG Some scripts you will need can be found here. This method...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Blog" href="https://ruabraun.github.io/ruabraun.github.io/feed.xml">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Blog">
+  <meta property="og:title" content="Doing non-standard stuff with kaldi decoding">
+  <meta property="og:description" content="Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here. Adding words to HCLG Some scripts you will need can be found here. This method...">
+
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="{"name"=>"Rudolf Arseni Braun"}">
+  <meta property="og:article:published_time" content="2020-11-06T10:06:02+00:00">
+  <meta property="og:url" content="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html">
+  <link rel="canonical" href="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Doing non-standard stuff with kaldi decoding">
+  <meta property="twitter:description" content="Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here. Adding words to HCLG Some scripts you will need can be found here. This method...">
+
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="https://ruabraun.github.io/ruabraun.github.io">Blog</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto"></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>Doing non-standard stuff with kaldi decoding</h1>
+          
+
+          
+            <span class="post-meta">Posted on November 6, 2020</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found <a href="https://github.com/RuABraun/fst-util">here</a>.</p>
+
+<h2 id="adding-words-to-hclg">Adding words to HCLG</h2>
+
+<p>Some scripts you will need can be found <a href="https://github.com/idiap/icassp-oov-recognition">here</a>.</p>
+
+<p>This method requires you to use a monophone model. Additionally, your language model needs to have been trained with pocolm, the <code class="language-plaintext highlighter-rouge">--limit-unk-history</code> option, and there should have been some OOVs in the training text.</p>
+
+<p>For simplicity, the modification is done on a graph without self-loops. So you need to modify <code class="language-plaintext highlighter-rouge">utils/mkgraph.sh</code> and comment L167: <code class="language-plaintext highlighter-rouge">rm $dir/HCLGa.fst $dir/Ha.fst 2&gt;/dev/null || true</code> because we will use <code class="language-plaintext highlighter-rouge">HCLGa.fst</code>.</p>
+
+<p>Inside the graph dir where the HCLG is there is a <code class="language-plaintext highlighter-rouge">words.txt</code>. You need to assign IDs to the new words you’re adding and append these to <code class="language-plaintext highlighter-rouge">words.txt</code> file (these should be larger than the existing ones obviously).</p>
+
+<p>Assuming all this is ready you can use <code class="language-plaintext highlighter-rouge">script/compose_hcl.sh</code> to create the HCL from a lexicon of the OOV words you want to add. Check the script for the input arguments, <code class="language-plaintext highlighter-rouge">model</code> is the <code class="language-plaintext highlighter-rouge">final.mdl</code>, isym is phones osym words. Notice it uses <code class="language-plaintext highlighter-rouge">create_lfst.py</code> so you need the fst wrapper installed. There is one hardcoded parameter on L25, <code class="language-plaintext highlighter-rouge">303</code>, see <a href="https://groups.google.com/g/kaldi-help/c/jL8VnwKGRWs/m/-Pe29-G9AgAJ">here</a> for what’s about. You can set it to any number larger than the existing phone IDs.</p>
+
+<p>After calling the script and creating the <code class="language-plaintext highlighter-rouge">HCL.fst</code> you use the fst wrapper to modify the <code class="language-plaintext highlighter-rouge">HCLGa.fst</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from wrappedfst import WrappedFst
+fst = WrappedFst('HCLGa.fst')
+ifst = WrappedFst('HCL.fst')
+unk_id =  # unk symbol
+fst.replace_single(unk_id, ifst)
+fst.write('HCLGa_new.fst')
+</code></pre></div></div>
+
+<p>Then add the self-loops (check <code class="language-plaintext highlighter-rouge">mkgraph.sh</code> for how to do that) and you are done. Replace an existing <code class="language-plaintext highlighter-rouge">HCLG.fst</code> with the new version and you can run decoding as you would normally.</p>
+
+<h2 id="no-hclg-just-g">No HCLG just G</h2>
+
+<p>Imagine you have an acoustic model that you created via pytorch, and you want to then evaluate how well it does at recognizing phonemes (TIMIT for example). You have a phone LM that you want to incorporate. I’m going to show you how you can do that with kaldi.</p>
+
+<p>Usually kaldi assumes that you have an HMM graph (the H in HCLG) and possibly context dependency as well (the C), then there’s also the lexicon etc. If you had a pytorch AM that you had trained on the PDF-ids (the targets you get by calling ali-to-pdf on the alignments), you would then use that by saving the loglikelihood output of your NN to a file, then passing that file and the final.mdl, HCLG.fst to latgen-faster-mapped, which will do decoding and generate a lattice (from which you could then take the best path for example).</p>
+
+<p>But if you want to just model phones, you don’t care about the HCL at all. You really just want to use a G that will act as the phone LM.</p>
+
+<p>So the first issue to get around is to avoid doing any mapping from transition IDs (the typical input symbols of the HCLG) to PDF-IDs. We can do that by creating a file latgen-faster.cc with the only difference being we use <code class="language-plaintext highlighter-rouge">DecodableMatrixScaled</code> instead of <code class="language-plaintext highlighter-rouge">DecodableMatrixScaledMapped</code> in the code.</p>
+
+<p>Then you take the arpa LM that you have trained, convert it using <code class="language-plaintext highlighter-rouge">arpa2fst</code>, convert the #0 arcs to <eps> and add self-loops to states that have incoming arcs with input labels not equal 0. The point of that is when the AM predicts a sequence "ae ae ae b b" over five frames, the LM should not care about repetitions, we want it to only score the transition "ae" to "b", and of course we don't want repetitions in the output transcript. Having self-loops fixes that.</eps></p>
+
+<p>Then you call</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>latgen-faster --acoustic-scale=1.0 --beam=13 --determinize-lattice=false G.fst ark,t:loglikelihoods-file&gt; ark:- | lattice-best-path etc.
+</code></pre></div></div>
+<p>to get a hypothesis that you can compare to the reference to get the PER!</p>
+
+<p>If you wanted to recognize words, all you’d need to do is create a L.fst, compose that with the G.fst (which is then a word LM) and use the LG.fst.</p>
+
+<h2 id="g-with-keyword-list">G with keyword list</h2>
+
+<p>Imagine you just want to recognize a small number of words and you don’t want to have any sort of prior regarding which one is more likely.</p>
+
+<p>To do that you just have to create an FST with a single state, and self-loops where each self-loop has a keyword as the input and output symbol.</p>
+
+<p>In pseudo-code</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fst = Fst()
+state = fst.add_state()
+fst.set_start(state)
+fst.set_final(state)
+for keyword in keywords
+    fst.add_arc(state, state, keyword, keyword, cost)
+fst.write(...)
+</code></pre></div></div>
+
+<p>The self-loops should have costs, what these should be you will have to find out experimentally.</p>
+
+<p>You probably will have to create the lang/ folder again. To do that just call <code class="language-plaintext highlighter-rouge">prepare_lang.sh</code> with the dict/ of keywords and with the <code class="language-plaintext highlighter-rouge">--phone-symbol-table</code> option set to the <code class="language-plaintext highlighter-rouge">phones.txt</code> that you trained the AM model with.</p>
+
+      </article>
+
+      
+
+      
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" data-toggle="tooltip" data-placement="top" title="First post: Ark and scp files in kaldi">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html" data-toggle="tooltip" data-placement="top" title="On WER in ASR">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        {"name"=>"Rudolf Arseni Braun"}
+        &nbsp;&bull;&nbsp;
+      
+      2021
+
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/ruabraun.github.io/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Changing My Mind On E2E ASR</title>
+
+  
+  <meta name="author" content="{"name"=>"Rudolf Arseni Braun"}">
+  
+
+  <meta name="description" content="I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Blog" href="https://ruabraun.github.io/ruabraun.github.io/feed.xml">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Blog">
+  <meta property="og:title" content="Changing My Mind On E2E ASR">
+  <meta property="og:description" content="I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there...">
+
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="{"name"=>"Rudolf Arseni Braun"}">
+  <meta property="og:article:published_time" content="2021-04-12T10:06:02+00:00">
+  <meta property="og:url" content="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2021/04/12/Why-Im-Changing-My-Mind-On-E2E-ASR.html">
+  <link rel="canonical" href="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2021/04/12/Why-Im-Changing-My-Mind-On-E2E-ASR.html">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Changing My Mind On E2E ASR">
+  <meta property="twitter:description" content="I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there...">
+
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="https://ruabraun.github.io/ruabraun.github.io">Blog</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto"></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>Changing My Mind On E2E ASR</h1>
+          
+
+          
+            <span class="post-meta">Posted on April 12, 2021</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there was an advantage to it other than simplicity (which by itself will not help performance).</p>
+
+<p>First let’s clarify what E2E ASR means for me: No phones, the model outputs are letters or subword units. No alignment needed and the model learns an internal LM.</p>
+
+<p>Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to have the network be forced to memorize that.</p>
+
+<p>However, I’ve had a bit of a change in thinking recently. This has come not from realizing the existance of some technical fact, but rather thinking about what the point of doing speech recognition actually is from the perspective of a consumer. There are many different use cases of course but in by far the majority of them what the end-user wants is a clean transcript. It should be easy to read, free of disfluences, filler words and repetitions.<br />
+I believe traditional ASR is flawed for achieving this, and E2E ASR is not.</p>
+
+<p>Traditional ASR is split up into at least two components, the AM and LM. The AM is tasked with modeling the acoustics by recognizing phones. Training it means tuning the model so that it makes a decision to which phone each frame (25ms of audio) belongs to. But outputting clean transcripts means ignoring parts of the audio. So this design decision of having one model which classifies phones makes it hard for the model to learn to output clean transcripts, since the better the AM gets at modeling phones the harder it is to ignore certain sounds in the input audio.</p>
+
+<p>Of course, people with some ASR experience will know that in reality traditional ASR does not have such a problem with outputting clean transcripts. The LM alone should make sure only reasonable word sequences are output. And in practice the AM learns from the training data which (usually) has no disfluencies, so the AM learns to map those sounds, which really correspond to some phone, to silence.</p>
+
+<p>But if our AM is not actually modeling sounds, and we’re already forcing it do some more complicated memorization, well then why not just make it model letters?</p>
+
+<p>While fillers like “um” are never wanted, it’s pretty common to have “you know” missing in a transcript and those words are definitely something the model should not learn to ignore. How is a traditional ASR system supposed to deal with these sorts of errors? <br />
+It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that it looks at much more context (basically seeing the entire input), and that it models letters/subwords directly, it can (for example) learn that a certain sound sequence said quickly at the end of certain sentences (“I really like him yaknow”) can be ignored. This is much harder for a traditional ASR system to learn because the AM does not have so much context it can look at, and even if it did the internal representations would have little to do with words - so it doesn’t know what sentence is being said - as its task is discriminating phones.</p>
+
+<p>So there’s two points I’m making here: (1) With the training data we have we force the AM to learn an ill-defined task (it has to learn to classify phones while classifying some of the nonsilence ones as silence). (2) E2E systems that use lots of context are better suited to outputting clean transcripts because they combine the AM and LM, so they can learn to ignore sounds because of words that were said before and/or after.</p>
+
+<p>Clean transcripts aren’t just better for a human reader, it also makes post processing easier for any downstream ML system. And in my experience speech recognition by itself does not have that much value (from a commercial perspective), it’s by adding an NLU system on top that a lot more possibilities for use cases open up.</p>
+
+<p>I feel like some people have spent so much time thinking about how to model phones that they’ve forgotten that we don’t actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sounds were in the audio should only be a means to an end.</p>
+
+<p>Of course, it’s not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2 I feel a good solution has been found as the performance is very good! This combined with the above perspective has changed my mind on E2E-ASR: I believe it is the way forward.</p>
+
+<p>edit: In hindsight one thing I want to clarify, although I keep mentioning transformer models those are not really required. What really matters is just that the model is bidirectional, therefore can see into both the past and future, and of course that the outputs are character based and the model learns an internal LM.</p>
+
+      </article>
+
+      
+
+      
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html" data-toggle="tooltip" data-placement="top" title="Why you need a billion words to get a good language model">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" data-toggle="tooltip" data-placement="top" title="Why the Temperature Matters for Contrastive Loss">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        {"name"=>"Rudolf Arseni Braun"}
+        &nbsp;&bull;&nbsp;
+      
+      2021
+
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/ruabraun.github.io/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
