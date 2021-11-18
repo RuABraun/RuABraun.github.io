@@ -1,0 +1,36 @@
+---
+layout: post
+title: ICLR 2021 Papers 
+date: 2021-06-07 12:06:02 +0200
+categories: jekyll update
+---
+
+Selected list of papers I liked or am interested in.
+
+
+
+Learning Better Structured Representations Using Low-rank Adaptive Label Smoothing
+
+Learning explanations that are hard to vary
+
+PMI-Masking: Principled masking of correlated spans
+
+Sharpness-aware Minimization for Efficiently Improving Generalization
+
+Knowledge distillation via softmax regression representation learning
+
+Tent: Fully Test-Time Adaptation by Entropy Minimization
+
+AdamP: Slowing Down the Slowdown for Momentum Optimizers on Scale-invariant Weights
+
+Robust Overfitting may be mitigated by properly learned smoothening
+
+Better Fine-Tuning by Reducing Representational Collapse
+
+Estimating informativeness of samples with Smooth Unique Information
+
+On the Origin of Implicit Regularization in Stochastic Gradient Descent
+
+EigenGame: PCA as a Nash Equilibrium
+
+Rethinking Attention with Performers
