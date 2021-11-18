@@ -18,4 +18,6 @@ gem "jekyll-theme-hydure"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-timeago", "~> 0.13.1"
+  gem "jekyll-remote-theme"
+  gem "jekyll-sitemap"
 end
