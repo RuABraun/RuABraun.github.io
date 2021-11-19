@@ -17,14 +17,18 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-baseurl: "/ruabraun.github.io" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ruabraun.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-title: Blog 
+title: Sharings
 email: rab014@gmail.com 
+cover: ""
 description: Blog on speech recognition and maybe other things # this means to ignore newlines until "baseurl:"
 author:
-    name: Rudolf Arseni Braun
+    name: Rudolf A. Braun
+
+plugins:
+  - jekyll-remote-theme
 
 remote_theme: zivong/jekyll-theme-hydure
 
@@ -33,3 +37,4 @@ remote_theme: zivong/jekyll-theme-hydure
 exerpt_length: 10
 
 title-separator: "-"
+markdown: kramdown

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: About Rudolf Arseni Braun
 permalink: /about/
 ---
 
