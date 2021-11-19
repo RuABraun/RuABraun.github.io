@@ -21,9 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ruabraun.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 title: Sharings
-email: rab014@gmail.com 
-cover: ""
-description: Blog on speech recognition and maybe other things # this means to ignore newlines until "baseurl:"
+tagline: On speech recognition and maybe other things # this means to ignore newlines until "baseurl:"
 author:
     name: Rudolf A. Braun
 
