@@ -10,8 +10,8 @@
 <meta property="og:title" content="Why you need a billion words to get a good language model" />
 <meta name="author" content="Rudolf A. Braun" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="WIP" />
-<meta property="og:description" content="WIP" />
+<meta name="description" content="I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position. 199989 krisenbewältigungen 2 199999 gendersensitiv 2 200002 umgehbar 2 200005 widersinnigen 2 200016 ausmehrungen 2 The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1" />
+<meta property="og:description" content="I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position. 199989 krisenbewältigungen 2 199999 gendersensitiv 2 200002 umgehbar 2 200005 widersinnigen 2 200016 ausmehrungen 2 The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1" />
 <link rel="canonical" href="https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html" />
 <meta property="og:url" content="https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html" />
 <meta property="og:site_name" content="Sharings" />
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Why you need a billion words to get a good language model" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Why you need a billion words to get a good language model","dateModified":"2021-04-01T10:06:02+00:00","datePublished":"2021-04-01T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html"},"description":"WIP","url":"https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Why you need a billion words to get a good language model","dateModified":"2021-04-01T10:06:02+00:00","datePublished":"2021-04-01T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html"},"description":"I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position. 199989 krisenbewältigungen 2 199999 gendersensitiv 2 200002 umgehbar 2 200005 widersinnigen 2 200016 ausmehrungen 2 The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1","url":"https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -41,8 +41,10 @@
       <div class="sidebar pure-u-1 pure-u-md-1-4" style="background-color: #202421">
         <div class="sidebar-shield">
           <header class="header">
+  <img src="images/profpic.jpg" alt="Me!" width="40%" height="40%" class="profile">
   <a class="brand-title" href="/">Sharings</a>
-  <p class="brand-tagline"></p>
+  <p class="brand-name">Rudolf A. Braun</p>
+  <p class="brand-tagline">On speech recognition and maybe other things</p>
 
   
     <nav class="nav pure-menu">
@@ -64,6 +66,36 @@
     </nav>
   
 
+  
+    <div class="social pure-menu pure-menu-horizontal">
+      <ul class="social-list pure-menu-list">
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="mailto:rab014@gmail.com" target="_blank">
+              <i class="fas fa-envelope" title="Email"></i>
+            </a>
+          </li>
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="https://twitter.com/fasttosmile" target="_blank">
+              <i class="fab fa-twitter" title="Twitter"></i>
+            </a>
+          </li>
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="https://github.com/RuABraun/" target="_blank">
+              <i class="fab fa-github" title="GitHub"></i>
+            </a>
+          </li>
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="https://www.linkedin.com/in/rudolf-a-braun-speech/" target="_blank">
+              <i class="fab fa-linkedin" title="LinkedIn"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   
 </header>
 
@@ -89,24 +121,24 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   
-  <p>WIP</p>
-
-<p>I have a text corpus with nearly 90 million words. Seems enough to get a decent model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and see what is at the nth position.</p>
+  <p>I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>199989 krisenbewältigungen 2
 199999 gendersensitiv 2
 200002 umgehbar 2
 200005 widersinnigen 2
 200016 ausmehrungen 2
 </code></pre></div></div>
-<p>Some of these are completely legitimite words. Good we have them in our vocabulary! But (!) the thing to realize is that their counts are very low. We will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!<sup>1</sup></p>
+<p>The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!<sup>1</sup></p>
 
-<p>It is kind of expected for this to happen, since it is well known that word counts follow zipf’s law, which put very simply states that as you go down a table of words sorted by count, their counts decrease very rapidly, meaning a very large amount of the probability mass is covered by the top words. Here is an image</p>
+<p>It is kind of expected for this to happen, since it is well known that word counts follow zipf’s law, which put simply states that as you go down a table of words sorted by count, their counts decrease very rapidly, meaning a very large amount of the probability mass is covered by the top words. Here is an image (forgive the lack of axis labels please, y-axis is count in millions x-axis rank of word):</p>
 
 <p><img src="https://ruabraun.github.io/images/words.png" style="display: block; margin: auto;" /></p>
 
-<p>Look at it! (yes I know log scale bla bla, shush pedants) Very quickly the counts drop to nothing. The additional thing to realise is that because the counts are so low there will be a <strong>ton</strong> of noise in the results. Depending on the corpus some words whose “true” probability is higher will be much lower and vice versa. This is bad.</p>
+<p>Look at it! (yes I know log scale bla bla, shush pedants) The counts drop extremely quickly to almost nothing.</p>
 
-<p>But the main point is that you need to have seen a word a couple times to know how it is used. But because in language there is a looong tail of words that are used infrequently (but are still normal enough that you do want to estimate them!) you need a <strong>lot</strong> of text to get the counts to a reasonable level.</p>
+<p>So the main point is that you need to have seen a word a couple times to know how it is used. But because in language there is a looong tail of words that are used infrequently (but are still normal enough that you do want to estimate them!) you need a <strong>lot</strong> of text to get the counts to a reasonable level.</p>
+
+<p>The additional thing to realise is that because the counts are so low there will be a <strong>ton</strong> of noise in the results. Depending on the corpus some words whose “true” probability is higher will be much lower and vice versa. This is bad.</p>
 
 <p>This is why you need to train on billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.</p>
 
@@ -122,7 +154,7 @@
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2021-11-19T00:35:48+00:00">2021</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2021-11-19T11:02:58+00:00">2021</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 
