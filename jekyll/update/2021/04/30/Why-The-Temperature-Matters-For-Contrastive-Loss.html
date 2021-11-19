@@ -1,177 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
-<head>
+  <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="application/atom+xml" rel="alternate" href="https://ruabraun.github.io/feed.xml" title="Sharings" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Why the Temperature Matters for Contrastive Loss | Sharings</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Why the Temperature Matters for Contrastive Loss" />
+<meta name="author" content="Rudolf A. Braun" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Contrastive learning has become very popular recently, see here for a good overview of recent papers." />
+<meta property="og:description" content="Contrastive learning has become very popular recently, see here for a good overview of recent papers." />
+<link rel="canonical" href="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" />
+<meta property="og:url" content="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" />
+<meta property="og:site_name" content="Sharings" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-30T10:06:02+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Why the Temperature Matters for Contrastive Loss" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Why the Temperature Matters for Contrastive Loss","dateModified":"2021-04-30T10:06:02+00:00","datePublished":"2021-04-30T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html"},"description":"Contrastive learning has become very popular recently, see here for a good overview of recent papers.","url":"https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
   
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+  <link rel="stylesheet" href="/assets/css/open-color.css">
+  <link rel="stylesheet" href="/assets/css/hydure.css">
 
-  
-
-  <title>Why the Temperature Matters for Contrastive Loss</title>
-
-  
-  <meta name="author" content="{"name"=>"Rudolf Arseni Braun"}">
-  
-
-  <meta name="description" content="Contrastive learning has become very popular recently, see here for a good overview of recent papers. However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think...">
-
-  
-
-  
-
-  <link rel="alternate" type="application/rss+xml" title="Blog" href="https://ruabraun.github.io/ruabraun.github.io/feed.xml">
-
-  
-
-  
-
-  
-
-  
-
-
-  
-    
-      
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
-    
-      
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
-
-    
-      
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
-
-
-    
-      
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-
-
-    
-  
-
-  
-    
-      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/bootstrap-social.css">
-    
-      <link rel="stylesheet" href="/ruabraun.github.io/assets/css/beautifuljekyll.css">
-    
-  
-
-  
-
-  
-  
-  
-
-  
-
-  
-  <meta property="og:site_name" content="Blog">
-  <meta property="og:title" content="Why the Temperature Matters for Contrastive Loss">
-  <meta property="og:description" content="Contrastive learning has become very popular recently, see here for a good overview of recent papers. However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think...">
-
-  
-
-  
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="{"name"=>"Rudolf Arseni Braun"}">
-  <meta property="og:article:published_time" content="2021-04-30T10:06:02+00:00">
-  <meta property="og:url" content="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">
-  <link rel="canonical" href="https://ruabraun.github.io/ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">
-  
-
-  
-  <meta name="twitter:card" content="summary">
-  
-  <meta name="twitter:site" content="@">
-  <meta name="twitter:creator" content="@">
-
-  <meta property="twitter:title" content="Why the Temperature Matters for Contrastive Loss">
-  <meta property="twitter:description" content="Contrastive learning has become very popular recently, see here for a good overview of recent papers. However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think...">
-
-  
-
-  
-
-
-  
+  <script async src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
 
   
 
 </head>
 
 
-<body>
+  <body>
+    <div id="layout" class="pure-g">
+      <div class="sidebar pure-u-1 pure-u-md-1-4" style="background-color: #202421">
+        <div class="sidebar-shield">
+          <header class="header">
+  <a class="brand-title" href="/">Sharings</a>
+  <p class="brand-tagline"></p>
 
   
-
-
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="https://ruabraun.github.io/ruabraun.github.io">Blog</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="main-navbar">
-    <ul class="navbar-nav ml-auto"></ul>
-  </div>
-
+    <nav class="nav pure-menu">
+      <ul class="pure-menu-list">
+      
+        <li class="nav-item pure-menu-item">
+          <a href="/" class="pure-menu-link ">
+            Home
+          </a>
+        </li>
+      
+        <li class="nav-item pure-menu-item">
+          <a href="/about/" class="pure-menu-link ">
+            About
+          </a>
+        </li>
+      
+      </ul>
+    </nav>
   
 
   
-
-</nav>
-
-
-  <!-- TODO this file has become a mess, refactor it -->
-
-
-
-
-
-
-
-<header class="header-section ">
-
-<div class="intro-header no-img">
-  <div class="container-md">
-    <div class="row">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-        <div class="post-heading">
-          <h1>Why the Temperature Matters for Contrastive Loss</h1>
-          
-
-          
-            <span class="post-meta">Posted on April 30, 2021</span>
-            
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 </header>
 
+        </div>
+      </div>
+      <div class="content pure-u-1 pure-u-md-3-4">
+        <div class="main">
+          <article class="post">
+  
+    <div class="post-meta">
+      <ul class="post-categories"><li>
+            <span class="post-category">jekyll</span></li><li>
+            <span class="post-category">update</span></li></ul>
+    </div>
+  
+  <h1 class="post-title">Why the Temperature Matters for Contrastive Loss</h1>
+  <div class="post-meta">
+    <time datetime="2021-04-30T10:06:02+00:00" itemprop="datePublished">
+      30 Apr 2021
+    </time></div>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-
-
-<div class=" container-md ">
-  <div class="row">
-    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
-
-      
-
-      
-
-      <article role="main" class="blog-post">
-        <p>Contrastive learning has become very popular recently, see <a href="https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md">here</a> for a good overview of recent papers.</p>
+  
+  <p>Contrastive learning has become very popular recently, see <a href="https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md">here</a> for a good overview of recent papers.</p>
 
 <p>However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think it matters.</p>
 
@@ -189,95 +107,32 @@
 
 <p>Now set the \(\tau=0.1\). Now the range goes from \(e^{-0.1}=4e-5\) to \(e^{10}=22000\) ! Incase of orthogonality the similarity after exp is still 1 of course. But now making the vectors of a negative pair orthogonal (rather than close to parallel) will result in a much larger decrease in loss, as the numerator value can be so much larger (i.e. \(22000 &gt;&gt; \sum_i 1\)).</p>
 
-      </article>
 
-      
+  
 
-      
+  
+</article>
 
-      
-
-      <ul class="pagination blog-pager">
-        
-        <li class="page-item previous">
-          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2021/04/12/Why-Im-Changing-My-Mind-On-E2E-ASR.html" data-toggle="tooltip" data-placement="top" title="Changing My Mind On E2E ASR">&larr; Previous Post</a>
-        </li>
-        
-        
-        <li class="page-item next">
-          <a class="page-link" href="/ruabraun.github.io/jekyll/update/2021/06/07/ICLR-2021-Papers.html" data-toggle="tooltip" data-placement="top" title="ICLR 2021 Papers">Next Post &rarr;</a>
-        </li>
-        
-      </ul>
-      
-
-    </div>
+        </div>
+        <footer class="footer pure-g">
+  <div class="pure-u-1 pure-u-md-1-2">
+    <small>
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2021-11-19T00:35:48+00:00">2021</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+    </small>
   </div>
-</div>
 
-
-  <footer>
-  <div class="container-md beautiful-jekyll-footer">
-    <div class="row">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-      <ul class="list-inline text-center footer-links"></ul>
-
-      
-      <p class="copyright text-muted">
-      
-        {"name"=>"Rudolf Arseni Braun"}
-        &nbsp;&bull;&nbsp;
-      
-      2021
-
-      
-
-      
-      </p>
-      <p class="theme-by text-muted">
-        Powered by
-        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
-      </p>
-      </div>
-    </div>
+  <div class="pure-u-1 pure-u-md-1-2">
+    <small>
+      Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> & <a href="https://github.com/zivong/jekyll-theme-hydure" target="_blank">Hydure</a>
+    </small>
   </div>
 </footer>
 
+      </div>
+    </div>
 
-  
-  
     
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
-
-  
     
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-
-  
-    
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
-  
-
-
-
-  
-    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
-    
-      <script src="/ruabraun.github.io/assets/js/beautifuljekyll.js"></script>
-    
-  
-
-
-
-
-
-
-
-
-
-</body>
+  </body>
 </html>
