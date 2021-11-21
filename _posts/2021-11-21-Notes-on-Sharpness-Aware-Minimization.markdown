@@ -19,20 +19,20 @@ Actually trying out different $$\epsilon$$s would be very costly obviously so in
 
 $$ \underset{\Vert \epsilon \Vert_p}{\arg\max} L_S(w + \epsilon) \approx \underset{\Vert \epsilon \Vert_p}{\arg\max} L_S(w) + \epsilon \nabla_w L_S(w) = \underset{\Vert \epsilon \Vert_p}{\arg\max} \epsilon \nabla_w L_S(w)$$
 
-The value of $$\epsilon$$ that solves this approximation is "given by the solution to a classical dual norm problem [...]" $$\hat \epsilon$$. This leads to the following expression and loss as explained in the paper: 
+The value of $$\epsilon$$ that solves this approximation is "given by the solution to a classical dual norm problem [...]" $$\hat \epsilon$$. This leads to the following expression and loss (from the paper): 
 
 <img src="{{site.url}}/images/sam_lossequation.png" style="display: block; margin: auto;" />
 
-(I hope to look at the equations in more detail later to understand them but for now will skip to code)
+So in the end they end up throwing away the complicated terms and just using the gradient information to climb in the steepest direction. The amount they climb is determined by the hyperparameter $$\rho$$.
+
+Note that this is similar to when trying to find an adversial example: Changing the variables (this time the weights, not the input) by a small amount to maximize the loss. 
 
 The procedure is to compute the loss for weights $$w$$, then use that loss and gradient to compute $$\hat \epsilon$$, perturb the weights, compute the loss again and use that gradient to update. 
 
-There's a pytorch implementation [here](https://github.com/davda54/sam). Code looks quite simple. The result of the first forward-backward is to modify the parameters $$p$$ by `p.add_(e_w)`, upon which after the second forward-backward the parameters are reset and one does a normal update `self.base_optimizer.step()` with the new gradient. 
+There's a pytorch implementation [here](https://github.com/davda54/sam). Code looks quite simple. The result of the first forward-backward is to set `e_w=p.grad*scale` and modify the parameters $$p$$ by `p.add_(e_w)`, upon which after the second forward-backward the parameters are reset and one does a normal update `self.base_optimizer.step()` with the new gradient. 
 
-Note the first step is equivalent to when trying to find an adversial example: Changing the weights by a small amount to maximize the loss. 
 
 Looking at it practically, this means the gradients will always comes from a nearby "higher point" (higher as in the loss is higher). What effect will this have on the optimization trajectory? If you're already in a minimum it's already too late I guess. You're just going to be redirected to the one you're already in right? But if you're bouncing between minima then if you land in a sharp one you should get a bigger gradient correction than if you land in a flat minima where the higher points are actually not that high. So I guess it improves the chances of landing in a good minima.  
-Thinking from the adversial perspective, it should help ensure the model does not allow small perturbations in the input to lead to large changes in the output.
 
 There's a bunch of other interesting content. One point they mention is that the updates are of course done per batch, which means values like $$\hat \epsilon$$ are only estimated with small number of datapoints rather than the entire dataset. They look into what the effect of using subsets (of the batch) of size $$m$$ which are then used to compute the SAM update across different GPUs and then averaging, and find that having smaller sizes performs better!
 
