@@ -129,11 +129,11 @@
 
 \[L=-\log \frac{e^{x_a \cdot x_p \over \tau }}{\sum_i e^{x_a \cdot x_i \over \tau}}\]
 
-<p>Where the numerator contains the comparison between the positive pair \(x_a\) and \(x_p\), and the denominator has all the comparisons (all negative pairs except one). Minimizing the loss means maximizing the value in the numerator (maximizing \(x_a \cdot x_p\)) and minimizing the denominator (minimizing all \(x_a \cdot x_p\)).</p>
+<p>Where the numerator contains the comparison between the positive pair \(x_a\) and \(x_p\), and the denominator has all the comparisons (all negative pairs except one). Minimizing the loss means maximizing the value in the numerator (maximizing \(x_a \cdot x_p\)) and minimizing the denominator (minimizing all \(x_a \cdot x_i\)).</p>
 
 <p>Now imagine \(\tau=1\). Remember the similarity function is the cosine distance, which with normalized vectors goes from -1 to 1. After applying \(exp\) the range goes from 1/e to e.</p>
 
-<p>Note how small that range is, and note that if the vectors were orthogonal to each other then the similarity is 0 and then \(e^{0}=1\).</p>
+<p>Note how small that range is, and note that if the vectors were orthogonal to each other then the similarity is 0 and therefore \(e^{0}=1\).</p>
 
 <p>So making negative pairs orthogonal to each other is not enough to minimize the loss, because the numerator can at most be \(e\) while the denominator would be (if all pairs were orthogonal) \(\sum_i 1\). What the model would have to try and do is make the negative pairs all be antiparallel to each other. That’s obviously not ideal, if two vectors are orthogonal that should be enough of a separation.</p>
 
@@ -149,7 +149,7 @@
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-03-16T10:29:56+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-07-01T13:54:25+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 

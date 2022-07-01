@@ -125,7 +125,7 @@
 
 <p>First let’s clarify what E2E ASR means for me: No phones, the model outputs are letters or subword units. No alignment needed and the model learns an internal LM.</p>
 
-<p>Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to have the network be forced to memorize that.</p>
+<p>Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to force the network to memorize that.</p>
 
 <p>However, I’ve had a bit of a change in thinking recently. This has come not from realizing the existance of some technical fact, but rather thinking about what the point of doing speech recognition actually is from the perspective of a consumer. There are many different use cases of course but in by far the majority of them what the end-user wants is a clean transcript. It should be easy to read, free of disfluences, filler words and repetitions.<br />
 I believe traditional ASR is flawed for achieving this, and E2E ASR is not.</p>
@@ -143,7 +143,7 @@ It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that i
 
 <p>Clean transcripts aren’t just better for a human reader, it also makes post processing easier for any downstream ML system. And in my experience speech recognition by itself does not have that much value (from a commercial perspective), it’s by adding an NLU system on top that a lot more possibilities for use cases open up.</p>
 
-<p>I feel like some people have spent so much time thinking about how to model phones that they’ve forgotten that we don’t actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sounds were in the audio should only be a means to an end.</p>
+<p>I feel like some people have spent so much time thinking about how to model phones that they’ve forgotten that we don’t actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sounds were in the audio should only be a means to an end. Said another way: <strong>Speech recognition is actually not about what a person said, rather it’s about what they meant to say.</strong></p>
 
 <p>Of course, it’s not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2 I feel a good solution has been found as the performance is very good! This combined with the above perspective has changed my mind on E2E-ASR: I believe it is the way forward.</p>
 
@@ -159,7 +159,7 @@ It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that i
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-03-16T10:29:56+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-07-01T13:54:25+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 

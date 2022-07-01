@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2022-03-16T10:29:56+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Notes on Sharpness Aware Minimization and LM paper using it</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization.html" rel="alternate" type="text/html" title="Notes on Sharpness Aware Minimization and LM paper using it" /><published>2021-11-21T10:06:02+00:00</published><updated>2021-11-21T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization.html">&lt;p&gt;WIP&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2022-07-01T13:54:25+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Notes on Sharpness Aware Minimization and LM paper using it</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization.html" rel="alternate" type="text/html" title="Notes on Sharpness Aware Minimization and LM paper using it" /><published>2021-11-21T10:06:02+00:00</published><updated>2021-11-21T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization.html">&lt;p&gt;WIP&lt;/p&gt;
 
 &lt;p&gt;Notes on &lt;a href=&quot;https://arxiv.org/pdf/2010.01412.pdf&quot;&gt;SAM paper&lt;/a&gt; and the child paper using &lt;a href=&quot;https://arxiv.org/pdf/2110.08529.pdf&quot;&gt;SAM for language modeling&lt;/a&gt;.&lt;/p&gt;
 
@@ -32,7 +32,36 @@
 
 &lt;p&gt;They use \(m\) to mean the number of subsets that are created from the batch (rather than being \(m\) being the size of the subset).&lt;/p&gt;
 
-&lt;p&gt;They that SAM improves results for all model sizes and especially when the training data is small. The \(\rho\) does need to be tuned, however they identify 0.15 as a good default.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">WIP</summary></entry><entry><title type="html">The black code formatter is ugly</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html" rel="alternate" type="text/html" title="The black code formatter is ugly" /><published>2021-11-18T10:06:02+00:00</published><updated>2021-11-18T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html">&lt;p&gt;that is all&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">that is all</summary></entry><entry><title type="html">Notes on Decoupled Contrastive Learning</title><link href="https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html" rel="alternate" type="text/html" title="Notes on Decoupled Contrastive Learning" /><published>2021-10-15T10:06:02+00:00</published><updated>2021-10-15T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html">&lt;p&gt;Trying to summarize the recent paper &lt;a href=&quot;https://arxiv.org/abs/2110.06848&quot;&gt;Decoupled Contrastive Learning&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Finally they show that SAM improves results for all model sizes and especially when the training data is small. The \(\rho\) does need to be tuned, however they identify 0.15 as a good default.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">WIP</summary></entry><entry><title type="html">Why I don’t like the black code formatter</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html" rel="alternate" type="text/html" title="Why I don’t like the black code formatter" /><published>2021-11-18T10:06:02+00:00</published><updated>2021-11-18T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html">&lt;p&gt;First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.&lt;/p&gt;
+
+&lt;p&gt;However:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;’ is cleaner than “&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To me, ‘ has less visual noise than “. It’s a single stroke rather than two. Additionally, on US keyboards ‘ does not require pressing shift, “ does.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Black loves newlines, this leads to too much whitespace and makes skimming code harder&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Take a look at this image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/blackbloat_args.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This could take half the space, and then I could view twice as many arguments in one go.&lt;/p&gt;
+
+&lt;p&gt;Black favoring to break functions with arguments up like this&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function(
+    argument
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This generally leads to one seeing much less code on one’s screen than originally. This worsens readability. I can see the argument for doing this
+for a function with ten arguments, but one? Nah.&lt;/p&gt;
+
+&lt;p&gt;I might think of more issues this is it for now.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.</summary></entry><entry><title type="html">Notes on Decoupled Contrastive Learning</title><link href="https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html" rel="alternate" type="text/html" title="Notes on Decoupled Contrastive Learning" /><published>2021-10-15T10:06:02+00:00</published><updated>2021-10-15T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html">&lt;p&gt;Trying to summarize the recent paper &lt;a href=&quot;https://arxiv.org/abs/2110.06848&quot;&gt;Decoupled Contrastive Learning&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The contrastive loss is defined as 
 \(L_i=-\log \frac{e^{z_i^{(1)} \cdot z_i^{(2)} / \tau }}{\sum_j e^{z_i^{(1)} \cdot z_j^{(2)} / \tau}}\)&lt;/p&gt;
@@ -89,11 +118,11 @@ This slows learning down and is why large batch sizes were required to ensure th
 
 \[L=-\log \frac{e^{x_a \cdot x_p \over \tau }}{\sum_i e^{x_a \cdot x_i \over \tau}}\]
 
-&lt;p&gt;Where the numerator contains the comparison between the positive pair \(x_a\) and \(x_p\), and the denominator has all the comparisons (all negative pairs except one). Minimizing the loss means maximizing the value in the numerator (maximizing \(x_a \cdot x_p\)) and minimizing the denominator (minimizing all \(x_a \cdot x_p\)).&lt;/p&gt;
+&lt;p&gt;Where the numerator contains the comparison between the positive pair \(x_a\) and \(x_p\), and the denominator has all the comparisons (all negative pairs except one). Minimizing the loss means maximizing the value in the numerator (maximizing \(x_a \cdot x_p\)) and minimizing the denominator (minimizing all \(x_a \cdot x_i\)).&lt;/p&gt;
 
 &lt;p&gt;Now imagine \(\tau=1\). Remember the similarity function is the cosine distance, which with normalized vectors goes from -1 to 1. After applying \(exp\) the range goes from 1/e to e.&lt;/p&gt;
 
-&lt;p&gt;Note how small that range is, and note that if the vectors were orthogonal to each other then the similarity is 0 and then \(e^{0}=1\).&lt;/p&gt;
+&lt;p&gt;Note how small that range is, and note that if the vectors were orthogonal to each other then the similarity is 0 and therefore \(e^{0}=1\).&lt;/p&gt;
 
 &lt;p&gt;So making negative pairs orthogonal to each other is not enough to minimize the loss, because the numerator can at most be \(e\) while the denominator would be (if all pairs were orthogonal) \(\sum_i 1\). What the model would have to try and do is make the negative pairs all be antiparallel to each other. That’s obviously not ideal, if two vectors are orthogonal that should be enough of a separation.&lt;/p&gt;
 
@@ -101,7 +130,7 @@ This slows learning down and is why large batch sizes were required to ensure th
 
 &lt;p&gt;First let’s clarify what E2E ASR means for me: No phones, the model outputs are letters or subword units. No alignment needed and the model learns an internal LM.&lt;/p&gt;
 
-&lt;p&gt;Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to have the network be forced to memorize that.&lt;/p&gt;
+&lt;p&gt;Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to force the network to memorize that.&lt;/p&gt;
 
 &lt;p&gt;However, I’ve had a bit of a change in thinking recently. This has come not from realizing the existance of some technical fact, but rather thinking about what the point of doing speech recognition actually is from the perspective of a consumer. There are many different use cases of course but in by far the majority of them what the end-user wants is a clean transcript. It should be easy to read, free of disfluences, filler words and repetitions.&lt;br /&gt;
 I believe traditional ASR is flawed for achieving this, and E2E ASR is not.&lt;/p&gt;
@@ -119,7 +148,7 @@ It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that i
 
 &lt;p&gt;Clean transcripts aren’t just better for a human reader, it also makes post processing easier for any downstream ML system. And in my experience speech recognition by itself does not have that much value (from a commercial perspective), it’s by adding an NLU system on top that a lot more possibilities for use cases open up.&lt;/p&gt;
 
-&lt;p&gt;I feel like some people have spent so much time thinking about how to model phones that they’ve forgotten that we don’t actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sounds were in the audio should only be a means to an end.&lt;/p&gt;
+&lt;p&gt;I feel like some people have spent so much time thinking about how to model phones that they’ve forgotten that we don’t actually care about phones at all. It could be an interesting question for linguists to study, what phones do people use etc., but if your task is speech recognition classifying which sounds were in the audio should only be a means to an end. Said another way: &lt;strong&gt;Speech recognition is actually not about what a person said, rather it’s about what they meant to say.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Of course, it’s not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2 I feel a good solution has been found as the performance is very good! This combined with the above perspective has changed my mind on E2E-ASR: I believe it is the way forward.&lt;/p&gt;
 
