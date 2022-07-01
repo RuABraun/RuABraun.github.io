@@ -40,4 +40,4 @@ The child paper mentions that one can use a fourth smaller batch size in the fir
 
 They use $$m$$ to mean the number of subsets that are created from the batch (rather than being $$m$$ being the size of the subset).
 
-They that SAM improves results for all model sizes and especially when the training data is small. The $$\rho$$ does need to be tuned, however they identify 0.15 as a good default. 
+Finally they show that SAM improves results for all model sizes and especially when the training data is small. The $$\rho$$ does need to be tuned, however they identify 0.15 as a good default. 
