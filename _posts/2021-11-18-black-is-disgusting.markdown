@@ -28,7 +28,7 @@ function(
 )
 ```
 
-This generally leads to one seeing much less code on one's screen than originally. This worsens readability. I can see the argument for doing this
+generally leads to one seeing much less code on one's screen than originally. This worsens readability. I can see the argument for doing this
 for a function with ten arguments, but one? Nah.
 
 I might think of more issues this is it for now.
