@@ -1,38 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2022-07-01T14:25:36+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Notes on Sharpness Aware Minimization and LM paper using it</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization.html" rel="alternate" type="text/html" title="Notes on Sharpness Aware Minimization and LM paper using it" /><published>2021-11-21T10:06:02+00:00</published><updated>2021-11-21T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/21/Notes-on-Sharpness-Aware-Minimization.html">&lt;p&gt;WIP&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2022-07-24T09:50:28+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">A comparison of fairseq, speechbrain, k2 for ASR</title><link href="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" rel="alternate" type="text/html" title="A comparison of fairseq, speechbrain, k2 for ASR" /><published>2022-06-26T10:06:02+00:00</published><updated>2022-06-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html">&lt;p&gt;WIP&lt;/p&gt;
 
-&lt;p&gt;Notes on &lt;a href=&quot;https://arxiv.org/pdf/2010.01412.pdf&quot;&gt;SAM paper&lt;/a&gt; and the child paper using &lt;a href=&quot;https://arxiv.org/pdf/2110.08529.pdf&quot;&gt;SAM for language modeling&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these.&lt;/p&gt;
 
-&lt;p&gt;Basic idea of SAM is to perturb the weights in different directions and minimize the loss where it’s at its max.&lt;/p&gt;
+&lt;p&gt;This will for each give a high level overview of the code base, what the training loop looks like, and name stuff I liked or disliked. In the end I will make some comments comparing them.
+Whenever I refer to files, I assume you are starting from the root folder of the repo.&lt;/p&gt;
+&lt;h1 id=&quot;fairseq&quot;&gt;fairseq&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/facebookresearch/fairseq&quot;&gt;Fairseq&lt;/a&gt; is not just meant for ASR. It’s for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization an
+d text to speech.&lt;/p&gt;
 
-&lt;p&gt;So instead of just \(\underset{w}{\min} L_S(w)\) do \(\underset{w}{\min} \underset{\Vert \epsilon \Vert_{p} \le \rho}{\max} L_S(w + \epsilon)\), where p equals 2 and \(\rho\) is a hyperparameter set to a value like 0.05.&lt;/p&gt;
+&lt;p&gt;Training models and doing inference is done via command-line scripts (found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq_cli/&lt;/code&gt;). The training loop and data processing code is unified when possible. As a consequence the code is generally a bit more abstract, you cannot look at just one file if you want to read and understand the training loop.&lt;br /&gt;
+The codebase can be seen as split into four different parts.\&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq_cli/&lt;/code&gt; contains CLI scripts for data processing, model training and evaluation.\&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/&lt;/code&gt; (except for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tasks/&lt;/code&gt;) is like a library of common models, data processing or utility classes and functions\&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/tasks/&lt;/code&gt; has files which contain code specific to a modeling task\&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;examples/&lt;/code&gt; has the documentation and scripts for training and evaluating models related to a facebook paper(s) and corpus\&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;They also have an additional term which in practice they set to the L2 loss of the weights. Not clear to me why the term is necessary.&lt;/p&gt;
+&lt;p&gt;When training you pass a “task” argument (when calling the CLI scripts) which ensures the appropriate code is run for whatever task you are doing. Many modifications to a task, like using a different model, can done by changing a command-line argument or using a config file to redefine a default (the config is based on hydra/omegaconf). Models defined in fairseq (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/models/&lt;/code&gt;) will have a decorator enabling you to specify it using one keyword (making it easy to change).&lt;/p&gt;
 
-&lt;p&gt;Actually trying out different \(\epsilon\)s would be very costly obviously so instead to do the minimization they first use a taylor expansion like:&lt;/p&gt;
+&lt;p&gt;There are several tasks related to speech recognition: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speech_to_text&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speech_recognition&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio_pretraining&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio_finetuning&lt;/code&gt;. The latter two are for wav2vec[2]. It seems they are planning to unify all the previously mentioned ASR related ones to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speech_to_text&lt;/code&gt;, but this is still WIP.&lt;/p&gt;
 
-\[\underset{\Vert \epsilon \Vert_p}{\arg\max} L_S(w + \epsilon) \approx \underset{\Vert \epsilon \Vert_p}{\arg\max} L_S(w) + \epsilon \nabla_w L_S(w) = \underset{\Vert \epsilon \Vert_p}{\arg\max} \epsilon \nabla_w L_S(w)\]
+&lt;p&gt;The data format depends on the task and tends to favor simplicity. For example for wav2vec pretraining you just need a .tsv file which has on the first line a root path, and every line afterwards has a path to an audio file and its sample count. That’s it. In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;examples/*&lt;/code&gt; there always is an explanation for how to get to the data format needed.&lt;/p&gt;
 
-&lt;p&gt;The value of \(\epsilon\) that solves this approximation is “given by the solution to a classical dual norm problem […]” \(\hat \epsilon\). This leads to the following expression and loss (from the paper):&lt;/p&gt;
+&lt;p&gt;I find fairseq to be a good toolkit for reproducing results from facebook’s papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you’re doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it could be quite nice to work with. One downside is you can’t rely much on support from the maintainers; github issues are responded to rarely. It also is not very suited for using in production (but to be fair that is not what it’s made for).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/sam_lossequation.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s skim over the training loop, we start in &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L180&quot;&gt;fairseq_cli/train.py&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while epoch_itr.next_epoch_idx &amp;lt;= max_epoch:
+    [..]
+    valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;With train defined in the same file and then calling &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312&quot;&gt;trainer.train_step()&lt;/a&gt;:&lt;/p&gt;
 
-&lt;p&gt;So in the end they end up throwing away the complicated terms and just using the gradient information to climb in the steepest direction. The amount they climb is determined by the hyperparameter \(\rho\).&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;logger.info(&quot;Start iterating over samples&quot;)
+for i, samples in enumerate(progress):
+     [..]
+	 log_output = trainer.train_step(samples)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The dataloader is wrapped inside of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;progress&lt;/code&gt;.  The trainer object is defined in &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py&quot;&gt;fairseq/trainer.py&lt;/a&gt; and its &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824&quot;&gt;train_step()&lt;/a&gt; calls&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for i, sample in enumerate(samples):  # delayed update loop
+    [..]
+	loss, sample_size_i, logging_output = self.task.train_step(
+		sample=sample,
+		model=self.model,
+		criterion=self.criterion,
+		optimizer=self.optimizer,
+		update_num=self.get_num_updates(),
+		ignore_grad=is_dummy_batch,
+		**extra_kwargs,
+	)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;the task specific train step. Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samples&lt;/code&gt; will have a length bigger 1 only if gradient accumulation is used.&lt;/p&gt;
 
-&lt;p&gt;Note that this is similar to when trying to find an adversial example: Changing the variables (this time the weights, not the input) by a small amount to maximize the loss.&lt;/p&gt;
+&lt;p&gt;A lot of tasks actually don’t have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train_step()&lt;/code&gt; defined and just use the generic one defined in &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490&quot;&gt;fairseq/tasks/fairseq_task.py&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The procedure is to compute the loss for weights \(w\), then use that loss and gradient to compute \(\hat \epsilon\), perturb the weights, compute the loss again and use that gradient to update.&lt;/p&gt;
+&lt;h1 id=&quot;speechbrain&quot;&gt;speechbrain&lt;/h1&gt;
 
-&lt;p&gt;There’s a pytorch implementation &lt;a href=&quot;https://github.com/davda54/sam&quot;&gt;here&lt;/a&gt;. Code looks quite simple. The result of the first forward-backward is to set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;e_w=p.grad*scale&lt;/code&gt; and modify the parameters \(p\) by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;p.add_(e_w)&lt;/code&gt;, upon which after the second forward-backward the parameters are reset and one does a normal update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self.base_optimizer.step()&lt;/code&gt; with the new gradient.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/speechbrain/speechbrain&quot;&gt;Speechbrain&lt;/a&gt; is for speech processing tasks, they have an impressive array of examples where they get good results (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recipes/&lt;/code&gt;).  The core training loop is unified in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; class (found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speechbrain/core.py&lt;/code&gt;), the data processing code is specified in each recipe.&lt;/p&gt;
 
-&lt;p&gt;Looking at it practically, this means the gradients will always comes from a nearby “higher point” (higher as in the loss is higher). What effect will this have on the optimization trajectory? If you’re already in a minimum it’s already too late I guess. You’re just going to be redirected to the one you’re already in right? But if you’re bouncing between minima then if you land in a sharp one you should get a bigger gradient correction than if you land in a flat minima where the higher points are actually not that high. So I guess it improves the chances of landing in a good minima.&lt;/p&gt;
+&lt;p&gt;It uses a powerful yaml config (&lt;a href=&quot;https://github.com/speechbrain/HyperPyYAML&quot;&gt;HyperPyYaml&lt;/a&gt;) which is generally used not only to define hyperparameters but also to define data processing related things like the data loading sampler, the loss, the optimizer and the model. A complicated model would be defined by refering to the speechbrain implementation (for example a transformer), a simple one like an 3-layer MLP you could define right in the config.&lt;/p&gt;
 
-&lt;p&gt;There’s a bunch of other interesting content. One point they mention is that the updates are of course done per batch, which means values like \(\hat \epsilon\) are only estimated with small number of datapoints rather than the entire dataset. They look into what the effect of using subsets (of the batch) of size \(m\) which are then used to compute the SAM update across different GPUs and then averaging, and find that having smaller sizes performs better!&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; calls is initialized with this config, and will therefore hold a reference to everything related to training such as the model, the loss, the optimizer and so on.&lt;/p&gt;
 
-&lt;p&gt;The child paper mentions that one can use a fourth smaller batch size in the first step to speed things up with losing performance.&lt;/p&gt;
+&lt;p&gt;How the model is used is specified by overriding two methods  [of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; class] &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_forward&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_objectives&lt;/code&gt;. The former defines how to get from the data to the outputs you need to compute the loss. You then use the latter to define how to compute the loss from those outputs (it’s  called automatically after the former). Sometimes the implementation will be extremely simple: In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_forward&lt;/code&gt; you call the model and in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_objectives&lt;/code&gt; you call the loss defined in your config. If you have a model with separate stages and/or have multiple losses then the methods would be the location to specify how they are connected.&lt;/p&gt;
 
-&lt;p&gt;They use \(m\) to mean the number of subsets that are created from the batch (rather than being \(m\) being the size of the subset).&lt;/p&gt;
+&lt;p&gt;The data is typically stored in CSV format (with filepaths pointing to audio data of course), in your recipe you then specify (via a custom “pipeline” construct) how to go from the data in the CSV to the data you want available in a batch.&lt;/p&gt;
 
-&lt;p&gt;Finally they show that SAM improves results for all model sizes and especially when the training data is small. The \(\rho\) does need to be tuned, however they identify 0.15 as a good default.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">WIP</summary></entry><entry><title type="html">Why I don’t like the black code formatter</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html" rel="alternate" type="text/html" title="Why I don’t like the black code formatter" /><published>2021-11-18T10:06:02+00:00</published><updated>2021-11-18T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html">&lt;p&gt;First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.&lt;/p&gt;
+&lt;p&gt;I like the config and how powerful it is.  I think they’ve made some good decisions about how to allow people to make the changes they need to write code specific to their problem. I have though sometimes been bitten by behaviour that I did not expect. It definitely feels more like a framework than a toolkit, something that expects you to do things in a certain way and if you don’t you could end up having a hard time. The code is very object oriented.&lt;/p&gt;
+
+&lt;h1 id=&quot;k2icefalllhotse&quot;&gt;k2/icefall/lhotse&lt;/h1&gt;
+
+&lt;p&gt;This is by far the newest of the three tools I’m comparing here. I wrote k2/icefall/lhotse because there are three different repositories you would make use of: &lt;a href=&quot;https://github.com/k2-fsa/k2&quot;&gt;k2&lt;/a&gt; for ragged tensors and lattice related operations, &lt;a href=&quot;https://github.com/lhotse-speech/lhotse&quot;&gt;lhotse&lt;/a&gt; for everything related to data and &lt;a href=&quot;https://github.com/k2-fsa/icefall&quot;&gt;icefall&lt;/a&gt; which contains recipes using the former two.&lt;/p&gt;
+
+&lt;p&gt;So for example icefall contains recipes for training transducer models. The downloading of a corpus, the feature extraction, the code for taking care of dynamic batching will come from lhotse. Ragged tensors, RNNT loss computations, (WFST) decoding graphs will come from k2. Icefall has the contain putting everything together. There is no unified training loop, each recipe will have its own straight-forward implementation making use of lhotse and k2 to do training and inference.&lt;/p&gt;
+
+&lt;p&gt;This makes reading the implementation and making changes very easy. I have achieved very good performance and plan to investigate the implementation details. Installing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lhotse&lt;/code&gt; gives access to a very nice CLI that easily allows one to convert from a kaldi style data dir to a lhotse style manifest (actually consisting of two files, one for the audio data and one for the labels) and to extract features. I will say though the decorator ratio in the lhotse codebase is the highest I’ve ever seen, debugging can be a pain. Which brings me to the fact that this is all very new and in a state of flux, so there are a relatively high amount of bugs. On the bright side everyone involved is very responsive and if something doesn’t work one can get help very quickly.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">WIP</summary></entry><entry><title type="html">Why I don’t like the black code formatter</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html" rel="alternate" type="text/html" title="Why I don’t like the black code formatter" /><published>2021-11-18T10:06:02+00:00</published><updated>2021-11-18T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html">&lt;p&gt;First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.&lt;/p&gt;
 
 &lt;p&gt;However:&lt;/p&gt;
 
@@ -58,59 +100,10 @@
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This generally leads to one seeing much less code on one’s screen than originally. This worsens readability. I can see the argument for doing this
+&lt;p&gt;generally leads to one seeing much less code on one’s screen than originally. This worsens readability. I can see the argument for doing this
 for a function with ten arguments, but one? Nah.&lt;/p&gt;
 
-&lt;p&gt;I might think of more issues this is it for now.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.</summary></entry><entry><title type="html">Notes on Decoupled Contrastive Learning</title><link href="https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html" rel="alternate" type="text/html" title="Notes on Decoupled Contrastive Learning" /><published>2021-10-15T10:06:02+00:00</published><updated>2021-10-15T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/10/15/Notes-on-Decoupled-Contrastive-Learning.html">&lt;p&gt;Trying to summarize the recent paper &lt;a href=&quot;https://arxiv.org/abs/2110.06848&quot;&gt;Decoupled Contrastive Learning&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The contrastive loss is defined as 
-\(L_i=-\log \frac{e^{z_i^{(1)} \cdot z_i^{(2)} / \tau }}{\sum_j e^{z_i^{(1)} \cdot z_j^{(2)} / \tau}}\)&lt;/p&gt;
-
-&lt;p&gt;for one positive pair \(z_i^{(1)}, z_i^{(2)}\). Minimizing the loss means the numerator needs to be increased (by increasing the dot product of the positive pair) while decreasing the denominator (decreasing dot product of negative pairs). As the loss goes down the ratio should go to 1.&lt;/p&gt;
-
-&lt;p&gt;Through some rearranging they find that there’s a shared term in the gradients of \(z_i^{(1)}, z_i^{(2)}, z_j\):&lt;/p&gt;
-
-\[q_B^{1} = 1 - \frac{e^{z_i^{(1)} \cdot z_i^{(2)} / \tau }}{\sum_j e^{z_i^{(1)} \cdot z_j^{(2)} / \tau}}\]
-
-&lt;p&gt;The fraction is the same as in the loss. So when the ratio is close to 1 the gradient is small. The end result is that if there are no difficult negatives then the gradient will be small. Even if the positive pair is not that close to each other!
-This slows learning down and is why large batch sizes were required to ensure the existence of hard negatives.&lt;/p&gt;
-
-&lt;p&gt;They empirically show that when using small batch sizes the distribution of \(q_B\) has a strong bias towards small values («0.5). This changes as the batch is increased.&lt;/p&gt;
-
-&lt;p&gt;They propose removing the positive pair from the denominator:
-\(L_i^{DCL}=-\log \frac{e^{z_i^{(1)} \cdot z_i^{(2)} / \tau }}{\sum_{j \ne i} e^{z_i^{(1)} \cdot z_j^{(2)} / \tau}}\)&lt;/p&gt;
-
-&lt;p&gt;And a weighting function to ensure that the gradient is larger when positive samples are further from each other.&lt;/p&gt;
-
-&lt;p&gt;Experiments show learning is faster.&lt;/p&gt;
-
-&lt;p&gt;Personal thoughts: I had wondered whether it might be suboptimal to include the positive pair in the denominator! Interesting to see this feeling validated! I hesitated pursuing this because allowing the ratio inside the log to be larger than 1 seemed wrong.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Trying to summarize the recent paper Decoupled Contrastive Learning.</summary></entry><entry><title type="html">ICLR 2021 Papers</title><link href="https://ruabraun.github.io/jekyll/update/2021/06/07/ICLR-2021-Papers.html" rel="alternate" type="text/html" title="ICLR 2021 Papers" /><published>2021-06-07T10:06:02+00:00</published><updated>2021-06-07T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/06/07/ICLR-2021-Papers</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/06/07/ICLR-2021-Papers.html">&lt;p&gt;Selected list of papers I liked or am interested in.&lt;/p&gt;
-
-&lt;p&gt;Learning Better Structured Representations Using Low-rank Adaptive Label Smoothing&lt;/p&gt;
-
-&lt;p&gt;Learning explanations that are hard to vary&lt;/p&gt;
-
-&lt;p&gt;PMI-Masking: Principled masking of correlated spans&lt;/p&gt;
-
-&lt;p&gt;Sharpness-aware Minimization for Efficiently Improving Generalization&lt;/p&gt;
-
-&lt;p&gt;Knowledge distillation via softmax regression representation learning&lt;/p&gt;
-
-&lt;p&gt;Tent: Fully Test-Time Adaptation by Entropy Minimization&lt;/p&gt;
-
-&lt;p&gt;AdamP: Slowing Down the Slowdown for Momentum Optimizers on Scale-invariant Weights&lt;/p&gt;
-
-&lt;p&gt;Robust Overfitting may be mitigated by properly learned smoothening&lt;/p&gt;
-
-&lt;p&gt;Better Fine-Tuning by Reducing Representational Collapse&lt;/p&gt;
-
-&lt;p&gt;Estimating informativeness of samples with Smooth Unique Information&lt;/p&gt;
-
-&lt;p&gt;On the Origin of Implicit Regularization in Stochastic Gradient Descent&lt;/p&gt;
-
-&lt;p&gt;EigenGame: PCA as a Nash Equilibrium&lt;/p&gt;
-
-&lt;p&gt;Rethinking Attention with Performers&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Selected list of papers I liked or am interested in.</summary></entry><entry><title type="html">Why the Temperature Matters for Contrastive Loss</title><link href="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" rel="alternate" type="text/html" title="Why the Temperature Matters for Contrastive Loss" /><published>2021-04-30T10:06:02+00:00</published><updated>2021-04-30T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">&lt;p&gt;Contrastive learning has become very popular recently, see &lt;a href=&quot;https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md&quot;&gt;here&lt;/a&gt; for a good overview of recent papers.&lt;/p&gt;
+&lt;p&gt;I might think of more issues this is it for now.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.</summary></entry><entry><title type="html">Why the Temperature Matters for Contrastive Loss</title><link href="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" rel="alternate" type="text/html" title="Why the Temperature Matters for Contrastive Loss" /><published>2021-04-30T10:06:02+00:00</published><updated>2021-04-30T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">&lt;p&gt;Contrastive learning has become very popular recently, see &lt;a href=&quot;https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md&quot;&gt;here&lt;/a&gt; for a good overview of recent papers.&lt;/p&gt;
 
 &lt;p&gt;However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think it matters.&lt;/p&gt;
 
@@ -175,9 +168,7 @@ It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that i
 
 &lt;p&gt;This is why you need to train on billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.&lt;/p&gt;
 
-&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; The total count is around 400k by the way (a good chunk of them are rubbish).&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position. 199989 krisenbewältigungen 2 199999 gendersensitiv 2 200002 umgehbar 2 200005 widersinnigen 2 200016 ausmehrungen 2 The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1</summary></entry><entry><title type="html">Why does BPE work?</title><link href="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html" rel="alternate" type="text/html" title="Why does BPE work?" /><published>2021-02-09T10:06:02+00:00</published><updated>2021-02-09T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html">&lt;p&gt;WIP&lt;/p&gt;
-
-&lt;p&gt;BPE is a remarkably effective algorithm for finding a set of subwords. Just count pairs of tokens, merge the most frequent one, repeat until you have the desired number of subwords. Why does this work, and why would just picking the k most frequent ngrams not?&lt;/p&gt;
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; The total count is around 400k by the way (a good chunk of them are rubbish).&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position. 199989 krisenbewältigungen 2 199999 gendersensitiv 2 200002 umgehbar 2 200005 widersinnigen 2 200016 ausmehrungen 2 The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1</summary></entry><entry><title type="html">Why does BPE work?</title><link href="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html" rel="alternate" type="text/html" title="Why does BPE work?" /><published>2021-02-09T10:06:02+00:00</published><updated>2021-02-09T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html">&lt;p&gt;BPE is a remarkably effective algorithm for finding a set of subwords. Just count pairs of tokens, merge the most frequent one, repeat until you have the desired number of subwords. Why does this work, and why would just picking the k most frequent ngrams not?&lt;/p&gt;
 
 &lt;p&gt;Let’s create a simple ‘corpus’* (word counts are what actually matter):&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;low 5
@@ -206,7 +197,7 @@ new 2
 
 &lt;p&gt;Now the motivation for the algorithm of BPE is clear. It recounts after each merge to make sure the statistics used are up-to-date, and by considering pairs of tokens it saves a lot of computation.&lt;/p&gt;
 
-&lt;p&gt;* Taken from Jurafsky’s chapter on BPE.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">WIP</summary></entry><entry><title type="html">On WER in ASR</title><link href="https://ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html" rel="alternate" type="text/html" title="On WER in ASR" /><published>2020-11-27T10:06:02+00:00</published><updated>2020-11-27T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html">&lt;p&gt;This post will be about the python-based &lt;a href=&quot;https://github.com/RuABraun/texterrors&quot;&gt;tool (“texterrors”)&lt;/a&gt; I created for getting error metrics (relevant for ASR). It is split in two parts: 
+&lt;p&gt;* Taken from Jurafsky’s chapter on BPE.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">BPE is a remarkably effective algorithm for finding a set of subwords. Just count pairs of tokens, merge the most frequent one, repeat until you have the desired number of subwords. Why does this work, and why would just picking the k most frequent ngrams not?</summary></entry><entry><title type="html">On WER in ASR</title><link href="https://ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html" rel="alternate" type="text/html" title="On WER in ASR" /><published>2020-11-27T10:06:02+00:00</published><updated>2020-11-27T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/11/27/On-word-error-rates.html">&lt;p&gt;This post will be about the python-based &lt;a href=&quot;https://github.com/RuABraun/texterrors&quot;&gt;tool (“texterrors”)&lt;/a&gt; I created for getting error metrics (relevant for ASR). It is split in two parts: 
 First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking &lt;a href=&quot;#newtool&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;wer-calculation-recap&quot;&gt;WER calculation recap&lt;/h2&gt;
@@ -688,4 +679,54 @@ fst.write(...)
 
 &lt;p&gt;The self-loops should have costs, what these should be you will have to find out experimentally.&lt;/p&gt;
 
-&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry></feed>
+&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry><entry><title type="html">First post: Ark and scp files in kaldi</title><link href="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" rel="alternate" type="text/html" title="First post: Ark and scp files in kaldi" /><published>2020-10-04T12:40:02+00:00</published><updated>2020-10-04T12:40:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html">&lt;p&gt;Both file types are structured by having keys and a value for each key.&lt;/p&gt;
+
+&lt;h1 id=&quot;scp-files&quot;&gt;Scp files&lt;/h1&gt;
+
+&lt;p&gt;In scp files, usually ending with the “.scp” suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
+What this means is that the scp file never contains any data, it just contains something which points to the data you will eventually use. See for example the wav.scp file which will look something like this usually:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 /path/to/file-1.wav
+wav-id-2 /path/to/file-2.wav
+wav-id-3 /path/to/file-3.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It can be a file path, but can also be more complex like:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 sox /path/to/file-1.wav -r 8k - |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Kaldi’s code is written so that it will recognize and execute the above command (starting from after the key), which results in the wav file being read with a sampling rate of 8kHz. This is a convenient way of doing the resampling on the fly (instead of resampling and having to waste space storing a file somewhere).&lt;/p&gt;
+
+&lt;p&gt;Another file one will see a lot when using kaldi is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; file which looks like:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;utt-id-1 /path/to/file-1.ark:44
+utt-id-2 /path/to/file-1.ark:760
+utt-id-3 /path/to/file-1.ark:1520
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The number after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:&lt;/code&gt; is a byte offset.&lt;/p&gt;
+
+&lt;h1 id=&quot;ark-files&quot;&gt;Ark files&lt;/h1&gt;
+
+&lt;p&gt;Instead of the value being a pointer to the data, in ark files the value &lt;strong&gt;is&lt;/strong&gt; the data. Usually this means it is in binary format, so you can’t visually inspect it, however kaldi has binaries for converting from binary to text format. So for example take the ark file from the feats.scp example above and call:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats ark:/path/to/file-1.ark ark,t:/path/to/file-1.ark.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark,t&lt;/code&gt; means that the values in the output will be written in textual format, so you can open the file and see what the values for the (example) MFCC coefficients are for each frame.&lt;/p&gt;
+
+&lt;p&gt;Another example of an ark style file, although it doesn’t have the “.ark” suffix, is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt; file you will find in kaldi data folders. The first field/column is the utterance ID, the rest of the line is the words belonging to that utterance. The words are the data.&lt;/p&gt;
+
+&lt;p&gt;You can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat&lt;/code&gt; to concatenate ark files. And kaldi binaries accepts commands and wildcards in the arguments, so this is valid: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:gunzip -c lat.*.gz|&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Kaldi has a script for subsetting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files you may find useful called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When you call kaldi binaries you often have to prefix with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp:&lt;/code&gt; to tell kaldi what type of file to expect. You can then mix types, for example I could use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt; to subset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; and create a file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats_subset.scp&lt;/code&gt;, and then copy a subset of the feature data by calling&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:feats_subset.scp ark:copied_feats_subset.ark
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Notice how the input argument is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt;, so kaldi knows the input file is pointing to the data I want to use, and the output is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt;, so kaldi knows to actually write the data pointed to to a new file.&lt;/p&gt;
+
+&lt;p&gt;It’s not possible to create just a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; file from an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; file, you have to create both the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files. So you have to do something like this:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:/path/to/feats.ark ark,scp:copied_feats.ark,copied_feats.scp 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For more details check out the official documentation of &lt;a href=&quot;http://kaldi-asr.org/doc/io.html&quot;&gt;kaldi io&lt;/a&gt;. Probably the section “from a command-line perspective” is more relevant to you.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Both file types are structured by having keys and a value for each key.</summary></entry></feed>

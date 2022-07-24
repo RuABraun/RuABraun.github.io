@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="application/atom+xml" rel="alternate" href="https://ruabraun.github.io/feed.xml" title="Sharings" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>A comparison of fairseq, speechbrain, k2 for ASR | Sharings</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="A comparison of fairseq, speechbrain, k2 for ASR" />
+<meta name="author" content="Rudolf A. Braun" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="WIP" />
+<meta property="og:description" content="WIP" />
+<link rel="canonical" href="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" />
+<meta property="og:url" content="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" />
+<meta property="og:site_name" content="Sharings" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-26T10:06:02+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="A comparison of fairseq, speechbrain, k2 for ASR" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"A comparison of fairseq, speechbrain, k2 for ASR","dateModified":"2022-06-26T10:06:02+00:00","datePublished":"2022-06-26T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html"},"description":"WIP","url":"https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+  <link rel="stylesheet" href="/assets/css/open-color.css">
+  <link rel="stylesheet" href="/assets/css/hydure.css">
+
+  <script async src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+
+  
+
+</head>
+
+
+  <body>
+    <div id="layout" class="pure-g">
+      <div class="sidebar pure-u-1 pure-u-md-1-4" style="background-color: #202421">
+        <div class="sidebar-shield">
+          <header class="header">
+  <img src="https://ruabraun.github.io/images/profpic.jpg" alt="Me!" width="40%" height="40%" class="profile">
+  <a class="brand-title" href="/">Sharings</a>
+  <p class="brand-name">Rudolf A. Braun</p>
+  <p class="brand-tagline">On speech recognition and maybe other things</p>
+
+  
+    <nav class="nav pure-menu">
+      <ul class="pure-menu-list">
+      
+        <li class="nav-item pure-menu-item">
+          <a href="/" class="pure-menu-link ">
+            Home
+          </a>
+        </li>
+      
+        <li class="nav-item pure-menu-item">
+          <a href="/about/" class="pure-menu-link ">
+            About
+          </a>
+        </li>
+      
+      </ul>
+    </nav>
+  
+
+  
+    <div class="social pure-menu pure-menu-horizontal">
+      <ul class="social-list pure-menu-list">
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="mailto:rab014@gmail.com" target="_blank">
+              <i class="fas fa-envelope" title="Email"></i>
+            </a>
+          </li>
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="https://twitter.com/fasttosmile" target="_blank">
+              <i class="fab fa-twitter" title="Twitter"></i>
+            </a>
+          </li>
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="https://github.com/RuABraun/" target="_blank">
+              <i class="fab fa-github" title="GitHub"></i>
+            </a>
+          </li>
+        
+          <li class="social-item pure-menu-item">
+            <a class="pure-menu-link pure-button" href="https://www.linkedin.com/in/rudolf-a-braun-speech/" target="_blank">
+              <i class="fab fa-linkedin" title="LinkedIn"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</header>
+
+        </div>
+      </div>
+      <div class="content pure-u-1 pure-u-md-3-4">
+        <div class="main">
+          <article class="post">
+  
+    <div class="post-meta">
+      <ul class="post-categories"><li>
+            <span class="post-category">jekyll</span></li><li>
+            <span class="post-category">update</span></li></ul>
+    </div>
+  
+  <h1 class="post-title">A comparison of fairseq, speechbrain, k2 for ASR</h1>
+  <div class="post-meta">
+    <time datetime="2022-06-26T10:06:02+00:00" itemprop="datePublished">
+      26 Jun 2022
+    </time></div>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  
+  <p>WIP</p>
+
+<p>I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these.</p>
+
+<p>This will for each give a high level overview of the code base, what the training loop looks like, and name stuff I liked or disliked. In the end I will make some comments comparing them.
+Whenever I refer to files, I assume you are starting from the root folder of the repo.</p>
+<h1 id="fairseq">fairseq</h1>
+<p><a href="https://github.com/facebookresearch/fairseq">Fairseq</a> is not just meant for ASR. It’s for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization an
+d text to speech.</p>
+
+<p>Training models and doing inference is done via command-line scripts (found in <code class="language-plaintext highlighter-rouge">fairseq_cli/</code>). The training loop and data processing code is unified when possible. As a consequence the code is generally a bit more abstract, you cannot look at just one file if you want to read and understand the training loop.<br />
+The codebase can be seen as split into four different parts.\</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fairseq_cli/</code> contains CLI scripts for data processing, model training and evaluation.\</li>
+  <li><code class="language-plaintext highlighter-rouge">fairseq/</code> (except for <code class="language-plaintext highlighter-rouge">/tasks/</code>) is like a library of common models, data processing or utility classes and functions\</li>
+  <li><code class="language-plaintext highlighter-rouge">fairseq/tasks/</code> has files which contain code specific to a modeling task\</li>
+  <li><code class="language-plaintext highlighter-rouge">examples/</code> has the documentation and scripts for training and evaluating models related to a facebook paper(s) and corpus\</li>
+</ul>
+
+<p>When training you pass a “task” argument (when calling the CLI scripts) which ensures the appropriate code is run for whatever task you are doing. Many modifications to a task, like using a different model, can done by changing a command-line argument or using a config file to redefine a default (the config is based on hydra/omegaconf). Models defined in fairseq (<code class="language-plaintext highlighter-rouge">fairseq/models/</code>) will have a decorator enabling you to specify it using one keyword (making it easy to change).</p>
+
+<p>There are several tasks related to speech recognition: <code class="language-plaintext highlighter-rouge">speech_to_text</code>, <code class="language-plaintext highlighter-rouge">speech_recognition</code>, <code class="language-plaintext highlighter-rouge">audio_pretraining</code> and <code class="language-plaintext highlighter-rouge">audio_finetuning</code>. The latter two are for wav2vec[2]. It seems they are planning to unify all the previously mentioned ASR related ones to <code class="language-plaintext highlighter-rouge">speech_to_text</code>, but this is still WIP.</p>
+
+<p>The data format depends on the task and tends to favor simplicity. For example for wav2vec pretraining you just need a .tsv file which has on the first line a root path, and every line afterwards has a path to an audio file and its sample count. That’s it. In <code class="language-plaintext highlighter-rouge">examples/*</code> there always is an explanation for how to get to the data format needed.</p>
+
+<p>I find fairseq to be a good toolkit for reproducing results from facebook’s papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you’re doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it could be quite nice to work with. One downside is you can’t rely much on support from the maintainers; github issues are responded to rarely. It also is not very suited for using in production (but to be fair that is not what it’s made for).</p>
+
+<p>Let’s skim over the training loop, we start in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L180">fairseq_cli/train.py</a>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while epoch_itr.next_epoch_idx &lt;= max_epoch:
+    [..]
+    valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
+</code></pre></div></div>
+<p>With train defined in the same file and then calling <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312">trainer.train_step()</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>logger.info("Start iterating over samples")
+for i, samples in enumerate(progress):
+     [..]
+	 log_output = trainer.train_step(samples)
+</code></pre></div></div>
+<p>The dataloader is wrapped inside of <code class="language-plaintext highlighter-rouge">progress</code>.  The trainer object is defined in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py">fairseq/trainer.py</a> and its <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824">train_step()</a> calls</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i, sample in enumerate(samples):  # delayed update loop
+    [..]
+	loss, sample_size_i, logging_output = self.task.train_step(
+		sample=sample,
+		model=self.model,
+		criterion=self.criterion,
+		optimizer=self.optimizer,
+		update_num=self.get_num_updates(),
+		ignore_grad=is_dummy_batch,
+		**extra_kwargs,
+	)
+</code></pre></div></div>
+<p>the task specific train step. Note that <code class="language-plaintext highlighter-rouge">samples</code> will have a length bigger 1 only if gradient accumulation is used.</p>
+
+<p>A lot of tasks actually don’t have a <code class="language-plaintext highlighter-rouge">train_step()</code> defined and just use the generic one defined in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490">fairseq/tasks/fairseq_task.py</a>.</p>
+
+<h1 id="speechbrain">speechbrain</h1>
+
+<p><a href="https://github.com/speechbrain/speechbrain">Speechbrain</a> is for speech processing tasks, they have an impressive array of examples where they get good results (<code class="language-plaintext highlighter-rouge">recipes/</code>).  The core training loop is unified in a <code class="language-plaintext highlighter-rouge">Brain</code> class (found in <code class="language-plaintext highlighter-rouge">speechbrain/core.py</code>), the data processing code is specified in each recipe.</p>
+
+<p>It uses a powerful yaml config (<a href="https://github.com/speechbrain/HyperPyYAML">HyperPyYaml</a>) which is generally used not only to define hyperparameters but also to define data processing related things like the data loading sampler, the loss, the optimizer and the model. A complicated model would be defined by refering to the speechbrain implementation (for example a transformer), a simple one like an 3-layer MLP you could define right in the config.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Brain</code> calls is initialized with this config, and will therefore hold a reference to everything related to training such as the model, the loss, the optimizer and so on.</p>
+
+<p>How the model is used is specified by overriding two methods  [of the <code class="language-plaintext highlighter-rouge">Brain</code> class] <code class="language-plaintext highlighter-rouge">compute_forward</code> and <code class="language-plaintext highlighter-rouge">compute_objectives</code>. The former defines how to get from the data to the outputs you need to compute the loss. You then use the latter to define how to compute the loss from those outputs (it’s  called automatically after the former). Sometimes the implementation will be extremely simple: In <code class="language-plaintext highlighter-rouge">compute_forward</code> you call the model and in <code class="language-plaintext highlighter-rouge">compute_objectives</code> you call the loss defined in your config. If you have a model with separate stages and/or have multiple losses then the methods would be the location to specify how they are connected.</p>
+
+<p>The data is typically stored in CSV format (with filepaths pointing to audio data of course), in your recipe you then specify (via a custom “pipeline” construct) how to go from the data in the CSV to the data you want available in a batch.</p>
+
+<p>I like the config and how powerful it is.  I think they’ve made some good decisions about how to allow people to make the changes they need to write code specific to their problem. I have though sometimes been bitten by behaviour that I did not expect. It definitely feels more like a framework than a toolkit, something that expects you to do things in a certain way and if you don’t you could end up having a hard time. The code is very object oriented.</p>
+
+<h1 id="k2icefalllhotse">k2/icefall/lhotse</h1>
+
+<p>This is by far the newest of the three tools I’m comparing here. I wrote k2/icefall/lhotse because there are three different repositories you would make use of: <a href="https://github.com/k2-fsa/k2">k2</a> for ragged tensors and lattice related operations, <a href="https://github.com/lhotse-speech/lhotse">lhotse</a> for everything related to data and <a href="https://github.com/k2-fsa/icefall">icefall</a> which contains recipes using the former two.</p>
+
+<p>So for example icefall contains recipes for training transducer models. The downloading of a corpus, the feature extraction, the code for taking care of dynamic batching will come from lhotse. Ragged tensors, RNNT loss computations, (WFST) decoding graphs will come from k2. Icefall has the contain putting everything together. There is no unified training loop, each recipe will have its own straight-forward implementation making use of lhotse and k2 to do training and inference.</p>
+
+<p>This makes reading the implementation and making changes very easy. I have achieved very good performance and plan to investigate the implementation details. Installing <code class="language-plaintext highlighter-rouge">lhotse</code> gives access to a very nice CLI that easily allows one to convert from a kaldi style data dir to a lhotse style manifest (actually consisting of two files, one for the audio data and one for the labels) and to extract features. I will say though the decorator ratio in the lhotse codebase is the highest I’ve ever seen, debugging can be a pain. Which brings me to the fact that this is all very new and in a state of flux, so there are a relatively high amount of bugs. On the bright side everyone involved is very responsive and if something doesn’t work one can get help very quickly.</p>
+
+
+  
+
+  
+</article>
+
+        </div>
+        <footer class="footer pure-g">
+  <div class="pure-u-1 pure-u-md-1-2">
+    <small>
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-07-24T09:50:28+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+    </small>
+  </div>
+
+  <div class="pure-u-1 pure-u-md-1-2">
+    <small>
+      Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> & <a href="https://github.com/zivong/jekyll-theme-hydure" target="_blank">Hydure</a>
+    </small>
+  </div>
+</footer>
+
+      </div>
+    </div>
+
+    
+
+    
+  </body>
+</html>
