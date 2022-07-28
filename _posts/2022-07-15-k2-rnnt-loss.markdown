@@ -1,0 +1,40 @@
+---
+layout: post
+title: k2 simple transducer loss
+date: 2022-07-15 12:06:02 +0200
+categories: jekyll update
+---
+
+This is a summary of how k2/icefall makes the transducer loss faster and take less memory, see here for an excellent introduction to transducers: [https://lorenlugosch.github.io/posts/2020/11/transducer/](https://arxiv.org/abs/2206.13236)
+
+The normal transducer loss requires creating a matrix (B,T,U,V) where B=batch size; T=time steps; U=tokens in reference and V=vocab size. With CTC you'd just have (B,T,V), but now the token history also matters and therefore there is an extra dimension. For one sample in a batch, you can still (as in CTC) think of a matrix where every traversing path represents an alignment, but if the x-axis is the time axis now the logprobs are different for each position on the y-axis.
+
+This matrix is created by combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V).  This is a large matrix which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.
+
+The first insight is that for training we don't need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters.
+
+Okay cool, but how do we actually get the logprobs for each (T,U,)?
+
+This is done by first projecting encoder and decoder outputs to (B,T,V) and (B,U,V), doing matrix-multiply of (B,T,V), (B,V,U) to get a matrix (B,T,U) with marginalized values (across V), and then picking out the unnormalized token log probabilities we care about from (B,T,V) plus (B,U,V) and subtracting the marginalized value (to get a normalized value). Logprobs are used when adding, normal probs when multiplying (for the matrix multiply), so the implemenation has some exp() and log() calls.
+
+Afterwards the simple transducer loss is calculating by creating a matrix (B,T,U) containing the token probabilities we care about (those in the reference), and additionally a matrix (B,T,U) with the blank probabilities (since blank transitions are always possible). Using that we can then traverse across (T,U) to find the logprob of all alignments.
+
+Note you wouldn't normally want to take this approach because the encoder and decoder outputs don't get to interact before the token distribution is calculated (they're added together after the projection to size V), it's as if you had separate AM and LM models and you were just adding together `P(y|x)` and `P(y|y-1)` (the AM just seeing audio and the LM just text). The point of a transducer model is that you want an output `P(y|x,y_1)`, something that directly conditions on both audio and text.
+
+But remember this simple loss is just so that we can do a pruned version of the normal transducer loss. After some training this approach will tell us which paths in (T,U) are more or less likely, because the simple loss will calculate its own version of (T,U,) and many paths in it will have low probability. This information can be used to set boundaries for each time step in T, which allows doing the proper RNNT loss on a subset (B,T,S,V) with S<\<U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the `P(y|x,y_1)` output. Effectively this means we are not considering all alignments, just those that are "reasonable" (according to the simple loss).
+
+Let's look at some code (I collapsed whitespace to make things more compact). Here's the joiner that creates (B,T,U,V). Note the dimension unsqueezing of the encoder and decoder outputs is assumed to have already happened (code is from a recipe specific file `joiner.py`).
+
+<img src="{{site.url}}/images/k2_joiner.png" style="display: block; margin: auto;" />
+
+In the following image you can see the separate projection of encoder and decoder outputs to the vocab size, then computing a simple loss and using that (specifically the gradients) to get boundaries for creating (B,T,S,V). Directly after the last line shown the normal transducer loss is calculated (code is from a recipe specific file `model.py`).
+
+<img src="{{site.url}}/images/k2_losshighlevel.png" style="display: block; margin: auto;" />
+
+Looking slightly deeper into `k2.transducer_loss_smoothed` we can see there are two stages: First calculating px ((T,U,) of reference tokens) and py ((T,U,) of blank token), then doing the standard dynammic programming triple for-loop (for the batch, time, token dimensions) in `mutual_information_recursion` to calculate the total logprob across all alignments. Despite the intimidating name the implementation of the latter is quite straightforward (for CPU at least), see [here](https://github.com/k2-fsa/k2/blob/master/k2/python/csrc/torch/mutual_information_cpu.cu#L89).
+
+<img src="{{site.url}}/images/k2_smoothloss.png" style="display: block; margin: auto;" />
+
+I hope this helps give an overview and basic understanding of how an efficient loss is calculated in k2/icefall.
+
+A preprint is available with nice results and additional details: [https://arxiv.org/abs/2206.13236](https://arxiv.org/abs/2206.13236)
