@@ -131,25 +131,9 @@
 
 <p>The calculation is done by first projecting encoder and decoder outputs to (B,T,V) and (B,U,V), doing matrix-multiply of (B,T,V), (B,V,U) to get a normalization matrix (B,T,U), and then picking out the unnormalized token log probabilities we care about from (B,T,V) plus (B,U,V) and subtracting the normalization value (to get a normalized value). Logprobs are used when adding, normal probs wwhen multiplying (for the matrix multiply) normal probs are used, so the implemenation has some exp() and log() calls.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Note you wouldn’t normally want to take this approach because the encoder and decoder outputs don’t get to interact before the token distribution is calculated (they’re added together after the projection to size V), it’s as if you had separate AM and LM models and you were just adding together P(y</td>
-      <td>x) and P(y</td>
-      <td>y-1) (the AM just seeing audio and the LM just text). The point of RnnT is that you want an output P(y</td>
-      <td>x,y_1), something that directly conditions on both audio and text.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Note you wouldn’t normally want to take this approach because the encoder and decoder outputs don’t get to interact before the token distribution is calculated (they’re added together after the projection to size V), it’s as if you had separate AM and LM models and you were just adding together <code class="language-plaintext highlighter-rouge">P(y|x)</code> and <code class="language-plaintext highlighter-rouge">P(y|y-1)</code> (the AM just seeing audio and the LM just text). The point of RnnT is that you want an output <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code>, something that directly conditions on both audio and text.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>After some training this approach will tell us which paths in (T,U) are more or less likely, because the simple loss will calculate its own version of (T,U,) and many paths in it will have low probability. This information can be used to set boundaries for each time step in T, which allows doing the proper RNNT loss on a subset (B,T,S,V) with S&lt;&lt;U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the P(y</td>
-      <td>x,y_1) output.</td>
-    </tr>
-  </tbody>
-</table>
+<p>After some training this approach will tell us which paths in (T,U) are more or less likely, because the simple loss will calculate its own version of (T,U,) and many paths in it will have low probability. This information can be used to set boundaries for each time step in T, which allows doing the proper RNNT loss on a subset (B,T,S,V) with S&lt;&lt;U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code> output.</p>
 
 <p>Let’s look at some code (I collapsed whitespace to make things more compact). Here’s the joiner that creates (B,T,U,V). Note the dimension unsqueezing of the encoder and decoder outputs is assumed to have already happened (code is from a recipe specific file <code class="language-plaintext highlighter-rouge">joiner.py</code>).</p>
 
@@ -177,7 +161,7 @@
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-07-28T17:20:00+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-07-28T17:38:37+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 
