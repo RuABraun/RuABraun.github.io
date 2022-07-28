@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2022-07-24T09:50:28+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">A comparison of fairseq, speechbrain, k2 for ASR</title><link href="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" rel="alternate" type="text/html" title="A comparison of fairseq, speechbrain, k2 for ASR" /><published>2022-06-26T10:06:02+00:00</published><updated>2022-06-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html">&lt;p&gt;WIP&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2022-07-28T17:20:00+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">k2 simple rnnt loss</title><link href="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html" rel="alternate" type="text/html" title="k2 simple rnnt loss" /><published>2022-07-15T10:06:02+00:00</published><updated>2022-07-15T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html">&lt;p&gt;This is a summary of how k2/icefall makes the transducer loss faster and take less memory, see here for an excellent introduction to transducers: &lt;a href=&quot;https://arxiv.org/abs/2206.13236&quot;&gt;https://lorenlugosch.github.io/posts/2020/11/transducer/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The normal rnnt loss requires creating a matrix (B,T,U,V) where B=batch size; T=time steps; U=symbols in reference and V=vocab size.&lt;/p&gt;
+
+&lt;p&gt;This matrix is created by combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V). (This means time and symbol states are independent in the sense of p(X,Y) = p(X)p(Y))&lt;/p&gt;
+
+&lt;p&gt;The simple rnnt loss (from k2) avoids creating the very large (B,T,U,V) matrix. It does so by recognizing that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability we care about. Since we also care about the blank transition, the simple rnnt loss calculates two matrices (B,T,U) which contain the appropriate symbol and blank probabilities respectively.&lt;/p&gt;
+
+&lt;p&gt;The calculation is done by first projecting encoder and decoder outputs to (B,T,V) and (B,U,V), doing matrix-multiply of (B,T,V), (B,V,U) to get a normalization matrix (B,T,U), and then picking out the unnormalized token log probabilities we care about from (B,T,V) plus (B,U,V) and subtracting the normalization value (to get a normalized value). Logprobs are used when adding, normal probs wwhen multiplying (for the matrix multiply) normal probs are used, so the implemenation has some exp() and log() calls.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Note you wouldn’t normally want to take this approach because the encoder and decoder outputs don’t get to interact before the token distribution is calculated (they’re added together after the projection to size V), it’s as if you had separate AM and LM models and you were just adding together P(y&lt;/td&gt;
+      &lt;td&gt;x) and P(y&lt;/td&gt;
+      &lt;td&gt;y-1) (the AM just seeing audio and the LM just text). The point of RnnT is that you want an output P(y&lt;/td&gt;
+      &lt;td&gt;x,y_1), something that directly conditions on both audio and text.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;After some training this approach will tell us which paths in (T,U) are more or less likely, because the simple loss will calculate its own version of (T,U,) and many paths in it will have low probability. This information can be used to set boundaries for each time step in T, which allows doing the proper RNNT loss on a subset (B,T,S,V) with S&amp;lt;&amp;lt;U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the P(y&lt;/td&gt;
+      &lt;td&gt;x,y_1) output.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Let’s look at some code (I collapsed whitespace to make things more compact). Here’s the joiner that creates (B,T,U,V). Note the dimension unsqueezing of the encoder and decoder outputs is assumed to have already happened (code is from a recipe specific file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joiner.py&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/k2_joiner.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the following image you can see the separate projection of encoder and decoder outputs to the vocab size, then computing a simple loss and using that (specifically the gradients) to get boundaries for creating (B,T,S,V). Directly after the last line shown the normal rnnt loss is calculated (code is from a recipe specific file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;model.py&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/k2_losshighlevel.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looking slightly deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.rnnt_loss_smoothed&lt;/code&gt; we can see there are two stages: First calculating px ((T,U,) of reference symbols) and py ((T,U,) of blank symbol), then doing the standard dynammic programming triple for-loop (for the batch, time, symbol dimensions) in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mutual_information_recursion&lt;/code&gt; to calculate the total logprob across all alignments. Despite the intimidating name the implementation of the latter is quite straightforward (for CPU at least), see &lt;a href=&quot;https://github.com/k2-fsa/k2/blob/master/k2/python/csrc/torch/mutual_information_cpu.cu&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/k2_smoothloss.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I hope this helps give an overview and basic understanding of how the rnnt loss is calculated in k2/icefall.&lt;/p&gt;
+
+&lt;p&gt;A preprint is available with nice results: &lt;a href=&quot;https://arxiv.org/abs/2206.13236&quot;&gt;https://arxiv.org/abs/2206.13236&lt;/a&gt;&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This is a summary of how k2/icefall makes the transducer loss faster and take less memory, see here for an excellent introduction to transducers: https://lorenlugosch.github.io/posts/2020/11/transducer/</summary></entry><entry><title type="html">A comparison of fairseq, speechbrain, k2 for ASR</title><link href="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" rel="alternate" type="text/html" title="A comparison of fairseq, speechbrain, k2 for ASR" /><published>2022-06-26T10:06:02+00:00</published><updated>2022-06-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html">&lt;p&gt;WIP&lt;/p&gt;
 
 &lt;p&gt;I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these.&lt;/p&gt;
 
