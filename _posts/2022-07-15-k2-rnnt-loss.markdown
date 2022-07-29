@@ -5,7 +5,7 @@ date: 2022-07-15 12:06:02 +0200
 categories: jekyll update
 ---
 
-This is an explanation of how k2/icefall makes the transducer loss faster and take less memory with some code examples at the end, see here for an excellent introduction to transducers: [https://lorenlugosch.github.io/posts/2020/11/transducer/](https://arxiv.org/abs/2206.13236)
+This is an explanation of how k2/icefall makes the transducer loss faster and take less memory with some code examples at the end, see here for an excellent introduction to transducers: [https://lorenlugosch.github.io/posts/2020/11/transducer/](https://lorenlugosch.github.io/posts/2020/11/transducer/)
 
 The normal transducer loss requires creating a matrix (B,T,U,V) where B=batch size; T=time steps; U=tokens in reference and V=vocab size. With CTC you'd just have (B,T,V), but now the token history also matters and therefore there is an extra dimension. For one sample in a batch, you can still (as in CTC) think of a matrix where every traversing path represents an alignment, but if the x-axis is the time axis now the logprobs are different for each position on the y-axis.
 
