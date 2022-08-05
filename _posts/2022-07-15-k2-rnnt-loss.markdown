@@ -5,37 +5,49 @@ date: 2022-07-15 12:06:02 +0200
 categories: jekyll update
 ---
 
-This is an explanation of how k2/icefall makes the transducer loss faster and take less memory with some code examples at the end, see here for an excellent introduction to transducers: [https://lorenlugosch.github.io/posts/2020/11/transducer/](https://lorenlugosch.github.io/posts/2020/11/transducer/)
+This is an explanation of how k2/icefall makes the transducer loss faster and take less memory. Some code is also shown.
 
-The normal transducer loss requires creating a matrix (B,T,U,V) where B=batch size; T=time steps; U=tokens in reference and V=vocab size. With CTC you'd just have (B,T,V), but now the token history also matters and therefore there is an extra dimension. For one sample in a batch, you can still (as in CTC) think of a matrix where every traversing path represents an alignment, but if the x-axis is the time axis now the logprobs are different for each position on the y-axis.
+If you're new to transducers see here for an excellent introduction to transducers: [https://lorenlugosch.github.io/posts/2020/11/transducer/](https://lorenlugosch.github.io/posts/2020/11/transducer/)
 
-The (B,T,U,V) matrix is created by combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V).  This is a large matrix which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.
+Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=batch size; T=time steps; and V=vocab size. For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them).
 
-The first insight is that for training we don't need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters.
+<img src="{{site.url}}/images/k2_align.png" style="display: block; margin: auto;" />
+
+With transducer models this is slightly different. Remember that the point of a transducer model is that you model `P(y|x,y-1)`, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U=tokens in reference.
+
+You can still think of a matrix to represent the different possible alignments, but if the time is on the x-axis then at each step on the y-axis there will be a different probability distribution across the tokens (not the case with CTC). Because of this extra dimension, this will be a large tensor which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.
+
+The (B,T,U,V) tensor is created by combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V).  Let's just consider the case where we have B=1 (everything that follows holds true with B>1, this is just to remove notation that is irrelevant) and therefore just have to work with the shape (T,U,V).
+
+Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each position in the (T,U,V) tensor. The first insight is that for training we don't need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: At the first position on the y-axis (the U axis) it is the first token in U, at the second position it is the second token in U and so on.
 
 Okay cool, but how do we actually get the logprobs we need for each (T,U,)?
 
-This is done by first projecting encoder and decoder outputs to (B,T,V) and (B,U,V), doing matrix-multiply of (B,T,V), (B,V,U) to get a matrix (B,T,U) with marginalized values (across V), and then picking out the unnormalized token log probabilities we care about from (B,T,V) plus (B,U,V) and subtracting the marginalized value (to get a normalized value). If that's confusing hopefully the following equation makes it more clear:
+This is done by initially treating the encoder and decoder as separate models that act as an AM and LM by modeling `P(y|x)` and `P(y|y-1)`.  First the encoder and decoder outputs are  projected to (T,V) and (U,V), doing matrix-multiply of (T,V) (V,U) to get a matrix (T,U) with marginalized values (across V), and then picking out the unnormalized token log probabilities we care about from (T,V) plus (U,V) and subtracting the marginalized value (to get a normalized value). If that's confusing hopefully the following equation makes it more clear ($l$ means it's a logprob):
 
-$$p(t,u,v)=l_{enc}(t,v) + l_{dec}(u,v) - l_{marg}(t,u)$$
+$$p(t,u,v)=l_{encoder}(t,v) + l_{decoder}(u,v) - l_{marginalized}(t,u)$$
 
 Logprobs are used when adding, normal probs when multiplying (the matrix multiply), so the implementation has some exp() and log() calls.
 
-Afterwards the simple transducer loss is calculating by creating a matrix (B,T,U) containing the token probabilities we care about (those in the reference transcript), and additionally a matrix (B,T,U) with the blank probabilities (since blank transitions are always possible). Using that we can then traverse across (T,U) to find the logprob of all alignments.
+Using the probabilities we can efficiently calculate above, we create a matrix (T,U) containing the token probabilities we care about (those in the reference transcript), and additionally a matrix (T,U) with the blank probabilities (since blank transitions are always possible). We then calculate a **simple** transducer loss by using both matrices to traverse across (T,U) to find the logprob of all alignments.
 
-Note you wouldn't normally want to take this approach because the encoder and decoder outputs don't get to interact before the token distribution is calculated (they're added together after the projection to size V), it's as if you had separate AM and LM models and you were just adding together `P(y|x)` and `P(y|y-1)` (the AM just seeing audio and the LM just text). The point of a transducer model is that you want an output `P(y|x,y_1)`; something that directly conditions on both audio and text.
+Note you wouldn't normally want to take this approach because the encoder and decoder outputs don't get to interact before the token distribution is calculated (they're added together after the projection to size V), as already mentioned this uses separate AM and LM models that effectively just add together `P(y|x)` and `P(y|y-1)` (where the AM just sees audio and the LM just text). But the point of a transducer model is that you want an output `P(y|x,y_1)`; something that directly conditions on both audio and text.
 
-But this simple loss is just so that we can do a pruned version of the normal transducer loss. After some training this approach will tell us which alignments (paths in (T,U)) are more or less likely, because the simple loss will calculate its own version of (T,U,) and many paths in it will have low probability. This information can be used to set boundaries for each time step in T, which allows doing the proper transducer loss on a subset (B,T,S,V) with S<\<U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the `P(y|x,y_1)` output. Effectively this means we are not considering all alignments, just those that are "reasonable" (according to the simple loss).
+The idea here is to use the simple loss so that we can do a pruned version of the normal transducer loss. After some training the model will tell us which alignments (paths in (T,U)) are more or less likely. This information can be used to set boundaries for each time step in T, which allows doing the proper transducer loss on a subset (T,S,V) with S<\<U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the `P(y|x,y_1)` output. Effectively this means we are not considering all alignments, just those that are "reasonable" (according to the simple loss).
 
-Let's look at some code (I collapsed whitespace to make things more compact). Here's the joiner that creates (B,T,U,V). Note the dimension unsqueezing of the encoder and decoder outputs is assumed to have already happened (code is from a recipe specific file `joiner.py`). The first projection you see just projects to a joiner dimension, `output_linear` projects to vocab size V.
+Summarized, one trains a simpler model to get bounds on what alignments are possible, and then uses those bounds to decrease the size of `(B,T,U,V)` and thereby efficiently train a model that models `P(y|x,y-1)`.
+
+Let's look at some code (I collapsed whitespace to make things more compact).
+
+Here's the joiner that combines the encoder and decoder outputs to create an output `P(y|x,y_1)`. Note the dimension unsqueezing of the encoder and decoder outputs is assumed to have already happened ([source code](https://github.com/k2-fsa/icefall/blob/master/egs/librispeech/ASR/pruned_transducer_stateless2/joiner.py)). The first projection you see just projects to a joiner dimension, `output_linear` projects to vocab size V.
 
 <img src="{{site.url}}/images/k2_joiner.png" style="display: block; margin: auto;" />
 
-In the following image you can see the separate projection of encoder and decoder outputs to the vocab size, then computing a simple loss and using that (specifically the gradients) to get boundaries (here `ranges`) for creating (B,T,S,V) in `logits`. Finally the normal transducer loss is calculated. (code is from a recipe specific file `model.py`)
+The following image shows all steps to computing the loss. You can see the separate projection of encoder and decoder outputs to the vocab size, then computing a **simple** loss and using that (specifically the gradients) to get boundaries (here `ranges`) for creating (B,T,S,V) in `logits`. Finally the normal transducer loss is calculated. ([source code](https://github.com/k2-fsa/icefall/blob/master/egs/librispeech/ASR/pruned_transducer_stateless2/model.py#L146))
 
 <img src="{{site.url}}/images/k2_losshighlevel.png" style="display: block; margin: auto;" />
 
-Looking slightly deeper into `k2.rnnt_loss_smoothed` we can see there are two stages: First calculating px ((T,U,) of reference tokens) and py ((T,U,) of blank token), then in `mutual_information_recursion` calculating the total logprob across all alignments. Despite the intimidating name the implementation of the latter is quite straightforward (for CPU at least) and just involves doing the standard dynammic programming triple for-loop (for the batch, time, token dimensions), see [here](https://github.com/k2-fsa/k2/blob/master/k2/python/csrc/torch/mutual_information_cpu.cu#L89).
+Looking slightly deeper into `k2.rnnt_loss_smoothed` we can see there are two stages: First calculating the matrix px ((T,U,) of reference tokens) and matrix py ((T,U,) of blank token), then in `mutual_information_recursion` calculating the total logprob across all alignments ( [source code](https://github.com/k2-fsa/k2/blob/master/k2/python/k2/rnnt_loss.py#L1152) ). Despite the intimidating name the implementation of the latter is quite straightforward (for CPU at least) and just involves doing the standard dynammic programming triple for-loop (for the batch, time, token dimensions), see [here](https://github.com/k2-fsa/k2/blob/master/k2/python/csrc/torch/mutual_information_cpu.cu#L89).
 
 <img src="{{site.url}}/images/k2_smoothloss.png" style="display: block; margin: auto;" />
 
