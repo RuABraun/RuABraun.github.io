@@ -128,8 +128,9 @@
 <p>Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=batch size; T=time steps; and V=vocab size. For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them).</p>
 
 <p style="text-align: center;">This shows a specific alignment which can be repesented as a path through a matrix. Taken from the preprint linked at the bottom. </p>
-<p><img src="https://ruabraun.github.io/images/k2_joiner.png" style="display: block; margin: auto;" />
-With transducer models this is slightly different. Remember that the point of a transducer model is that you model <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U=tokens in reference.</p>
+<p><img src="https://ruabraun.github.io/images/k2_align.png" style="display: block; margin: auto;" /></p>
+
+<p>With transducer models this is slightly different. Remember that the point of a transducer model is that you model <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U=tokens in reference.</p>
 
 <p>You can still think of a matrix to represent the different possible alignments, but if the time is on the x-axis then at each step on the y-axis there will be a different probability distribution across the tokens (not the case with CTC). Because of this extra dimension, this will be a large tensor which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.</p>
 
@@ -181,7 +182,7 @@ With transducer models this is slightly different. Remember that the point of a 
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-08-05T18:19:09+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-08-05T18:25:14+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 
