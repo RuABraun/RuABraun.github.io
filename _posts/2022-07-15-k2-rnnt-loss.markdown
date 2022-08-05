@@ -11,6 +11,8 @@ If you're new to transducers see here for an excellent introduction to transduce
 
 Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=batch size; T=time steps; and V=vocab size. For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them).
 
+<p style="text-align: center;">This shows a specific alignment which can be repesented as a path through a matrix. Taken from the preprint linked at the bottom. </p>
+
 <img src="{{site.url}}/images/k2_align.png" style="display: block; margin: auto;" />
 
 With transducer models this is slightly different. Remember that the point of a transducer model is that you model `P(y|x,y-1)`, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U=tokens in reference.
