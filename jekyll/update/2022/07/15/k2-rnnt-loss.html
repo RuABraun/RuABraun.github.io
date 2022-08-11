@@ -123,15 +123,15 @@
   
   <p>This is an explanation of how k2/icefall makes the transducer loss faster and take less memory. Some code is also shown.</p>
 
-<p>If you’re new to transducers see here for an excellent introduction to transducers: <a href="https://lorenlugosch.github.io/posts/2020/11/transducer/">https://lorenlugosch.github.io/posts/2020/11/transducer/</a></p>
+<p>If you’re new to transducers see here for an excellent introduction: <a href="https://lorenlugosch.github.io/posts/2020/11/transducer/">https://lorenlugosch.github.io/posts/2020/11/transducer/</a></p>
 
-<p>Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=batch size, T=time steps, and V=vocab size. For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them).</p>
+<p>Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=’batch size’, T=’time steps’, and V=’vocab size’ (vocab size is the number of tokens your model can output). For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them).</p>
 
 <p style="text-align: center;">This shows a specific alignment which can be repesented as a path through a matrix. Taken from the preprint linked at the bottom. </p>
 
 <p><img src="https://ruabraun.github.io/images/k2_align.png" style="display: block; margin: auto;" /></p>
 
-<p>With transducer models this is slightly different. Remember that the point of a transducer model is that you model <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U=tokens in reference.</p>
+<p>With transducer models this is slightly different. Remember that the point of a transducer model is that you model <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U = ‘tokens in reference’.</p>
 
 <p>You can still think of a matrix to represent the different possible alignments, but if the time is on the x-axis then at each step on the y-axis there will be a different probability distribution across the tokens (not the case with CTC). Because of this extra dimension, this will be a large tensor which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.</p>
 
@@ -139,19 +139,19 @@
 
 <p>The (B,T,U,V) tensor is created by combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V). If that doesn’t make sense to you don’t worry, you will see the code for this later, the point is we have an encoder and decoder model which together create an output (B,T,U,V). Let’s just consider the case where B=1 (everything that follows holds true with B&gt;1, this is just to remove notation that is irrelevant) and we therefore just have to work with the shape (T,U,V).</p>
 
-<p>Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each combination of time (T) and token history (U) in the (T,U,V) tensor. The first insight is that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: In the first row on the y-axis (equals U axis, see figure at the start) it is the first token in U, in the second row it is the second token in U and so on. These token probabilities govern the vertical transitions. The blank token is (always) responsible for horizontal transitions.</p>
+<p>Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each combination of time (T) and token history (U) in the (T,U,V) tensor. The first insight is that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: In the first row on the y-axis (equals U axis, see figure at the start) it is the first token in U, in the second row it is the second token in U and so on. These token probabilities govern the vertical transitions. The blank token probabilities is responsible for horizontal transitions.</p>
 
-<p>Okay cool, but how do we actually get the logprobs we need for each position in (T,U,) without creating (B,T,U,V)?</p>
+<p>Okay cool, but how do we actually get the logprobs we need for each position in (T,U,) without creating (T,U,V)?</p>
 
-<p>This is done by initially treating the encoder and decoder as separate models that act as an AM and LM by modeling <code class="language-plaintext highlighter-rouge">P(y|x)</code> and <code class="language-plaintext highlighter-rouge">P(y|y-1)</code>. First the encoder and decoder outputs are projected to (T,V) and (U,V), then one matrix-multiplies (T,V) and (V,U) to get a matrix (T,U) with marginalized values (across V). This let’s us get normalized probabilities for tokens we care about by adding together the unnormalized token log probabilities from the encoder and decoder, and subtracting the marginalized value. In equation form (\(l\) means it’s a logprob):</p>
+<p>This is done by initially treating the encoder and decoder as separate models that act as an AM and LM by modeling <code class="language-plaintext highlighter-rouge">P(y|x)</code> and <code class="language-plaintext highlighter-rouge">P(y|y-1)</code>. First the encoder and decoder outputs are projected to (T,V) and (U,V), then one matrix-multiplies with V on the inner dimension to get a matrix (T,U) with marginalized values (across V). This let’s us get normalized probabilities for tokens we care about by adding together the unnormalized token log probabilities from the encoder and decoder, and subtracting the marginalized value. In equation form (\(l\) means it’s a logprob):</p>
 
 \[p(t,u,v)=l_{encoder}(t,v) + l_{decoder}(u,v) - l_{marginalized}(t,u)\]
 
-<p>With this interaction, the encoder does not depend on the decoder and vice versa, this enables avoiding having to create a (T,U,V) matrix.</p>
+<p>Because time and token history are independent of each other, we avoid having to create a (T,U,V) matrix.</p>
 
 <p>Logprobs are used when adding, normal probs when multiplying (the matrix multiply), so the implementation has some exp() and log() calls.</p>
 
-<p>Using the probabilities we efficiently calculate above, we create a matrix (T,U) containing the token probabilities we care about (those in the reference transcript), and additionally a matrix (T,U) with the blank probabilities (since blank transitions are always possible). We then calculate a <strong>simple</strong> transducer loss by using both matrices to traverse across (T,U) to find the logprob of all alignments.</p>
+<p>Using the probabilities we efficiently calculate above, we create a matrix (T,U) containing the token probabilities we care about (those in the reference transcript), and additionally a matrix (T,U) with the blank probabilities (since blank transitions are always possible). We then calculate a <strong>simple</strong> transducer loss by using both matrices to traverse across (T,U) (we need both since we need non-blank token probs for vertical and blank for horizontal transitions) to find the logprob of all alignments.</p>
 
 <p>Note you wouldn’t normally want to take this approach because the encoder and decoder outputs don’t get to interact before the token distribution is calculated (they’re added together after the projection to size V), as already mentioned this effectively uses separate AM and LM models (where the AM just sees audio and the LM just text). But the point of a transducer model is that you want an output <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code>; something that directly conditions on both audio and text.</p>
 
@@ -171,9 +171,10 @@
 
 <p><img src="https://ruabraun.github.io/images/k2_smoothloss.png" style="display: block; margin: auto;" /></p>
 
-<p>I hope this helps give an overview and basic understanding of how an efficient transducer loss is calculated in k2/icefall!</p>
-
 <p>A preprint is available with nice results and additional details: <a href="https://arxiv.org/abs/2206.13236">https://arxiv.org/abs/2206.13236</a></p>
+
+<p>Hope this helps!</p>
+
 
 
   
@@ -185,7 +186,7 @@
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-08-07T21:20:44+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-08-11T15:14:14+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 
