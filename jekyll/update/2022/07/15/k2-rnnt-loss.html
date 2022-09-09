@@ -10,8 +10,8 @@
 <meta property="og:title" content="How k2 calculates the transducer loss quickly" />
 <meta name="author" content="Rudolf A. Braun" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is an explanation of how k2/icefall makes the transducer loss faster and take less memory. Code is also shown." />
-<meta property="og:description" content="This is an explanation of how k2/icefall makes the transducer loss faster and take less memory. Code is also shown." />
+<meta name="description" content="The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by calculating the transducer loss quickly and with less memory. Code is also shown." />
+<meta property="og:description" content="The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by calculating the transducer loss quickly and with less memory. Code is also shown." />
 <link rel="canonical" href="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html" />
 <meta property="og:url" content="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html" />
 <meta property="og:site_name" content="Sharings" />
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How k2 calculates the transducer loss quickly" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"How k2 calculates the transducer loss quickly","dateModified":"2022-07-15T10:06:02+00:00","datePublished":"2022-07-15T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html"},"description":"This is an explanation of how k2/icefall makes the transducer loss faster and take less memory. Code is also shown.","url":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"How k2 calculates the transducer loss quickly","dateModified":"2022-07-15T10:06:02+00:00","datePublished":"2022-07-15T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html"},"description":"The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by calculating the transducer loss quickly and with less memory. Code is also shown.","url":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -121,23 +121,23 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   
-  <p>This is an explanation of how k2/icefall makes the transducer loss faster and take less memory. Code is also shown.</p>
+  <p>The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by calculating the transducer loss quickly and with less memory. Code is also shown.</p>
 
-<p>If you’re new to transducers see here for an excellent introduction: <a href="https://lorenlugosch.github.io/posts/2020/11/transducer/">https://lorenlugosch.github.io/posts/2020/11/transducer/</a></p>
+<p>If you’re new to transducers read this first for an excellent introduction: <a href="https://lorenlugosch.github.io/posts/2020/11/transducer/">https://lorenlugosch.github.io/posts/2020/11/transducer/</a></p>
 
-<p>Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=’batch size’, T=’time steps’, and V=’vocab size’ (vocab size is the number of tokens your model can output). For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them).</p>
+<p>Consider just the training scenario.  With CTC training your model will output a tensor (B,T,V) with B=’batch size’, T=’time steps’, and V=’vocab size’ (vocab size is the number of tokens your model can output). For each sample in a batch you can imagine a matrix where every traversing path represents an alignment (and CTC means you are summing across all of them). Time is on the x-axis, the tokens that should be output on the y.</p>
 
 <p><img src="https://ruabraun.github.io/images/k2_align.png" style="display: block; margin: auto;" /></p>
 <p style="text-align: center;">This shows a specific alignment which can be repesented as a path through a matrix. Taken from the preprint linked at the bottom. </p>
 
 <p>With transducer models this is slightly different. Remember that the point of a transducer model is that you model <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>, which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U = ‘tokens in reference’.</p>
 
-<p>You can still think of a matrix to represent the different possible alignments, but if the time is on the x-axis then at each step on the y-axis there will be a different probability distribution across the tokens (not the case with CTC). Because of this extra dimension, this will be a large tensor which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.</p>
+<p>You can still think of a matrix to represent the different possible alignments, but if the time is on the x-axis then at each step on the y-axis (representing a token the model is supposed to output) there will be a different probability distribution across the tokens (not the case with CTC). Because of this extra dimension, this will be a large tensor which makes training slow and use a lot of memory. k2/icefall has created an approach for avoiding that.</p>
 
-<p>The <strong>summary</strong> is one trains a simpler model to get bounds on what alignments are possible, and then uses those bounds to decrease the size of <code class="language-plaintext highlighter-rouge">(B,T,U,V)</code> and thereby efficiently train a model that models <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>. 
+<p>The <strong>summary</strong> is one trains a simpler model to get bounds on what alignments are possible, and then uses those bounds to decrease the size of <code class="language-plaintext highlighter-rouge">(B,T,U,V)</code> to <code class="language-plaintext highlighter-rouge">(B,T,S,V)</code> (with <code class="language-plaintext highlighter-rouge">S&lt;&lt;U</code> ) and thereby efficiently train a model that models <code class="language-plaintext highlighter-rouge">P(y|x,y-1)</code>. 
 Now in more detail.</p>
 
-<p>The (B,T,U,V) tensor is created by combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V).</p>
+<p>Let’s first review the normal method for creating the (B,T,U,V) tensor. This happens by  combining the encoder and decoder outputs, which have shape (B,T,C) and (B,U,C). The combination is done by adding the two (with dimension unsqueezing so the result of the addition is (B,T,U,C)), and then projecting to (B,T,U,V).</p>
 
 <p>Code:
 <img src="https://ruabraun.github.io/images/k2_joiner.png" style="display: block; margin: auto;" /></p>
@@ -149,7 +149,9 @@ Now in more detail.</p>
 
 <p>Okay cool, but how do we actually get the logprobs we need for each position in (T,U,) without creating (T,U,V)?</p>
 
-<p>This is done by initially treating the encoder and decoder as separate models that act as an AM and LM by modeling <code class="language-plaintext highlighter-rouge">P(y|x)</code> and <code class="language-plaintext highlighter-rouge">P(y|y-1)</code>. First the encoder and decoder outputs are projected to (T,V) and (U,V), then one matrix-multiplies with V on the inner dimension to get a matrix (T,U) with marginalized values (across V). This let’s us get normalized probabilities for tokens we care about by adding together the unnormalized token log probabilities from the encoder and decoder, and subtracting the marginalized value. In equation form (everything is in logprob here):</p>
+<p>This is done by initially treating the encoder and decoder as separate models that act as an AM and LM by modeling <code class="language-plaintext highlighter-rouge">P(y|x)</code> and <code class="language-plaintext highlighter-rouge">P(y|y-1)</code>. First the encoder and decoder outputs are projected to (T,V) and (U,V), then these are matrix-multiplied with V on the inner dimension to get a matrix (T,U) with marginalized values (across V).</p>
+
+<p>This lets us get normalized probabilities for tokens we care about: We can add together the unnormalized token log probabilities from the encoder and decoder, and subtract the marginalized value. In equation form (everything is in logprob here):</p>
 
 \[\log p(t,u,v)=l_{encoder}(t,v) + l_{decoder}(u,v) - l_{marginalized}(t,u)\]
 
@@ -159,9 +161,11 @@ Now in more detail.</p>
 
 <p>Using the probabilities we efficiently calculate above, we create a matrix (T,U) containing the token probabilities we care about (those in the reference transcript), and additionally a matrix (T,U) with the blank probabilities (since blank transitions are always possible). We then calculate a <strong>simple</strong> transducer loss by using both matrices to traverse across (T,U) (we need both since we need non-blank token probs for vertical and blank for horizontal transitions) to find the logprob of all alignments.</p>
 
-<p>Note you wouldn’t normally want to take this approach because the encoder and decoder outputs don’t get to interact before the token distribution is calculated (they’re added together after the projection to size V), as already mentioned this effectively uses separate AM and LM models (where the AM just sees audio and the LM just text). But the point of a transducer model is that you want an output <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code>; something that directly conditions on both audio and text.</p>
+<p>Note you wouldn’t normally want to take this approach because the encoder and decoder outputs don’t get to interact before the token distribution is calculated (they’re added together after the projection to size V), as already mentioned this effectively uses separate AM and LM models (where the AM just sees audio and the LM just text). But the point of a transducer model is that you want an output <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code>; something that directly conditions on both audio and text!</p>
 
-<p>The idea here is to use the simple loss so that we can do a pruned version of the normal transducer loss. After some training with the simple loss the model will tell us which alignments (paths in (T,U)) are more or less likely. This information can be used to set boundaries for each time step in T, which allows doing the proper transducer loss on a subset (T,S,V) with S&lt;&lt;U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code> output. Effectively this means we are not considering all alignments, just those that are “reasonable” (according to the simple loss).</p>
+<p>The idea here is to use the simple loss so that we can do a pruned version of the normal transducer loss. After some training with the simple loss the model will learn that some alignments (paths in (T,U)) are more or less likely than others.</p>
+
+<p>This information can be used to set boundaries for each time step in T, which allows doing the proper transducer loss on a subset (T,S,V) with S&lt;&lt;U (because we know that for a given point in time only some tokens are possible, not all in U), which takes much less memory, is faster and trains the <code class="language-plaintext highlighter-rouge">P(y|x,y_1)</code> output. Effectively this means we are not considering all alignments, just those that are “reasonable” (according to the simple loss).</p>
 
 <p>Let’s look at the high level code (I collapsed whitespace to make things more compact).</p>
 
@@ -173,9 +177,9 @@ Now in more detail.</p>
 
 <p><img src="https://ruabraun.github.io/images/k2_smoothloss.png" style="display: block; margin: auto;" /></p>
 
-<p>A preprint is available with nice results and additional details: <a href="https://arxiv.org/abs/2206.13236">https://arxiv.org/abs/2206.13236</a></p>
+<p>Thank you for reading, hope it is helpful, and please send an email / DM if something is unclear! :)</p>
 
-<p>Thank you for reading, hope it is helpful, and please send an email if something is unclear! :)</p>
+<p>A preprint is available with nice results and additional details: <a href="https://arxiv.org/abs/2206.13236">https://arxiv.org/abs/2206.13236</a></p>
 
 
 
@@ -188,7 +192,7 @@ Now in more detail.</p>
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-08-30T18:38:14+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2022-09-09T14:16:15+00:00">2022</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 
