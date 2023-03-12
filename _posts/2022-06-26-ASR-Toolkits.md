@@ -5,14 +5,12 @@ date: 2022-06-26 12:06:02 +0200
 categories: jekyll update
 ---
 
-I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these.
+This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked.
 
-This will give for each a high level overview of the code base, what the training loop looks like, and name stuff I liked or disliked.
 Whenever I refer to files, I assume you are starting from the root folder of the repo.
 
 # fairseq
-[Fairseq](https://github.com/facebookresearch/fairseq) is not just meant for ASR. It's for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization an
-d text to speech.
+[Fairseq](https://github.com/facebookresearch/fairseq) is not just meant for ASR. It's for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization and text to speech.
 
 Training models and doing inference is done via command-line scripts (found in `fairseq_cli/`). The training loop and data processing code is unified when possible. As a consequence the code is generally a bit more abstract, you cannot look at just one file if you want to read and understand the training loop.
 The codebase can be seen as split into four different parts.
@@ -27,7 +25,7 @@ There are several tasks related to speech recognition: `speech_to_text`, `speech
 
 The data format depends on the task and tends to favor simplicity. For example for wav2vec pretraining you just need a .tsv file which has on the first line a root path, and every line afterwards has a path to an audio file and its sample count. That's it. In `examples/*` there always is an explanation for how to get to the data format needed.
 
-I find fairseq to be a good toolkit for reproducing results from facebook's papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you're doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it could be quite nice to work with. One downside is you can't rely much on support from the maintainers; github issues are responded to rarely. It also is not very suited for using in production (but to be fair that is not what it's made for).
+I find fairseq to be a good toolkit for reproducing results from facebook's papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you're doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it can be quite nice to work with. One downside is you can't rely much on support from the maintainers; github issues are rarely responded to. It also is not very suited for using in production (but to be fair that is not what it's made for).
 
 Let's skim over the training loop, we start in [fairseq_cli/train.py](https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L180):
 ```
@@ -35,7 +33,7 @@ while epoch_itr.next_epoch_idx <= max_epoch:
     [..]
     valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
 ```
-With train defined in the same file and then calling [trainer.train_step()](https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312):
+With train defined in the same file and then calling [trainer.train_step()](https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312), the most important of which looks like:
 
 ```
 logger.info("Start iterating over samples")
@@ -43,7 +41,7 @@ for i, samples in enumerate(progress):
      [..]
 	 log_output = trainer.train_step(samples)
 ```
-The dataloader is wrapped inside of `progress`.  The trainer object is defined in [fairseq/trainer.py](https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py) and its [train_step()](https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824) calls
+The dataloader is wrapped inside of `progress`.  The trainer object is defined in [fairseq/trainer.py](https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py) and its [train_step()](https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824) calls the task specific `train_step`:
 ```
 for i, sample in enumerate(samples):  # delayed update loop
     [..]
@@ -57,9 +55,9 @@ for i, sample in enumerate(samples):  # delayed update loop
 		**extra_kwargs,
 	)
 ```
-the task specific train step. Note that `samples` will have a length bigger 1 only if gradient accumulation is used.
+Note that `samples` will have a length bigger 1 only if gradient accumulation is used.
 
-A lot of tasks actually don't have a `train_step()` defined and just use the generic one defined in [fairseq/tasks/fairseq_task.py](https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490).
+A lot of tasks actually don't have a `train_step()` defined and just use the generic one defined in [fairseq/tasks/fairseq_task.py](https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490) (the parent class from which all other tasks inherit).
 
 One uses `fairseq-hydra-train` to train a model when one has a config and `fairseq-train` if you're willing to specify all the arguments on the commandline. This is an example call to finetune a wav2vec model:
 ```
@@ -79,7 +77,7 @@ In `fairseq/examples/` one can always find the commandline necessary to train a 
 
 # speechbrain
 
-[Speechbrain](https://github.com/speechbrain/speechbrain) is for speech processing tasks, they have an impressive array of examples where they get good results (`recipes/`). 
+[Speechbrain](https://github.com/speechbrain/speechbrain) is specifically for speech processing tasks, they have an impressive array of examples where they get good results (`recipes/`). 
 
 The recipe implementations are less unified than those in fairseq, but there is still a lot of shared code. The core training loop is unified in a `Brain` class (found in `speechbrain/core.py`), the data processing code is specified in each recipe.
 
@@ -102,13 +100,13 @@ encoder: !new:speechbrain.lobes.models.transformer.Transformer.TransformerEncode
 ```
 Note that the class will be instantiated when the config is loaded, so you don't have to write any code to do that. To use a different model you can just modify the config.
 
-Sometimes speechbrain's models (e.g. the VanillaNN above) use an `input_shape` to allow them to infer the output shape (by running the model). This is implemented by having those models inherit from `speechbrain.nnet.containers.Sequential` ([code link](https://github.com/speechbrain/speechbrain/blob/424e7921531b0ea6523557ef0fd6ca249936bd26/speechbrain/nnet/containers.py#L18)) which has an `append` method which you use when successively adding layers (this will then pass the input shape and check it works).
+Sometimes speechbrain's models (e.g. the VanillaNN above) use an `input_shape` to allow them to infer the output shape (by running the model). This is implemented by having those models inherit from `speechbrain.nnet.containers.Sequential` ([code link](https://github.com/speechbrain/speechbrain/blob/424e7921531b0ea6523557ef0fd6ca249936bd26/speechbrain/nnet/containers.py#L18)) which has an `append` method which you use when successively adding layers (this will then pass the input shape and check it works). If this doesn't make sense it's okay, it's a detail.
 
-The `Brain` class  is initialized with this yaml config, and will hold a reference to the model, the loss, the optimizer, but not the dataset/dataloaders. In contrast to other toolkits speechbrain defines much more in the config.
+The `Brain` class is initialized with this yaml config, and will hold a reference to the model, the loss, the optimizer, but not the dataset/dataloaders. In contrast to other toolkits speechbrain defines much more in the config.
 
 How the model is used is specified by overriding two methods (of the `Brain` class) `compute_forward` and `compute_objectives`. The former defines how to get from the data to the outputs you need to compute the loss. You then use the latter to define how to compute the loss from those outputs (it's called automatically after the former). Sometimes the implementation will be extremely simple: In `compute_forward` you call the model and in `compute_objectives` you call the loss defined in your config.
 
-The data is typically stored in CSV format (with filepaths pointing to audio data) which you load to a `DynamicItemDataset` like:
+The data is typically stored in CSV format (with filepaths pointing to audio data) which you load to a `DynamicItemDataset` like (`sb`  is  the speechbrain package):
 ```
 train_data = sb.dataio.dataset.DynamicItemDataset.from_csv(csv_path=hparams["train_csv"])
 ```
@@ -158,7 +156,8 @@ if not (
 	isinstance(train_set, DataLoader)
 	or isinstance(train_set, LoopedLoader)
 ):
-	train_set = self.make_dataloader(train_set, stage=sb.Stage.TRAIN, **train_loader_kwargs)
+	train_set = self.make_dataloader(train_set, stage=sb.Stage.TRAIN, 
+         **train_loader_kwargs)
 [..]
 self.on_fit_start()
 [..]
@@ -239,13 +238,17 @@ Features available: 16028
 Supervisions available: 16028
 ```
 
-You can also do all this via code of course. Here an example, this converts from a kaldi style datadir to a recording and supervision set (lhotse constructs), creates a CutSet (equivalent to a set of utterances), extracts features and outputs a manifest (lhotse's data format):
+You can also do all this via code of course. An example, this: 
+1. Converts from a kaldi style datadir to a recording and supervision set (lhotse constructs)
+2. Creates a CutSet object
+3. Trims the recordings to when the supervisions (transcripts) are (the utterance transcripts have timestamps associated) (now equivalent to a set of utterances)
+4. Extracts features
+5. Writes a manifest to a file (lhotse's data format on disk):
 ```
 recording_set, supervision_set, _ = load_kaldi_data_dir(kdata, 16000, num_jobs=4)
 cuts = CutSet.from_manifests(recordings=recording_set, supervisions=supervision_set)
-
+cuts = cuts.trim_to_supervisions()
 cuts = cuts.compute_and_store_features(Fbank(), storage_path=outf + '-feats', num_jobs=6, storage_type=LilcomChunkyWriter)
-
 cuts.to_file(outf + '.jsonl.gz')
 ```
 
@@ -274,10 +277,13 @@ Back to the main thread: Everything important is inside the recipe folder. The t
 [..]
 for epoch in range(params.start_epoch, params.num_epochs):
 	[..]
-	train_one_epoch(params=params, model=model, optimizer=optimizer, scheduler=scheduler, sp=sp, train_dl=train_dl, valid_dl=valid_dl, scaler=scaler,
+	train_one_epoch(params=params, model=model, optimizer=optimizer, 
+        scheduler=scheduler, sp=sp, train_dl=train_dl, valid_dl=valid_dl, 
+        scaler=scaler,
 tb_writer=tb_writer, world_size=world_size, rank=rank)
 	[..]
-	save_checkpoint(params=params, model=model, optimizer=optimizer, scheduler=scheduler, sampler=train_dl.sampler, scaler=scaler, rank=rank)
+	save_checkpoint(params=params, model=model, optimizer=optimizer, 
+        scheduler=scheduler, sampler=train_dl.sampler, scaler=scaler, rank=rank)
 ```
 `train_one_epoch` looks like ([code link](https://github.com/k2-fsa/icefall/blob/master/egs/librispeech/ASR/pruned_transducer_stateless2/train.py#L760)):
 ```
