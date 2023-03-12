@@ -10,8 +10,8 @@
 <meta property="og:title" content="A comparison of fairseq, speechbrain, k2 for ASR" />
 <meta name="author" content="Rudolf A. Braun" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these." />
-<meta property="og:description" content="I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these." />
+<meta name="description" content="This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked." />
+<meta property="og:description" content="This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked." />
 <link rel="canonical" href="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" />
 <meta property="og:url" content="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" />
 <meta property="og:site_name" content="Sharings" />
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="A comparison of fairseq, speechbrain, k2 for ASR" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"A comparison of fairseq, speechbrain, k2 for ASR","dateModified":"2022-06-26T10:06:02+00:00","datePublished":"2022-06-26T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html"},"description":"I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these.","url":"https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"A comparison of fairseq, speechbrain, k2 for ASR","dateModified":"2022-06-26T10:06:02+00:00","datePublished":"2022-06-26T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html"},"description":"This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked.","url":"https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -121,14 +121,12 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   
-  <p>I have had the opportunity to work with some of the different E2E ASR toolkits framework out there and thought it could be useful to give an overview and comparison of these.</p>
+  <p>This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked.</p>
 
-<p>This will give for each a high level overview of the code base, what the training loop looks like, and name stuff I liked or disliked.
-Whenever I refer to files, I assume you are starting from the root folder of the repo.</p>
+<p>Whenever I refer to files, I assume you are starting from the root folder of the repo.</p>
 
 <h1 id="fairseq">fairseq</h1>
-<p><a href="https://github.com/facebookresearch/fairseq">Fairseq</a> is not just meant for ASR. It’s for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization an
-d text to speech.</p>
+<p><a href="https://github.com/facebookresearch/fairseq">Fairseq</a> is not just meant for ASR. It’s for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization and text to speech.</p>
 
 <p>Training models and doing inference is done via command-line scripts (found in <code class="language-plaintext highlighter-rouge">fairseq_cli/</code>). The training loop and data processing code is unified when possible. As a consequence the code is generally a bit more abstract, you cannot look at just one file if you want to read and understand the training loop.
 The codebase can be seen as split into four different parts.</p>
@@ -145,21 +143,21 @@ The codebase can be seen as split into four different parts.</p>
 
 <p>The data format depends on the task and tends to favor simplicity. For example for wav2vec pretraining you just need a .tsv file which has on the first line a root path, and every line afterwards has a path to an audio file and its sample count. That’s it. In <code class="language-plaintext highlighter-rouge">examples/*</code> there always is an explanation for how to get to the data format needed.</p>
 
-<p>I find fairseq to be a good toolkit for reproducing results from facebook’s papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you’re doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it could be quite nice to work with. One downside is you can’t rely much on support from the maintainers; github issues are responded to rarely. It also is not very suited for using in production (but to be fair that is not what it’s made for).</p>
+<p>I find fairseq to be a good toolkit for reproducing results from facebook’s papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you’re doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it can be quite nice to work with. One downside is you can’t rely much on support from the maintainers; github issues are rarely responded to. It also is not very suited for using in production (but to be fair that is not what it’s made for).</p>
 
 <p>Let’s skim over the training loop, we start in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L180">fairseq_cli/train.py</a>:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while epoch_itr.next_epoch_idx &lt;= max_epoch:
     [..]
     valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
 </code></pre></div></div>
-<p>With train defined in the same file and then calling <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312">trainer.train_step()</a>:</p>
+<p>With train defined in the same file and then calling <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312">trainer.train_step()</a>, the most important of which looks like:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>logger.info("Start iterating over samples")
 for i, samples in enumerate(progress):
      [..]
 	 log_output = trainer.train_step(samples)
 </code></pre></div></div>
-<p>The dataloader is wrapped inside of <code class="language-plaintext highlighter-rouge">progress</code>.  The trainer object is defined in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py">fairseq/trainer.py</a> and its <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824">train_step()</a> calls</p>
+<p>The dataloader is wrapped inside of <code class="language-plaintext highlighter-rouge">progress</code>.  The trainer object is defined in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py">fairseq/trainer.py</a> and its <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824">train_step()</a> calls the task specific <code class="language-plaintext highlighter-rouge">train_step</code>:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i, sample in enumerate(samples):  # delayed update loop
     [..]
 	loss, sample_size_i, logging_output = self.task.train_step(
@@ -172,9 +170,9 @@ for i, samples in enumerate(progress):
 		**extra_kwargs,
 	)
 </code></pre></div></div>
-<p>the task specific train step. Note that <code class="language-plaintext highlighter-rouge">samples</code> will have a length bigger 1 only if gradient accumulation is used.</p>
+<p>Note that <code class="language-plaintext highlighter-rouge">samples</code> will have a length bigger 1 only if gradient accumulation is used.</p>
 
-<p>A lot of tasks actually don’t have a <code class="language-plaintext highlighter-rouge">train_step()</code> defined and just use the generic one defined in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490">fairseq/tasks/fairseq_task.py</a>.</p>
+<p>A lot of tasks actually don’t have a <code class="language-plaintext highlighter-rouge">train_step()</code> defined and just use the generic one defined in <a href="https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490">fairseq/tasks/fairseq_task.py</a> (the parent class from which all other tasks inherit).</p>
 
 <p>One uses <code class="language-plaintext highlighter-rouge">fairseq-hydra-train</code> to train a model when one has a config and <code class="language-plaintext highlighter-rouge">fairseq-train</code> if you’re willing to specify all the arguments on the commandline. This is an example call to finetune a wav2vec model:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fairseq-hydra-train task.data=/work2/rudolf/wav2vec/ch-de/22-08-05/manifest/ model.w2v_path=/work1/rudolf/wav2vec_model.pt checkpoint.save_dir=/work2/rudolf/wav2vec/ch-de/22-08-05/model-a --config-dir $PWD --config-name finetuning.yaml
@@ -192,7 +190,7 @@ for i, samples in enumerate(progress):
 
 <h1 id="speechbrain">speechbrain</h1>
 
-<p><a href="https://github.com/speechbrain/speechbrain">Speechbrain</a> is for speech processing tasks, they have an impressive array of examples where they get good results (<code class="language-plaintext highlighter-rouge">recipes/</code>).</p>
+<p><a href="https://github.com/speechbrain/speechbrain">Speechbrain</a> is specifically for speech processing tasks, they have an impressive array of examples where they get good results (<code class="language-plaintext highlighter-rouge">recipes/</code>).</p>
 
 <p>The recipe implementations are less unified than those in fairseq, but there is still a lot of shared code. The core training loop is unified in a <code class="language-plaintext highlighter-rouge">Brain</code> class (found in <code class="language-plaintext highlighter-rouge">speechbrain/core.py</code>), the data processing code is specified in each recipe.</p>
 
@@ -213,13 +211,13 @@ for i, samples in enumerate(progress):
 </code></pre></div></div>
 <p>Note that the class will be instantiated when the config is loaded, so you don’t have to write any code to do that. To use a different model you can just modify the config.</p>
 
-<p>Sometimes speechbrain’s models (e.g. the VanillaNN above) use an <code class="language-plaintext highlighter-rouge">input_shape</code> to allow them to infer the output shape (by running the model). This is implemented by having those models inherit from <code class="language-plaintext highlighter-rouge">speechbrain.nnet.containers.Sequential</code> (<a href="https://github.com/speechbrain/speechbrain/blob/424e7921531b0ea6523557ef0fd6ca249936bd26/speechbrain/nnet/containers.py#L18">code link</a>) which has an <code class="language-plaintext highlighter-rouge">append</code> method which you use when successively adding layers (this will then pass the input shape and check it works).</p>
+<p>Sometimes speechbrain’s models (e.g. the VanillaNN above) use an <code class="language-plaintext highlighter-rouge">input_shape</code> to allow them to infer the output shape (by running the model). This is implemented by having those models inherit from <code class="language-plaintext highlighter-rouge">speechbrain.nnet.containers.Sequential</code> (<a href="https://github.com/speechbrain/speechbrain/blob/424e7921531b0ea6523557ef0fd6ca249936bd26/speechbrain/nnet/containers.py#L18">code link</a>) which has an <code class="language-plaintext highlighter-rouge">append</code> method which you use when successively adding layers (this will then pass the input shape and check it works). If this doesn’t make sense it’s okay, it’s a detail.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">Brain</code> class  is initialized with this yaml config, and will hold a reference to the model, the loss, the optimizer, but not the dataset/dataloaders. In contrast to other toolkits speechbrain defines much more in the config.</p>
+<p>The <code class="language-plaintext highlighter-rouge">Brain</code> class is initialized with this yaml config, and will hold a reference to the model, the loss, the optimizer, but not the dataset/dataloaders. In contrast to other toolkits speechbrain defines much more in the config.</p>
 
 <p>How the model is used is specified by overriding two methods (of the <code class="language-plaintext highlighter-rouge">Brain</code> class) <code class="language-plaintext highlighter-rouge">compute_forward</code> and <code class="language-plaintext highlighter-rouge">compute_objectives</code>. The former defines how to get from the data to the outputs you need to compute the loss. You then use the latter to define how to compute the loss from those outputs (it’s called automatically after the former). Sometimes the implementation will be extremely simple: In <code class="language-plaintext highlighter-rouge">compute_forward</code> you call the model and in <code class="language-plaintext highlighter-rouge">compute_objectives</code> you call the loss defined in your config.</p>
 
-<p>The data is typically stored in CSV format (with filepaths pointing to audio data) which you load to a <code class="language-plaintext highlighter-rouge">DynamicItemDataset</code> like:</p>
+<p>The data is typically stored in CSV format (with filepaths pointing to audio data) which you load to a <code class="language-plaintext highlighter-rouge">DynamicItemDataset</code> like (<code class="language-plaintext highlighter-rouge">sb</code>  is  the speechbrain package):</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>train_data = sb.dataio.dataset.DynamicItemDataset.from_csv(csv_path=hparams["train_csv"])
 </code></pre></div></div>
 <p>in your recipe you then specify (via a custom “pipeline” construct) how to go from the data in the CSV to the data you want available in a batch. This can look like this (<a href="https://github.com/speechbrain/speechbrain/blob/develop/recipes/LibriSpeech/ASR/CTC/train_with_wav2vec.py#L234">code link</a>):</p>
@@ -263,7 +261,8 @@ sb.dataio.dataset.add_dynamic_item(train_data, audio_pipeline)
 	isinstance(train_set, DataLoader)
 	or isinstance(train_set, LoopedLoader)
 ):
-	train_set = self.make_dataloader(train_set, stage=sb.Stage.TRAIN, **train_loader_kwargs)
+	train_set = self.make_dataloader(train_set, stage=sb.Stage.TRAIN, 
+         **train_loader_kwargs)
 [..]
 self.on_fit_start()
 [..]
@@ -339,14 +338,21 @@ Features available: 16028
 Supervisions available: 16028
 </code></pre></div></div>
 
-<p>You can also do all this via code of course. Here an example, this converts from a kaldi style datadir to a recording and supervision set (lhotse constructs), creates a CutSet (equivalent to a set of utterances), extracts features and outputs a manifest (lhotse’s data format):</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>recording_set, supervision_set, _ = load_kaldi_data_dir(kdata, 16000, num_jobs=4)
+<p>You can also do all this via code of course. An example, this:</p>
+<ol>
+  <li>Converts from a kaldi style datadir to a recording and supervision set (lhotse constructs)</li>
+  <li>Creates a CutSet object</li>
+  <li>Trims the recordings to when the supervisions (transcripts) are (the utterance transcripts have timestamps associated) (now equivalent to a set of utterances)</li>
+  <li>Extracts features</li>
+  <li>Writes a manifest to a file (lhotse’s data format on disk):
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>recording_set, supervision_set, _ = load_kaldi_data_dir(kdata, 16000, num_jobs=4)
 cuts = CutSet.from_manifests(recordings=recording_set, supervisions=supervision_set)
-
+cuts = cuts.trim_to_supervisions()
 cuts = cuts.compute_and_store_features(Fbank(), storage_path=outf + '-feats', num_jobs=6, storage_type=LilcomChunkyWriter)
-
 cuts.to_file(outf + '.jsonl.gz')
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <p>I think lhotse has a very nice interface and definitely plan on basing all my speech recipes around it. I will say though the lhotse codebase has a lot of indirection going on (decorators everywhere) making it hard to reason about the code and debugging sometimes a pain.</p>
 
@@ -369,10 +375,13 @@ decoding_graph = k2.Fsa.from_dict(dct)
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[..]
 for epoch in range(params.start_epoch, params.num_epochs):
 	[..]
-	train_one_epoch(params=params, model=model, optimizer=optimizer, scheduler=scheduler, sp=sp, train_dl=train_dl, valid_dl=valid_dl, scaler=scaler,
+	train_one_epoch(params=params, model=model, optimizer=optimizer, 
+        scheduler=scheduler, sp=sp, train_dl=train_dl, valid_dl=valid_dl, 
+        scaler=scaler,
 tb_writer=tb_writer, world_size=world_size, rank=rank)
 	[..]
-	save_checkpoint(params=params, model=model, optimizer=optimizer, scheduler=scheduler, sampler=train_dl.sampler, scaler=scaler, rank=rank)
+	save_checkpoint(params=params, model=model, optimizer=optimizer, 
+        scheduler=scheduler, sampler=train_dl.sampler, scaler=scaler, rank=rank)
 </code></pre></div></div>
 <p><code class="language-plaintext highlighter-rouge">train_one_epoch</code> looks like (<a href="https://github.com/k2-fsa/icefall/blob/master/egs/librispeech/ASR/pruned_transducer_stateless2/train.py#L760">code link</a>):</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for batch_idx, batch in enumerate(train_dl):
@@ -414,7 +423,7 @@ However, because this is all very new it’s in a state of flux. Things change a
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2023-02-04T23:44:04+00:00">2023</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2023-03-12T15:48:25+00:00">2023</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 
