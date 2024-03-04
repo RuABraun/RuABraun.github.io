@@ -1,4 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2023-07-10T15:34:27+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">How k2 calculates the transducer loss quickly</title><link href="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html" rel="alternate" type="text/html" title="How k2 calculates the transducer loss quickly" /><published>2022-07-15T10:06:02+00:00</published><updated>2022-07-15T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html">&lt;p&gt;The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by efficiently calculating the transducer loss and thereby using much less memory. Code is also shown.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2024-03-04T03:12:38+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Favourites of 2023</title><link href="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html" rel="alternate" type="text/html" title="Favourites of 2023" /><published>2024-02-26T10:06:02+00:00</published><updated>2024-02-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html">&lt;p&gt;This is a list of stuff I read or saw in 2023 and really liked. I’m going to say a sentence or more about each and maybe include a quote. I’m hoping somebody who stumbles across this finds something they really like that they otherwise wouldn’t have, or someone who knows me might find an interest in common we didn’t know we had!&lt;/p&gt;
+
+&lt;p&gt;I suggest skimming and using the bolded bylines to pick out what might interest.&lt;/p&gt;
+&lt;h2 id=&quot;books&quot;&gt;Books&lt;/h2&gt;
+
+&lt;p&gt;This was a (first?) year of mostly non-fiction for me. It was great! Do want to read more fiction this year though.&lt;/p&gt;
+
+&lt;h4 id=&quot;storyworthy&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/en/book/show/37786022&quot;&gt;Storyworthy&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;How to tell a good story.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Your story must reflect change over time. A story cannot simply be a series of remarkable events. You must start out as one version of yourself and end as something new.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I loved the practicality of this. He takes his own stories and breaks them down. He goes into detail and provides tons of examples. 
+It made me understand that I usually do not do a good job of telling a story and I appreciated having that realization.&lt;/p&gt;
+
+&lt;p&gt;It also made me think there is an opposition between telling an engaging story and explaining something (like in a paper or technical report) or communicating facts efficiently. With the latter you never want to surprise a listener, everything should be obvious because of what you said previously, if that’s not the case then you missed a step in the logic or made an error which is why the listener is surprised.
+But for storytelling surprise is a key tool to engage the listener, so depending on what you’re talking about you really should have a different structure.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=U9v0O0oEmpQ&quot;&gt;He’s got videos of his stories on youtube, check it out!&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;path-to-power&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/en/book/show/86524&quot;&gt;Path to Power&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Lyndon B Johnson’s early life and the first roughly ten years of his political career.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In every election in which he ran—not only in college, but thereafter—he displayed a willingness to do whatever was necessary to win: a willingness so complete that even in the generous terms of political morality, it amounted to amorality.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is hands-down one of the most engaging books I’ve ever read that also goes into incredible detail on things that happened a century ago and one might initially think uninteresting. But the narrative works. It is interesting. It helps of course that LBJ is a singular character. His portrayal is at minimum unsympathetic, yet you can’t help but root for him when he goes to the greatest lengths to help his constituents and when he tries to gain more power (with the hindsight knowledge of him enacting so many liberal policies later). I wonder if someone wrote a similarly detailed biography of say, Obama, would it be close to as interesting?&lt;/p&gt;
+
+&lt;h4 id=&quot;how-to-be-the-greatest-improviser-on-earth&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/book/show/30364117-how-to-be-the-greatest-improviser-on-earth&quot;&gt;How To Be The Greatest Improviser On Earth&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Everything you need to know to do improv.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Another way to think about the top of the scene is with the Taoist principles of yin and yang. Yin is passive, patient, empathetic, malleable. It is akin to a “yes.” Yang is active, assertive, decisive, altering. It is akin to an “and.” After a series of small moves that simply confirm information without adding a lot, it’s time for a “yang” move: make a decision, add some information. But once someone makes a big “yang” move, then it’s time for a simple “yin” response. Confirm and unpack what was just added. Even a beat of silence is a good idea.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I believe the improv mindset is beneficial for more than just improv. So while a niche book I’m including it here as it really is excellent. This book gives you everything you need to know for improv, literally, and yet it’s so compact! I really felt after reading it I just needed to go practice more, what I should be doing was made clear.&lt;/p&gt;
+
+&lt;p&gt;Something I’ve begun to think as a consequence of doing improv and hanging out with comedy people is how there is a dichotomy between people in that one group likes talking about facts and the other thinks that the most boring conversation possible.&lt;/p&gt;
+
+&lt;h2 id=&quot;articles&quot;&gt;Articles&lt;/h2&gt;
+
+&lt;p&gt;Only started saving these towards the end of the year so the list is short.&lt;/p&gt;
+&lt;h4 id=&quot;lessons-from-the-years-of-lyndon-johnson-by-robert-caro&quot;&gt;&lt;a href=&quot;https://www.dwarkeshpatel.com/p/lyndon-johnson&quot;&gt;Lessons from The Years of Lyndon Johnson by Robert Caro&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;A collections of thoughts and lessons from reading Robert Caro’s series on LBJ by Dwarkesh Patel.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For the first 55 years of his life, he convinced men of tremendous intellect and drive of their own that he was the scion of the Southern cause - that the only hope for that cause was to make Lyndon Johnson President. So much so that when Lyndon Johnson was Majority Leader, the Southern Senators, who at the time controlled all the important committees in Congress, allowed Johnson to pass liberal legislation they scorned because they believed it would help him become President. And, they believed, as President, Johnson would govern as a conservative, especially on the issue of race. The tragic irony and betrayal here is hard to over-emphasize. These powerful conservative men - who, while being ignorant and backwards in certain ways, were famously shrewd and intelligent - conceded on issue after issue, and campaigned with their immense political influence, for a man who ended up being the biggest liberal President since FDR.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Is the &lt;a href=&quot;https://en.wikipedia.org/wiki/Great_man_theory&quot;&gt;great man theory&lt;/a&gt; real? The strongest argument pro I’ve ever read is in this article. Lots of other interesting takeaways too.&lt;/p&gt;
+
+&lt;p&gt;Also loved this story from a footnote:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I remember I was visiting India as a teenager. My uncle was talking about his son, who was studying business in the US, in the hopes that he would succeed my uncle as head of the family import/export conglomerate. My dad said something to the effect of, “You must be proud that your son is studying in the US.”
+“No,” my uncle responded. “In fact, I’m a little worried.” In America, he explained, a student learns that if you can’t agree on a price with a counterparty, or if a regulator says that you’re out of line, then you sigh, say, “Ah, too bad”, and move on. But one cannot conduct business this way in India. In India, if an apparatchik of the License Raj tells you that you can’t do something, then you make a personal appeal to the man. And if that fails, you offer him cash under-the-table. If that fails, you make such appeals to his boss. And if that fails, you find some way to avoid their authority altogether. You never just accept a no at face value. You couldn’t get anything done in India if you did. Reading about how Lyndon Johnson got what he wanted - how he flattered, threatened, manipulated, and lied to get bills passed - reminded me of this story.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;if-only-i-could-begin-again&quot;&gt;&lt;a href=&quot;https://harpers.org/archive/2020/12/storm-jameson-if-only-i-could-begin-again/&quot;&gt;If only I could begin again&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;A review of the autobiography of an only moderately successful early 20th century English writer.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The speaking voice, throughout the entire performance, has been described in reviews and biographical essays as ruthlessly honest; by which it is meant not that Jameson delivers a tell-all confessional, but rather that the reader can sense her grappling with something recalcitrant in the material that nonetheless draws her on. She realizes, just as we do, that there is much she does not know about this something. But we have no doubt that she is intent on telling us—&lt;em&gt;really&lt;/em&gt; telling us—as much as she does know, and that intent is what counts.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;What do you do when your work does not meet the standards you aspire to?
+This article reviews the autobiography of Storm Jameson, an early 20th century English writer, who wrote dozens of books to little acclaim but found her metier in her final piece of work.
+It might seem strange to highlight a book review as a standalone piece, but the subjects covered through talking about her life - not being as good as one wants to be at something, escaping the shadow of one’s parents, asking oneself the hard questions while also being forgiving and understanding of oneself and others - are relevant to many and therefore, I think, thought-provoking.&lt;/p&gt;
+&lt;h4 id=&quot;scott-and-scurvy&quot;&gt;&lt;a href=&quot;https://idlewords.com/2010/03/scott_and_scurvy.htm&quot;&gt;Scott and Scurvy&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;How the cure for scurvy was lost and the impact it had on the British attempt to reach the south pole.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Steam power had shortened travel times considerably from the age of sail, so that it was rare for sailors other than whalers to be months at sea without fresh food. Citrus juice was a legal requirement on all British vessels by 1867, but in practical terms it was becoming superfluous. 
+So when the Admiralty began to replace lemon juice with an ineffective substitute in 1860, it took a long time for anyone to notice.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;One generally imagines science as always moving forward but as this account shows that is not actually guaranteed.&lt;/p&gt;
+&lt;h4 id=&quot;the-humanities-have-sown-the-seeds-of-their-own-destruction&quot;&gt;&lt;a href=&quot;https://web.archive.org/web/20240114171009/https://www.theatlantic.com/ideas/archive/2023/12/humanities-university-conservative-critics/676890/&quot;&gt;The Humanities Have Sown the Seeds of Their Own Destruction&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;A humanities professor laments how the humanities have changed for the worse.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If the arc of the universe bends toward justice, some would have you believe that it is humanities departments that do the bending.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It is so nice to see it acknowledged that the humanities are in some sense useless (though that doesn’t mean it is worthless!). I especially appreciated the call-out of participants writing about race or gender in past novels as attempting to fight a proxy-war for progressive causes. This is the real talk we need!&lt;/p&gt;
+
+&lt;h2 id=&quot;movies-and-series&quot;&gt;Movies and Series&lt;/h2&gt;
+
+&lt;p&gt;Need to still watch a ton of highly rated 2023 movies but here goes:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.imdb.com/title/tt13238346&quot;&gt;Past Lives&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As someone who moved between multiple countries as a child this cut deep. I get such a sense of melancholy from the stairs shot.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/pastlives_stairs.jpg&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.imdb.com/title/tt7660850&quot;&gt;Succession&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;What is it that makes Succession such a masterpiece to some and only mildly interesting (“why would I watch a show where everyone is unlikeable”) to others ? I think it’s the originality of the dialogue and being able to recognize how unique it is. Of course the story has interesting twists and turns but I don’t think that is what makes the show stand out. It’s the characters and how they talk to each other. I’ve noticed that people interested in writing tend to belong to the group of Succession superfans and I don’t think that’s an accident.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.imdb.com/title/tt5348176&quot;&gt;Barry&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was debating about putting this on here as there was a lot of criticism about the last season or two about it essentially changing from a dark comedy to a dark drama, and I think the criticism was warranted. But the uniqueness of Barry makes it still worth elevating in my opinion: The twists, the way comedy is combined with earnestness and the unique characters who also grow over the course of the show (characters growing in a comedy imagine that!).&lt;/p&gt;
+
+&lt;h2 id=&quot;misc&quot;&gt;Misc&lt;/h2&gt;
+
+&lt;p&gt;I loooved this.&lt;/p&gt;
+&lt;h4 id=&quot;john-wick-is-so-tired-by-kyra-wilder&quot;&gt;&lt;a href=&quot;https://www.theparisreview.org/poetry/7974/john-wick-is-so-tired-kyra-wilder&quot;&gt;John Wick Is So Tired&lt;/a&gt; by &lt;a href=&quot;https://www.theparisreview.org/authors/34161/kyra-wilder&quot;&gt;Kyra Wilder&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;John Wick is so tired, but he can still throw a hatchet and hit a guy dead in the face
+he can just split other people open with anything, with a pencil
+because he knows what it’s like
+because he’s tired and loves dogs and he’s cracked right open too and
+I want to tell you to
+look at his feet when he runs
+the way they turn so delicately in
+the way they’re listing slightly, his black shoes
+the heels of them
+their heartbreaking glissade hush-hushing across the hotel tiles
+just look at the way he’s slipping
+even before he soaks the floor with other people’s blood
+I want to do push-ups like John Wick does in the morning
+so I won’t just be sad but sad and also ripped, like
+sad with muscles that stand out all obvious in desolate relief
+sad where it looks like I eat clean and have expensive taste
+I want to be sad but with a cut six-pack and
+to drink thimblefuls of espresso out of impeccable cups and
+I want to tell you to wait and be here and look
+at me and also at the way John Wick is leaning
+into those people that he’s stabbing
+how he gets so close to them and just holds them for a second
+how he’s so tired but he knows he has to let them go
+and I wish you would be here and
+we could watch John Wick together
+and we could put our ruthless arms around each other and if we looked
+out the window it would be all California
+and I would lean in close and tell you that John Wick kills women like
+he’s read feminist theory
+which is to say I think he’s familiar with the philosophy of care and
+you would laugh and
+wait, look now, John Wick is riding
+that black horse like he knows just what grief is
+like he knows sometimes it’s killing and killing and
+sometimes it’s just slipping in your shoes and
+I want you to be here and
+wait, now the camera’s right on him, just all cool colors and diaphanous mood and
+it looks like his hand hurts like his knuckles are a little swollen but
+he’s not saying it and
+I want to know what you think
+of all that blue light&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This is a list of stuff I read or saw in 2023 and really liked. I’m going to say a sentence or more about each and maybe include a quote. I’m hoping somebody who stumbles across this finds something they really like that they otherwise wouldn’t have, or someone who knows me might find an interest in common we didn’t know we had!</summary></entry><entry><title type="html">How k2 calculates the transducer loss quickly</title><link href="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html" rel="alternate" type="text/html" title="How k2 calculates the transducer loss quickly" /><published>2022-07-15T10:06:02+00:00</published><updated>2022-07-15T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html">&lt;p&gt;The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by efficiently calculating the transducer loss and thereby using much less memory. Code is also shown.&lt;/p&gt;
 
 &lt;p&gt;If you’re new to transducers read this first for an excellent introduction: &lt;a href=&quot;https://lorenlugosch.github.io/posts/2020/11/transducer/&quot;&gt;https://lorenlugosch.github.io/posts/2020/11/transducer/&lt;/a&gt;&lt;/p&gt;
 
@@ -956,54 +1114,4 @@ fst.write(...)
 
 &lt;p&gt;The self-loops should have costs, what these should be you will have to find out experimentally.&lt;/p&gt;
 
-&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry><entry><title type="html">First post: Ark and scp files in kaldi</title><link href="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" rel="alternate" type="text/html" title="First post: Ark and scp files in kaldi" /><published>2020-10-04T12:40:02+00:00</published><updated>2020-10-04T12:40:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html">&lt;p&gt;Both file types are structured by having keys and a value for each key.&lt;/p&gt;
-
-&lt;h1 id=&quot;scp-files&quot;&gt;Scp files&lt;/h1&gt;
-
-&lt;p&gt;In scp files, usually ending with the “.scp” suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
-What this means is that the scp file never contains any data, it just contains something which points to the data you will eventually use. See for example the wav.scp file which will look something like this usually:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 /path/to/file-1.wav
-wav-id-2 /path/to/file-2.wav
-wav-id-3 /path/to/file-3.wav
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It can be a file path, but can also be more complex like:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 sox /path/to/file-1.wav -r 8k - |
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Kaldi’s code is written so that it will recognize and execute the above command (starting from after the key), which results in the wav file being read with a sampling rate of 8kHz. This is a convenient way of doing the resampling on the fly (instead of resampling and having to waste space storing a file somewhere).&lt;/p&gt;
-
-&lt;p&gt;Another file one will see a lot when using kaldi is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; file which looks like:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;utt-id-1 /path/to/file-1.ark:44
-utt-id-2 /path/to/file-1.ark:760
-utt-id-3 /path/to/file-1.ark:1520
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The number after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:&lt;/code&gt; is a byte offset.&lt;/p&gt;
-
-&lt;h1 id=&quot;ark-files&quot;&gt;Ark files&lt;/h1&gt;
-
-&lt;p&gt;Instead of the value being a pointer to the data, in ark files the value &lt;strong&gt;is&lt;/strong&gt; the data. Usually this means it is in binary format, so you can’t visually inspect it, however kaldi has binaries for converting from binary to text format. So for example take the ark file from the feats.scp example above and call:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats ark:/path/to/file-1.ark ark,t:/path/to/file-1.ark.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark,t&lt;/code&gt; means that the values in the output will be written in textual format, so you can open the file and see what the values for the (example) MFCC coefficients are for each frame.&lt;/p&gt;
-
-&lt;p&gt;Another example of an ark style file, although it doesn’t have the “.ark” suffix, is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt; file you will find in kaldi data folders. The first field/column is the utterance ID, the rest of the line is the words belonging to that utterance. The words are the data.&lt;/p&gt;
-
-&lt;p&gt;You can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat&lt;/code&gt; to concatenate ark files. And kaldi binaries accepts commands and wildcards in the arguments, so this is valid: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:gunzip -c lat.*.gz|&lt;/code&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Kaldi has a script for subsetting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files you may find useful called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;When you call kaldi binaries you often have to prefix with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp:&lt;/code&gt; to tell kaldi what type of file to expect. You can then mix types, for example I could use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt; to subset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; and create a file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats_subset.scp&lt;/code&gt;, and then copy a subset of the feature data by calling&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:feats_subset.scp ark:copied_feats_subset.ark
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Notice how the input argument is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt;, so kaldi knows the input file is pointing to the data I want to use, and the output is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt;, so kaldi knows to actually write the data pointed to to a new file.&lt;/p&gt;
-
-&lt;p&gt;It’s not possible to create just a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; file from an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; file, you have to create both the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files. So you have to do something like this:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:/path/to/feats.ark ark,scp:copied_feats.ark,copied_feats.scp 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For more details check out the official documentation of &lt;a href=&quot;http://kaldi-asr.org/doc/io.html&quot;&gt;kaldi io&lt;/a&gt;. Probably the section “from a command-line perspective” is more relevant to you.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Both file types are structured by having keys and a value for each key.</summary></entry></feed>
+&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry></feed>
