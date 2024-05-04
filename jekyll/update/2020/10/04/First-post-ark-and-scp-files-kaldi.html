@@ -10,8 +10,8 @@
 <meta property="og:title" content="First post: Ark and scp files in kaldi" />
 <meta name="author" content="Rudolf A. Braun" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Both file types are structured by having keys and a value for each key." />
-<meta property="og:description" content="Both file types are structured by having keys and a value for each key." />
+<meta name="description" content="This is about the .ark and .scp files that are used with kaldi and have spread to other toolkits like ESPNet. It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are." />
+<meta property="og:description" content="This is about the .ark and .scp files that are used with kaldi and have spread to other toolkits like ESPNet. It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are." />
 <link rel="canonical" href="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" />
 <meta property="og:url" content="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" />
 <meta property="og:site_name" content="Sharings" />
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="First post: Ark and scp files in kaldi" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"First post: Ark and scp files in kaldi","dateModified":"2020-10-04T12:40:02+00:00","datePublished":"2020-10-04T12:40:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html"},"description":"Both file types are structured by having keys and a value for each key.","url":"https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html","@context":"https://schema.org"}</script>
+{"headline":"First post: Ark and scp files in kaldi","dateModified":"2020-10-04T12:40:02+00:00","datePublished":"2020-10-04T12:40:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html"},"description":"This is about the .ark and .scp files that are used with kaldi and have spread to other toolkits like ESPNet. It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.","url":"https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -121,8 +121,12 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   
-  <p>Both file types are structured by having keys and a value for each key.</p>
+  <p>This is about the <code class="language-plaintext highlighter-rouge">.ark</code> and <code class="language-plaintext highlighter-rouge">.scp</code> files that are used with kaldi and have spread to other toolkits like ESPNet.
+It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.</p>
 
+<hr />
+
+<p>Both file types are structured by having keys and a value for each key.</p>
 <h1 id="scp-files">Scp files</h1>
 
 <p>In scp files, usually ending with the “.scp” suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
@@ -183,7 +187,7 @@ utt-id-3 /path/to/file-1.ark:1520
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2024-03-04T03:37:00+00:00">2024</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2024-05-04T20:24:10+00:00">2024</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 

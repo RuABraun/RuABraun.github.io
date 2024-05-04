@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How k2 calculates the transducer loss quickly" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"How k2 calculates the transducer loss quickly","dateModified":"2022-07-15T10:06:02+00:00","datePublished":"2022-07-15T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html"},"description":"The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by efficiently calculating the transducer loss and thereby using much less memory. Code is also shown.","url":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html","@context":"https://schema.org"}</script>
+{"headline":"How k2 calculates the transducer loss quickly","dateModified":"2022-07-15T10:06:02+00:00","datePublished":"2022-07-15T10:06:02+00:00","author":{"@type":"Person","name":"Rudolf A. Braun"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html"},"description":"The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by efficiently calculating the transducer loss and thereby using much less memory. Code is also shown.","url":"https://ruabraun.github.io/jekyll/update/2022/07/15/k2-rnnt-loss.html","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -132,7 +132,7 @@
 
 <p>With transducer models this is different. Remember that the point of a transducer model is that you model <code class="language-plaintext highlighter-rouge">P(y|x,y-1,y-2..)</code> (instead of just <code class="language-plaintext highlighter-rouge">P(y|x)</code>), which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U = ‘tokens in reference’.</p>
 
-<p>The way I imagine it is: Instead of a matrix representing different alignments for a single example, imagine stacked matrices (one behind the other). The z-axis goes along the stack and corresponds to the V dimension. Time is still on the x-axis, and the tokens that should be output still on y (this is the U dimension). This means that now for every combination of x,y (T,U) you have a different probability distribution across V.</p>
+<p>The way I imagine it is: Instead of a matrix representing different alignments for a single example, imagine stacked matrices (one behind the other), or a (3D) lattice. The z-axis goes along the stack and corresponds to the V dimension. Time is still on the x-axis, and the tokens that should be output still on y (this is the U dimension). This means that now for every combination of x,y (T,U) you have a different probability distribution across V.</p>
 
 <p>This is a much larger tensor than the one CTC outputs! If the last paragraph was not clear, the main point is that the output tensor for transducers has shape (B,T,U,V) which is much larger than the output tensor of a CTC  model which has shape (B,T,V).</p>
 
@@ -150,7 +150,7 @@
 
 <p>Let’s just consider the case where B=1 (everything that follows holds true with B&gt;1, this is just to simplify things) and we can work with the shape (T,U,V).</p>
 
-<p>Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each combination of time (T) and token history (U) in the (T,U,V) tensor. The first insight is that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: In the first row on the y-axis (equals U axis, see figure at the start) it is the first token in U, in the second row it is the second token in U and so on. These token probabilities govern the vertical transitions, the horizontal transitions are dependent on the blank token probabilities.</p>
+<p>Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each combination of time (T) and token history (U) in the (T,U,V) tensor. The first insight is that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: In the first row on the y-axis (equals U axis, see figure at the start) it is the first token in U, in the second row it is the second token in U and so on. These token probabilities govern the vertical transitions, the horizontal transitions are dependent on the blank token probabilities. These probabilities are what we need (instead of a distribution across all).</p>
 
 <p>Okay cool, but how do we actually get the logprobs we need for each position in (T,U,) without creating (T,U,V)?</p>
 
@@ -197,7 +197,7 @@
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2024-03-04T03:37:00+00:00">2024</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2024-05-04T20:24:10+00:00">2024</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 

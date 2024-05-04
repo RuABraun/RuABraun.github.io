@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Rudolf A Braun" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"Rudolf A Braun","author":{"@type":"Person","name":"Rudolf A. Braun"},"url":"https://ruabraun.github.io/","name":"Sharings","@context":"https://schema.org"}</script>
+{"headline":"Rudolf A Braun","author":{"@type":"Person","name":"Rudolf A. Braun"},"url":"https://ruabraun.github.io/","name":"Sharings","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -139,23 +139,6 @@
   
     <div class="post">
       <h2 class="post-title">
-        <a href="/jekyll/update/2022/06/26/ASR-Toolkits.html">
-          A comparison of fairseq, speechbrain, k2 for ASR
-        </a>
-      </h2>
-
-      <time datetime="2022-06-26T10:06:02+00:00" class="post-meta">26 Jun 2022</time>
-
-      <p class="post-excerpt">
-        
-          This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked.
-
-        
-      </p>
-    </div>
-  
-    <div class="post">
-      <h2 class="post-title">
         <a href="/jekyll/update/2021/11/18/black-is-disgusting.html">
           Why I don't like the black code formatter
         </a>
@@ -208,7 +191,7 @@
     <div class="post">
       <h2 class="post-title">
         <a href="/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html">
-          Why you need a billion words to get a good language model
+          Why you need (at least) a billion words to get a good language model
         </a>
       </h2>
 
@@ -216,14 +199,7 @@
 
       <p class="post-excerpt">
         
-          I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position.
-199989 krisenbewältigungen 2
-199999 gendersensitiv 2
-200002 umgehbar 2
-200005 widersinnigen 2
-200016 ausmehrungen 2
-
-The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1
+          2024 Update: The title seems blindingly obvious in light of the current trends of training on trillions of words. Still I think it’s good to point out practically how, for those not aware, language has a surprisingly long tail.
 
         
       </p>
@@ -232,7 +208,7 @@ The words I’m showing here are legitimite. Good we have them in our vocabulary
     <div class="post">
       <h2 class="post-title">
         <a href="/jekyll/update/2021/02/09/Why-does-BPE-work.html">
-          Why does BPE work?
+          Deriving BPE from scratch
         </a>
       </h2>
 
@@ -292,7 +268,8 @@ First a refresher on standard WER calculation and an illustration of how this ca
 
       <p class="post-excerpt">
         
-          Both file types are structured by having keys and a value for each key.
+          This is about the .ark and .scp files that are used with kaldi and have spread to other toolkits like ESPNet.
+It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.
 
         
       </p>
@@ -306,7 +283,7 @@ First a refresher on standard WER calculation and an illustration of how this ca
         <footer class="footer pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
     <small>
-      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2024-03-04T03:37:00+00:00">2024</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
+      &copy;&nbsp;<time datetime="2020-10-04T12:40:02+00:00">2020</time>-<time datetime="2024-05-04T20:24:10+00:00">2024</time>&nbsp;<a href="" target="_blank">Rudolf A. Braun</a>. All right reserved.
     </small>
   </div>
 

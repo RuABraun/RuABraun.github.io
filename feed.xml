@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2024-03-04T03:37:00+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Favourites of 2023</title><link href="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html" rel="alternate" type="text/html" title="Favourites of 2023" /><published>2024-02-26T10:06:02+00:00</published><updated>2024-02-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html">&lt;p&gt;This is a list of stuff I read or saw in 2023 and really liked. I’m going to say a sentence or more about each and maybe include a quote. I’m hoping somebody who stumbles across this finds something they really like that they otherwise wouldn’t have, or someone who knows me might find an interest in common we didn’t know we had!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2024-05-04T20:24:10+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Favourites of 2023</title><link href="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html" rel="alternate" type="text/html" title="Favourites of 2023" /><published>2024-02-26T10:06:02+00:00</published><updated>2024-02-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html">&lt;p&gt;This is a list of stuff I read or saw in 2023 and really liked. I’m going to say a sentence or more about each and maybe include a quote. I’m hoping somebody who stumbles across this finds something they really like that they otherwise wouldn’t have, or someone who knows me might find an interest in common we didn’t know we had!&lt;/p&gt;
 
 &lt;p&gt;I suggest skimming and using the bolded bylines to pick out what might interest.&lt;/p&gt;
-&lt;h2 id=&quot;books&quot;&gt;Books&lt;/h2&gt;
+&lt;h1 id=&quot;books&quot;&gt;Books&lt;/h1&gt;
 
 &lt;p&gt;This was a (first?) year of mostly non-fiction for me. It was great! Do want to read more fiction this year though.&lt;/p&gt;
 
-&lt;h3 id=&quot;storyworthy&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/en/book/show/37786022&quot;&gt;Storyworthy&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;storyworthy&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/en/book/show/37786022&quot;&gt;Storyworthy&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;How to tell a good story.&lt;/strong&gt;&lt;/p&gt;
 
@@ -16,11 +16,11 @@
 &lt;p&gt;I loved the practicality of this. He takes his own stories and breaks them down. He goes into detail and provides tons of examples. 
 It made me understand that I usually do not do a good job of telling a story and I appreciated having that realization.&lt;/p&gt;
 
-&lt;p&gt;It also made me think there is an opposition between telling an engaging story and explaining something (like in a paper or technical report) or communicating facts efficiently. With the latter you never want to surprise a listener, everything should be obvious because of what you said previously, if that’s not the case then you missed a step in the logic or made an error which is why the listener is surprised.
+&lt;p&gt;It also made me think there is an opposition between telling an engaging story and explaining something (like in a paper or technical report) or communicating facts efficiently. With the latter you don’t want to surprise a listener, everything should be obvious because of what you said previously, if that’s not the case then you missed a step in the logic or made an error which is why the listener is surprised.
 But for storytelling surprise is a key tool to engage the listener, so depending on what you’re talking about you really should have a different structure.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=U9v0O0oEmpQ&quot;&gt;He’s got videos of his stories on youtube, check it out!&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;path-to-power&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/en/book/show/86524&quot;&gt;Path to Power&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;path-to-power&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/en/book/show/86524&quot;&gt;Path to Power&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;Lyndon B Johnson’s early life and the first roughly ten years of his political career.&lt;/strong&gt;&lt;/p&gt;
 
@@ -30,7 +30,7 @@ But for storytelling surprise is a key tool to engage the listener, so depending
 
 &lt;p&gt;This is hands-down one of the most engaging books I’ve ever read that also goes into incredible detail on things that happened a century ago and one might initially think uninteresting. But the narrative works. It is interesting. It helps of course that LBJ is a singular character. His portrayal is at minimum unsympathetic, yet you can’t help but root for him when he goes to the greatest lengths to help his constituents and when he tries to gain more power (with the hindsight knowledge of him enacting so many liberal policies later). I wonder if someone wrote a similarly detailed biography of say, Obama, would it be close to as interesting?&lt;/p&gt;
 
-&lt;h3 id=&quot;how-to-be-the-greatest-improviser-on-earth&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/book/show/30364117-how-to-be-the-greatest-improviser-on-earth&quot;&gt;How To Be The Greatest Improviser On Earth&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;how-to-be-the-greatest-improviser-on-earth&quot;&gt;&lt;a href=&quot;https://www.goodreads.com/book/show/30364117-how-to-be-the-greatest-improviser-on-earth&quot;&gt;How To Be The Greatest Improviser On Earth&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;Everything you need to know to do improv.&lt;/strong&gt;&lt;/p&gt;
 
@@ -40,12 +40,10 @@ But for storytelling surprise is a key tool to engage the listener, so depending
 
 &lt;p&gt;I believe the improv mindset is beneficial for more than just improv. So while a niche book I’m including it here as it really is excellent. This book gives you everything you need to know for improv, literally, and yet it’s so compact! I really felt after reading it I just needed to go practice more, what I should be doing was made clear.&lt;/p&gt;
 
-&lt;p&gt;Something I’ve begun to think as a consequence of doing improv and hanging out with comedy people is how there is a dichotomy between people in that one group likes talking about facts and the other thinks that the most boring conversation possible.&lt;/p&gt;
-
 &lt;h2 id=&quot;articles&quot;&gt;Articles&lt;/h2&gt;
 
 &lt;p&gt;Only started saving these towards the end of the year so the list is short.&lt;/p&gt;
-&lt;h3 id=&quot;lessons-from-the-years-of-lyndon-johnson-by-robert-caro&quot;&gt;&lt;a href=&quot;https://www.dwarkeshpatel.com/p/lyndon-johnson&quot;&gt;Lessons from The Years of Lyndon Johnson by Robert Caro&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;lessons-from-the-years-of-lyndon-johnson-by-robert-caro&quot;&gt;&lt;a href=&quot;https://www.dwarkeshpatel.com/p/lyndon-johnson&quot;&gt;Lessons from The Years of Lyndon Johnson by Robert Caro&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;A collections of thoughts and lessons from reading Robert Caro’s series on LBJ by Dwarkesh Patel.&lt;/strong&gt;&lt;/p&gt;
 
@@ -62,7 +60,7 @@ But for storytelling surprise is a key tool to engage the listener, so depending
 “No,” my uncle responded. “In fact, I’m a little worried.” In America, he explained, a student learns that if you can’t agree on a price with a counterparty, or if a regulator says that you’re out of line, then you sigh, say, “Ah, too bad”, and move on. But one cannot conduct business this way in India. In India, if an apparatchik of the License Raj tells you that you can’t do something, then you make a personal appeal to the man. And if that fails, you offer him cash under-the-table. If that fails, you make such appeals to his boss. And if that fails, you find some way to avoid their authority altogether. You never just accept a no at face value. You couldn’t get anything done in India if you did. Reading about how Lyndon Johnson got what he wanted - how he flattered, threatened, manipulated, and lied to get bills passed - reminded me of this story.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;if-only-i-could-begin-again&quot;&gt;&lt;a href=&quot;https://harpers.org/archive/2020/12/storm-jameson-if-only-i-could-begin-again/&quot;&gt;If only I could begin again&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;if-only-i-could-begin-again&quot;&gt;&lt;a href=&quot;https://harpers.org/archive/2020/12/storm-jameson-if-only-i-could-begin-again/&quot;&gt;If only I could begin again&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;A review of the autobiography of an only moderately successful early 20th century English writer.&lt;/strong&gt;&lt;/p&gt;
 
@@ -72,8 +70,8 @@ But for storytelling surprise is a key tool to engage the listener, so depending
 
 &lt;p&gt;What do you do when your work does not meet the standards you aspire to?
 This article reviews the autobiography of Storm Jameson, an early 20th century English writer, who wrote dozens of books to little acclaim but found her metier in her final piece of work.
-It might seem strange to highlight a book review as a standalone piece, but the subjects covered through talking about her life - not being as good as one wants to be at something, escaping the shadow of one’s parents, asking oneself the hard questions while also being forgiving and understanding of oneself and others - are relevant to many and therefore, I think, thought-provoking.&lt;/p&gt;
-&lt;h3 id=&quot;scott-and-scurvy&quot;&gt;&lt;a href=&quot;https://idlewords.com/2010/03/scott_and_scurvy.htm&quot;&gt;Scott and Scurvy&lt;/a&gt;&lt;/h3&gt;
+It might seem strange to highlight a book review as a standalone piece, but the subjects covered through talking about her life - not being as good as one wants to be at something, escaping the shadow of one’s parents, asking oneself the hard questions while also being forgiving and understanding of oneself and others - are relevant to many and thought-provoking to me.&lt;/p&gt;
+&lt;h2 id=&quot;scott-and-scurvy&quot;&gt;&lt;a href=&quot;https://idlewords.com/2010/03/scott_and_scurvy.htm&quot;&gt;Scott and Scurvy&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;How the cure for scurvy was lost and the impact it had on the British attempt to reach the south pole.&lt;/strong&gt;&lt;/p&gt;
 
@@ -82,40 +80,44 @@ It might seem strange to highlight a book review as a standalone piece, but the 
 So when the Admiralty began to replace lemon juice with an ineffective substitute in 1860, it took a long time for anyone to notice.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;One generally imagines science as always moving forward but as this account shows that is not actually guaranteed.&lt;/p&gt;
-&lt;h3 id=&quot;the-humanities-have-sown-the-seeds-of-their-own-destruction&quot;&gt;&lt;a href=&quot;https://web.archive.org/web/20240114171009/https://www.theatlantic.com/ideas/archive/2023/12/humanities-university-conservative-critics/676890/&quot;&gt;The Humanities Have Sown the Seeds of Their Own Destruction&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One generally imagines science as always moving forward but as this account shows that is not actually guaranteed.
+In our digital age it’s hard to imagine information being lost but it’s worth remembering that digital devices are actually the least permanent of all (hard drives don’t even last ten years) and simultaneously very complicated to create and interact with, if something cataclysmic did happen it’s basically guaranteed we would lose most of our science knowledge. I guess in the event we’d have other worries anyways.&lt;/p&gt;
+&lt;h2 id=&quot;the-humanities-have-sown-the-seeds-of-their-own-destruction&quot;&gt;&lt;a href=&quot;https://web.archive.org/web/20240114171009/https://www.theatlantic.com/ideas/archive/2023/12/humanities-university-conservative-critics/676890/&quot;&gt;The Humanities Have Sown the Seeds of Their Own Destruction&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;A humanities professor laments how the humanities have changed for the worse.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A humanities professor laments how the increasing politicization of the humanities has caused it to change for the worse.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;If the arc of the universe bends toward justice, some would have you believe that it is humanities departments that do the bending.&lt;/p&gt;
+  &lt;p&gt;Instead of trying to prove that the humanities are more &lt;em&gt;economically&lt;/em&gt; useful than other majors—a tricky proposition—humanists have taken to justifying their continued existence within the academy by insisting that they are uniquely &lt;em&gt;socially&lt;/em&gt; and &lt;em&gt;politically&lt;/em&gt; useful. The emergent sales pitch is not that the humanities produce and transmit important &lt;em&gt;knowledge&lt;/em&gt;, but rather that studying the humanities promotes nebulous but nice-sounding values, such as empathy and critical thinking, that are allegedly vital to the cause of moral uplift in a multicultural democracy.
+If the arc of the universe bends toward justice, some would have you believe that it is humanities departments that do the bending.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;It is so nice to see it acknowledged that the humanities are in some sense useless (though that doesn’t mean it is worthless!). I especially appreciated the call-out of participants writing about race or gender in past novels as attempting to fight a proxy-war for progressive causes. This is the real talk we need!&lt;/p&gt;
+&lt;p&gt;It’s interesting to view the increasing politicization as a reaction to the question what is studying the humanities good for.
+Unfortunately I don’t see how one could reverse the trend. Once institutions are captured by ideologues that fill all the positions with their friends you can’t really go back unless you fire everyone which doesn’t seem realistic.
+Update May 4th: Think the recent protests further validate the viewpoint of the article writer.&lt;/p&gt;
 
-&lt;h2 id=&quot;movies-and-series&quot;&gt;Movies and Series&lt;/h2&gt;
+&lt;h1 id=&quot;movies-and-series&quot;&gt;Movies and Series&lt;/h1&gt;
 
-&lt;p&gt;Need to still watch a ton of highly rated 2023 movies but here goes:&lt;/p&gt;
+&lt;p&gt;There were a lot of great movies in 2023 but one connected with me the most:&lt;/p&gt;
 
-&lt;h3 id=&quot;past-lives&quot;&gt;&lt;a href=&quot;https://www.imdb.com/title/tt13238346&quot;&gt;Past Lives&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;past-lives&quot;&gt;&lt;a href=&quot;https://www.imdb.com/title/tt13238346&quot;&gt;Past Lives&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;As someone who moved between multiple countries as a child this cut deep. I get such a sense of melancholy from the stairs shot.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://ruabraun.github.io/images/pastlives_stairs.jpg&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot;text-align: center;&quot;&gt;:/ &lt;/p&gt;
 
-&lt;h3 id=&quot;succession&quot;&gt;&lt;a href=&quot;https://www.imdb.com/title/tt7660850&quot;&gt;Succession&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;succession&quot;&gt;&lt;a href=&quot;https://www.imdb.com/title/tt7660850&quot;&gt;Succession&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;What is it that makes Succession such a masterpiece to some and only mildly interesting (“why would I watch a show where everyone is unlikeable”) to others ? I think it’s the originality of the dialogue and being able to recognize how unique it is. Of course the story has interesting twists and turns but I don’t think that is what makes the show stand out. It’s the characters and how they talk to each other. I’ve noticed that people interested in writing tend to belong to the group of Succession superfans and I don’t think that’s an accident.&lt;/p&gt;
 
-&lt;h3 id=&quot;barry&quot;&gt;&lt;a href=&quot;https://www.imdb.com/title/tt5348176&quot;&gt;Barry&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;barry&quot;&gt;&lt;a href=&quot;https://www.imdb.com/title/tt5348176&quot;&gt;Barry&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;I was debating about putting this on here as there was a lot of criticism about the last season or two about it essentially changing from a dark comedy to a dark drama, and I think the criticism was warranted. But the uniqueness of Barry makes it still worth elevating in my opinion: The twists, the way comedy is combined with earnestness and the unique characters who also grow over the course of the show (characters growing in a comedy imagine that!).&lt;/p&gt;
+&lt;p&gt;I was debating about putting this on here as there was a lot of criticism about the last season or two about it essentially changing from a dark comedy to a dark drama and I think the criticism was warranted. But the uniqueness of Barry makes it still worth elevating in my opinion: The twists, the way comedy is combined with earnestness and the unique characters who also grow over the course of the show (characters growing in a comedy imagine that!).&lt;/p&gt;
 
-&lt;h2 id=&quot;misc&quot;&gt;Misc&lt;/h2&gt;
+&lt;h1 id=&quot;misc&quot;&gt;Misc&lt;/h1&gt;
 
-&lt;p&gt;I loooved this.&lt;/p&gt;
-&lt;h3 id=&quot;john-wick-is-so-tired-by-kyra-wilder&quot;&gt;&lt;a href=&quot;https://www.theparisreview.org/poetry/7974/john-wick-is-so-tired-kyra-wilder&quot;&gt;John Wick Is So Tired&lt;/a&gt; by &lt;a href=&quot;https://www.theparisreview.org/authors/34161/kyra-wilder&quot;&gt;Kyra Wilder&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I loved this.&lt;/p&gt;
+&lt;h2 id=&quot;john-wick-is-so-tired-by-kyra-wilder&quot;&gt;&lt;a href=&quot;https://www.theparisreview.org/poetry/7974/john-wick-is-so-tired-kyra-wilder&quot;&gt;John Wick Is So Tired&lt;/a&gt; by &lt;a href=&quot;https://www.theparisreview.org/authors/34161/kyra-wilder&quot;&gt;Kyra Wilder&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;John Wick is so tired, but he can still throw a hatchet and hit a guy dead in the face&lt;br /&gt;
 he can just split other people open with anything, with a pencil&lt;br /&gt;
@@ -168,7 +170,7 @@ of all that blue light&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></
 
 &lt;p&gt;With transducer models this is different. Remember that the point of a transducer model is that you model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P(y|x,y-1,y-2..)&lt;/code&gt; (instead of just &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P(y|x)&lt;/code&gt;), which means the token history matters. This means that you need an extra dimension (for the history) in the output tensor, and therefore you need a shape (B,T,U,V) with U = ‘tokens in reference’.&lt;/p&gt;
 
-&lt;p&gt;The way I imagine it is: Instead of a matrix representing different alignments for a single example, imagine stacked matrices (one behind the other). The z-axis goes along the stack and corresponds to the V dimension. Time is still on the x-axis, and the tokens that should be output still on y (this is the U dimension). This means that now for every combination of x,y (T,U) you have a different probability distribution across V.&lt;/p&gt;
+&lt;p&gt;The way I imagine it is: Instead of a matrix representing different alignments for a single example, imagine stacked matrices (one behind the other), or a (3D) lattice. The z-axis goes along the stack and corresponds to the V dimension. Time is still on the x-axis, and the tokens that should be output still on y (this is the U dimension). This means that now for every combination of x,y (T,U) you have a different probability distribution across V.&lt;/p&gt;
 
 &lt;p&gt;This is a much larger tensor than the one CTC outputs! If the last paragraph was not clear, the main point is that the output tensor for transducers has shape (B,T,U,V) which is much larger than the output tensor of a CTC  model which has shape (B,T,V).&lt;/p&gt;
 
@@ -186,7 +188,7 @@ of all that blue light&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></
 
 &lt;p&gt;Let’s just consider the case where B=1 (everything that follows holds true with B&amp;gt;1, this is just to simplify things) and we can work with the shape (T,U,V).&lt;/p&gt;
 
-&lt;p&gt;Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each combination of time (T) and token history (U) in the (T,U,V) tensor. The first insight is that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: In the first row on the y-axis (equals U axis, see figure at the start) it is the first token in U, in the second row it is the second token in U and so on. These token probabilities govern the vertical transitions, the horizontal transitions are dependent on the blank token probabilities.&lt;/p&gt;
+&lt;p&gt;Remember our end-goal is to calculate the logprob of all alignments by summing across all of them. This requires stepping, from start to end, through each combination of time (T) and token history (U) in the (T,U,V) tensor. The first insight is that for training we don’t need to have a distribution across all tokens in V as we have a training transcript so we know at each position (T,U) the token probability that matters: In the first row on the y-axis (equals U axis, see figure at the start) it is the first token in U, in the second row it is the second token in U and so on. These token probabilities govern the vertical transitions, the horizontal transitions are dependent on the blank token probabilities. These probabilities are what we need (instead of a distribution across all).&lt;/p&gt;
 
 &lt;p&gt;Okay cool, but how do we actually get the logprobs we need for each position in (T,U,) without creating (T,U,V)?&lt;/p&gt;
 
@@ -220,308 +222,17 @@ of all that blue light&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></
 
 &lt;p&gt;Thank you for reading, hope it is helpful, and please send an email / DM if something is unclear! :)&lt;/p&gt;
 
-&lt;p&gt;A preprint is available with nice results and additional details: &lt;a href=&quot;https://arxiv.org/abs/2206.13236&quot;&gt;https://arxiv.org/abs/2206.13236&lt;/a&gt;&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by efficiently calculating the transducer loss and thereby using much less memory. Code is also shown.</summary></entry><entry><title type="html">A comparison of fairseq, speechbrain, k2 for ASR</title><link href="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html" rel="alternate" type="text/html" title="A comparison of fairseq, speechbrain, k2 for ASR" /><published>2022-06-26T10:06:02+00:00</published><updated>2022-06-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2022/06/26/ASR-Toolkits.html">&lt;p&gt;This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked.&lt;/p&gt;
-
-&lt;p&gt;Whenever I refer to files, I assume you are starting from the root folder of the repo.&lt;/p&gt;
-
-&lt;h1 id=&quot;fairseq&quot;&gt;fairseq&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/facebookresearch/fairseq&quot;&gt;Fairseq&lt;/a&gt; is not just meant for ASR. It’s for many different modeling tasks, including language modeling, translation, masked LM pretraining, summarization and text to speech.&lt;/p&gt;
-
-&lt;p&gt;Training models and doing inference is done via command-line scripts (found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq_cli/&lt;/code&gt;). The training loop and data processing code is unified when possible. As a consequence the code is generally a bit more abstract, you cannot look at just one file if you want to read and understand the training loop.
-The codebase can be seen as split into four different parts.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq_cli/&lt;/code&gt; contains CLI scripts for data processing, model training and evaluation.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/&lt;/code&gt; (except for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tasks/&lt;/code&gt;) is like a library of common models, data processing or utility classes and functions&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/tasks/&lt;/code&gt; has files which contain code specific to a modeling task&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;examples/&lt;/code&gt; has the documentation and scripts for training and evaluating models related to facebook’s papers and corpuses&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When training you pass a “task” argument (when calling the CLI scripts) which ensures the appropriate code is run for whatever task you are doing. Many modifications to a task, like using a different model, can done by changing a command-line argument or using a config file to redefine a default (the config is based on hydra+omegaconf). Models defined in fairseq (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/models/&lt;/code&gt;) will have a decorator enabling you to specify it using one keyword (making it easy to change).&lt;/p&gt;
-
-&lt;p&gt;There are several tasks related to speech recognition: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speech_to_text&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speech_recognition&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio_pretraining&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio_finetuning&lt;/code&gt;. The latter two are for wav2vec[2]. It seems they are planning to unify all the previously mentioned ASR related ones to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speech_to_text&lt;/code&gt;, but this is still WIP.&lt;/p&gt;
-
-&lt;p&gt;The data format depends on the task and tends to favor simplicity. For example for wav2vec pretraining you just need a .tsv file which has on the first line a root path, and every line afterwards has a path to an audio file and its sample count. That’s it. In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;examples/*&lt;/code&gt; there always is an explanation for how to get to the data format needed.&lt;/p&gt;
-
-&lt;p&gt;I find fairseq to be a good toolkit for reproducing results from facebook’s papers - I was surprised how easy it was to do the pretraining for wav2vec models - and convenient if you want to toy around with a research idea that is slightly different from what already exists. A lot of small changes that you might want to do can be done fairly easily. If you’re doing something significantly different from what already exists that could get a lot harder and you will likely have to end up learning about how the entire fairseq repo ties together to achieve that. But I do think once you get it it can be quite nice to work with. One downside is you can’t rely much on support from the maintainers; github issues are rarely responded to. It also is not very suited for using in production (but to be fair that is not what it’s made for).&lt;/p&gt;
-
-&lt;p&gt;Let’s skim over the training loop, we start in &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L180&quot;&gt;fairseq_cli/train.py&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while epoch_itr.next_epoch_idx &amp;lt;= max_epoch:
-    [..]
-    valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;With train defined in the same file and then calling &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq_cli/train.py#L312&quot;&gt;trainer.train_step()&lt;/a&gt;, the most important of which looks like:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;logger.info(&quot;Start iterating over samples&quot;)
-for i, samples in enumerate(progress):
-     [..]
-	 log_output = trainer.train_step(samples)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The dataloader is wrapped inside of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;progress&lt;/code&gt;.  The trainer object is defined in &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py&quot;&gt;fairseq/trainer.py&lt;/a&gt; and its &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq/trainer.py#L824&quot;&gt;train_step()&lt;/a&gt; calls the task specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train_step&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for i, sample in enumerate(samples):  # delayed update loop
-    [..]
-	loss, sample_size_i, logging_output = self.task.train_step(
-		sample=sample,
-		model=self.model,
-		criterion=self.criterion,
-		optimizer=self.optimizer,
-		update_num=self.get_num_updates(),
-		ignore_grad=is_dummy_batch,
-		**extra_kwargs,
-	)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samples&lt;/code&gt; will have a length bigger 1 only if gradient accumulation is used.&lt;/p&gt;
-
-&lt;p&gt;A lot of tasks actually don’t have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train_step()&lt;/code&gt; defined and just use the generic one defined in &lt;a href=&quot;https://github.com/facebookresearch/fairseq/blob/main/fairseq/tasks/fairseq_task.py#L490&quot;&gt;fairseq/tasks/fairseq_task.py&lt;/a&gt; (the parent class from which all other tasks inherit).&lt;/p&gt;
-
-&lt;p&gt;One uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq-hydra-train&lt;/code&gt; to train a model when one has a config and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq-train&lt;/code&gt; if you’re willing to specify all the arguments on the commandline. This is an example call to finetune a wav2vec model:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fairseq-hydra-train task.data=/work2/rudolf/wav2vec/ch-de/22-08-05/manifest/ model.w2v_path=/work1/rudolf/wav2vec_model.pt checkpoint.save_dir=/work2/rudolf/wav2vec/ch-de/22-08-05/model-a --config-dir $PWD --config-name finetuning.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Most of the options are defined inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finetuning.yaml&lt;/code&gt; , for example the task, this looks like:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;task:
-  _name: audio_finetuning
-  data: ???
-  normalize: true 
-  labels: bpe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The name specifies which task defined in  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/tasks/&lt;/code&gt; will be used, all other options are specific to that. In this case they specify that bpe labels will be used for training and the audio files will be normalized after loading. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;???&lt;/code&gt; means the user should specify this, which we did in the above commandline with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;task.data=...&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fairseq/examples/&lt;/code&gt; one can always find the commandline necessary to train a recipe.&lt;/p&gt;
-
-&lt;h1 id=&quot;speechbrain&quot;&gt;speechbrain&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/speechbrain/speechbrain&quot;&gt;Speechbrain&lt;/a&gt; is specifically for speech processing tasks, they have an impressive array of examples where they get good results (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recipes/&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;The recipe implementations are less unified than those in fairseq, but there is still a lot of shared code. The core training loop is unified in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; class (found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speechbrain/core.py&lt;/code&gt;), the data processing code is specified in each recipe.&lt;/p&gt;
-
-&lt;p&gt;Speechbrain uses a powerful yaml config (&lt;a href=&quot;https://github.com/speechbrain/HyperPyYAML&quot;&gt;HyperPyYaml&lt;/a&gt;) which is used not only to define hyperparameters but also to define data processing related things like the data loading sampler, the loss, the optimizer and the model. A simple one like an 3-layer MLP you could define right in the config like this:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;enc: !new:speechbrain.lobes.models.VanillaNN.VanillaNN
-   input_shape: [null, null, 1024]
-   activation: torch.nn.LeakyRelu
-   dnn_blocks: 2
-   dnn_neurons: 1024
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;A complicated model would be defined by refering to the speechbrain implementation (for example a transformer) for example:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;encoder: !new:speechbrain.lobes.models.transformer.Transformer.TransformerEncoder
-	d_model: 768
-	num_layers: 12
-	nhead: 8
-	d_ffn: 3072
-	dropout: 0.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Note that the class will be instantiated when the config is loaded, so you don’t have to write any code to do that. To use a different model you can just modify the config.&lt;/p&gt;
-
-&lt;p&gt;Sometimes speechbrain’s models (e.g. the VanillaNN above) use an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;input_shape&lt;/code&gt; to allow them to infer the output shape (by running the model). This is implemented by having those models inherit from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speechbrain.nnet.containers.Sequential&lt;/code&gt; (&lt;a href=&quot;https://github.com/speechbrain/speechbrain/blob/424e7921531b0ea6523557ef0fd6ca249936bd26/speechbrain/nnet/containers.py#L18&quot;&gt;code link&lt;/a&gt;) which has an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;append&lt;/code&gt; method which you use when successively adding layers (this will then pass the input shape and check it works). If this doesn’t make sense it’s okay, it’s a detail.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; class is initialized with this yaml config, and will hold a reference to the model, the loss, the optimizer, but not the dataset/dataloaders. In contrast to other toolkits speechbrain defines much more in the config.&lt;/p&gt;
-
-&lt;p&gt;How the model is used is specified by overriding two methods (of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; class) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_forward&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_objectives&lt;/code&gt;. The former defines how to get from the data to the outputs you need to compute the loss. You then use the latter to define how to compute the loss from those outputs (it’s called automatically after the former). Sometimes the implementation will be extremely simple: In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_forward&lt;/code&gt; you call the model and in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_objectives&lt;/code&gt; you call the loss defined in your config.&lt;/p&gt;
-
-&lt;p&gt;The data is typically stored in CSV format (with filepaths pointing to audio data) which you load to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicItemDataset&lt;/code&gt; like (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sb&lt;/code&gt;  is  the speechbrain package):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;train_data = sb.dataio.dataset.DynamicItemDataset.from_csv(csv_path=hparams[&quot;train_csv&quot;])
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;in your recipe you then specify (via a custom “pipeline” construct) how to go from the data in the CSV to the data you want available in a batch. This can look like this (&lt;a href=&quot;https://github.com/speechbrain/speechbrain/blob/develop/recipes/LibriSpeech/ASR/CTC/train_with_wav2vec.py#L234&quot;&gt;code link&lt;/a&gt;):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@sb.utils.data_pipeline.takes(&quot;wav&quot;)
-@sb.utils.data_pipeline.provides(&quot;sig&quot;)
-def audio_pipeline(wav):
-	sig = sb.dataio.dataio.read_audio(wav)
-	return sig
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;or this:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 3. Define text pipeline:
-@sb.utils.data_pipeline.takes(&quot;wrd&quot;)
-@sb.utils.data_pipeline.provides(&quot;wrd&quot;, &quot;tokens_list&quot;, &quot;tokens_bos&quot;)
-def text_pipeline(wrd):
-	yield wrd
-	tokens_list = tokenizer.encode_as_ids(wrd)
-	yield tokens_list
-	tokens_bos = torch.LongTensor([hparams[&quot;bos_index&quot;]] + (tokens_list))
-	yield tokens_bos
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You attach it to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicItemDataset&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sb.dataio.dataset.add_dynamic_item(train_data, text_pipeline)
-sb.dataio.dataset.add_dynamic_item(train_data, audio_pipeline)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The “takes” are columns available in the CSV file. The “provides” you can access in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_forward&lt;/code&gt;  like this (&lt;a href=&quot;https://github.com/speechbrain/speechbrain/blob/develop/recipes/LibriSpeech/ASR/CTC/train_with_wav2vec.py#L35&quot;&gt;code link&lt;/a&gt;):&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def compute_forward(self, batch, stage):
-	batch = batch.to(self.device)
-	wavs, wav_lens = batch.sig
-	tokens_bos, _ = batch.tokens_bos
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Some magic that happens is when the batch is created padding is automatically done and therefore &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;batch.sig&lt;/code&gt; also returns a second tensor which specifies the relative length of each sample (relative to the longest sample, which will have the relative length of 1.0).&lt;/p&gt;
-
-&lt;p&gt;I like the config and how powerful it is.  I think they’ve made some good decisions about how to allow people to make the changes they need to write code specific to their problem. I have though sometimes been bitten by behaviour that I did not expect. It definitely is a framework, something that expects you to do things in a certain way. I have also come across a number of bugs and the code is very object oriented. I think it’s kind of similar to pytorch lightning (the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; class is similar to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LightningModule&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;Everything under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speechbrain/&lt;/code&gt; is like a library of everything you could need, recipes will always use models, dataloaders and utility functions from there.&lt;/p&gt;
-
-&lt;p&gt;To train a model you call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain.fit&lt;/code&gt;, which looks like this (&lt;a href=&quot;https://github.com/speechbrain/speechbrain/blob/b1934fa38d9a073eb105e6ec9ffa2119cd4142bf/speechbrain/core.py#L1075&quot;&gt;code link&lt;/a&gt;) (all code snippets are shortened):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if not (
-	isinstance(train_set, DataLoader)
-	or isinstance(train_set, LoopedLoader)
-):
-	train_set = self.make_dataloader(train_set, stage=sb.Stage.TRAIN, 
-         **train_loader_kwargs)
-[..]
-self.on_fit_start()
-[..]
-for epoch in epoch_counter:
-	self._fit_train(train_set=train_set, epoch=epoch, enable=enable)
-	self._fit_valid(valid_set=valid_set, epoch=epoch, enable=enable)
-[..]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;There is some logic for creating the dataloader if necessary and then the training loop is started. 
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_fit_train&lt;/code&gt; (&lt;a href=&quot;https://github.com/speechbrain/speechbrain/blob/b1934fa38d9a073eb105e6ec9ffa2119cd4142bf/speechbrain/core.py#L982&quot;&gt;code link&lt;/a&gt;) encapsulates training for one epoch:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[..]
-self.on_stage_start(Stage.TRAIN, epoch)
-[..]
-with tqdm(train_set, initial=self.step, dynamic_ncols=True, disable=not enable) as t:
-	for batch in t:
-		[..]
-		loss = self.fit_batch(batch)
-		self.avg_train_loss = self.update_average(loss, self.avg_train_loss)
-		[..]
-self.on_stage_end(Stage.TRAIN, self.avg_train_loss, epoch)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit_batch&lt;/code&gt; (&lt;a href=&quot;https://github.com/speechbrain/speechbrain/blob/develop/speechbrain/core.py#L842&quot;&gt;code link&lt;/a&gt;), it’s here that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_forward&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute_objectives&lt;/code&gt; are used and the optimization step is taken:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;should_step = self.step % self.grad_accumulation_factor == 0
-# Managing automatic mixed precision
-if self.auto_mix_prec:
-	[..]
-else:
-	outputs = self.compute_forward(batch, Stage.TRAIN)
-	loss = self.compute_objectives(outputs, batch, Stage.TRAIN)
-	with self.no_sync(not should_step):
-		(loss / self.grad_accumulation_factor).backward()
-
-	if should_step:
-		if self.check_gradients(loss):
-			self.optimizer.step()
-		self.optimizer.zero_grad()
-		self.optimizer_step += 1
-self.on_fit_batch_end(batch, outputs, loss, should_step)
-return loss.detach().cpu()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Each recipe in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;speechbrain/recipes/&lt;/code&gt; contains a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train*.py&lt;/code&gt; that you use for calling training (there is no single binary like with fairseq). A training command will look like (from the recipe dir):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python train_with_wav2vec.py hparams/train_with_wav2vec.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;or&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python train_speaker_embeddings.py hparams/train_x_vectors.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;k2icefalllhotse&quot;&gt;k2/icefall/lhotse&lt;/h1&gt;
-
-&lt;p&gt;This is by far the newest of the three tools I’m comparing here. I wrote k2/icefall/lhotse because there are three different repositories you would make use of: &lt;a href=&quot;https://github.com/k2-fsa/k2&quot;&gt;k2&lt;/a&gt; for ragged tensors, lattice related operations and loss functions; &lt;a href=&quot;https://github.com/lhotse-speech/lhotse&quot;&gt;lhotse&lt;/a&gt; for everything related to data such as downloading a corpus, feature extraction and dynamic batching; &lt;a href=&quot;https://github.com/k2-fsa/icefall&quot;&gt;icefall&lt;/a&gt; for the recipes (for example for transducer models trained on LibriSpeech) which use lhotse and k2.&lt;/p&gt;
-
-&lt;p&gt;There is no unified training loop, each recipe will have its own straight-forward implementation making use of lhotse and k2 to do training and inference.&lt;/p&gt;
-
-&lt;p&gt;lhotse has a commandline interface which is quite powerful. It lets you extract features, get duration statistics and convert kaldi style data dirs to lhotse’s format among other things. See &lt;a href=&quot;https://lhotse.readthedocs.io/en/latest/cuts.html&quot;&gt;lhotse documentation&lt;/a&gt; for an explanation on lhotse’s data constructs like Manifests, Cuts (basically an utterance) and CutSets. An example for getting duration statistics of a CutSet manifest:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ lhotse cut describe cuts_example.jsonl.gz
-Cuts count: 16028
-Total duration (hh:mm:ss): 17:53:29
-Speech duration (hh:mm:ss): 17:53:29 (100.0%)
-Duration statistics (seconds):
-mean    4.0
-std     4.1
-min     0.2
-25%     1.4
-50%     2.6
-75%     5.1
-99%     20.5
-99.5%   23.3
-99.9%   27.6
-max     30.5
-Recordings available: 16028
-Features available: 16028
-Supervisions available: 16028
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can also do all this via code of course. An example, this:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Converts from a kaldi style datadir to a recording and supervision set (lhotse constructs)&lt;/li&gt;
-  &lt;li&gt;Creates a CutSet object&lt;/li&gt;
-  &lt;li&gt;Trims the recordings to when the supervisions (transcripts) are (the utterance transcripts have timestamps associated) (now equivalent to a set of utterances)&lt;/li&gt;
-  &lt;li&gt;Extracts features&lt;/li&gt;
-  &lt;li&gt;Writes a manifest to a file (lhotse’s data format on disk):
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;recording_set, supervision_set, _ = load_kaldi_data_dir(kdata, 16000, num_jobs=4)
-cuts = CutSet.from_manifests(recordings=recording_set, supervisions=supervision_set)
-cuts = cuts.trim_to_supervisions()
-cuts = cuts.compute_and_store_features(Fbank(), storage_path=outf + '-feats', num_jobs=6, storage_type=LilcomChunkyWriter)
-cuts.to_file(outf + '.jsonl.gz')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I think lhotse has a very nice interface and definitely plan on basing all my speech recipes around it. I will say though the lhotse codebase has a lot of indirection going on (decorators everywhere) making it hard to reason about the code and debugging sometimes a pain.&lt;/p&gt;
-
-&lt;p&gt;k2 is more low-level. It’s for example used for &lt;a href=&quot;https://k2-fsa.github.io/k2/core_concepts/index.html#ragged-arrays&quot;&gt;RaggedTensors&lt;/a&gt; like this where y is a list of lists:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;y = k2.RaggedTensor(y)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;And for FSTs. k2 saves FSTs in pytorch’s (actually pickling) format so you load them from disk like this:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dct = torch.load(args.decode_graph, map_location=device)
-decoding_graph = k2.Fsa.from_dict(dct)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Otherwise it contains many constructs for loss functions, FST operations and decoders: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.ctc_loss&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.rnnt_loss&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.rnnt_loss_pruned&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.intersect&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.top_sort&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k2.RnntDecodingStream&lt;/code&gt;  are some examples. You will only use it yourself if you want to do something with the loss function, the decoder or an FST. It’s not necessary to understand if you just want to run recipes and change the data and/or model.&lt;/p&gt;
-
-&lt;p&gt;Now about icefall. Regarding the repo layout, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;egs/&lt;/code&gt; is for the recipes (don’t understand why they didn’t move away from the opaque term kaldi that used) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;icefall/&lt;/code&gt; basically contains utility functions. Note, unlike in speechbrain and fairseq, this dir &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;icefall/&lt;/code&gt; (the dir where all the python library code goes) contains not much code as the majority is kept recipe specific, for example the training loop. This makes the recipes easy to read and modify as there is no framework involved (it’s just normal pytorch) and minimal coupling: You don’t have to jump to ten different places to follow the logic.&lt;/p&gt;
-
-&lt;p&gt;So for example &lt;a href=&quot;https://github.com/k2-fsa/icefall/tree/master/egs/librispeech/ASR/pruned_transducer_stateless2&quot;&gt;egs/librispeech/ASR/pruned_transducer_stateless2&lt;/a&gt; contains the files &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beam_search.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conformer.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decoder.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joiner.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;model.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optim.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scaling.py&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train.py&lt;/code&gt;. Basically everything is in there, and only the “boring” stuff (like word symbol tables, checkpointing, logging) is relegated to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;icefall/&lt;/code&gt; library.&lt;/p&gt;
-
-&lt;p&gt;Sidenote, there’s some interesting new ideas regarding the basics of DNNs in icefall. The main one is that instead of using LayerNorm/BatchNorm it makes sense to have a differentiable scale parameter for the weight matrices. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scaling.py&lt;/code&gt; file contains new implementations of all basic modules that follow this new approach and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optim.py&lt;/code&gt; has a custom optimizer for these new modules.&lt;/p&gt;
-
-&lt;p&gt;Back to the main thread: Everything important is inside the recipe folder. The training loop could not look more normal (that’s good!). After the usual setup (&lt;a href=&quot;https://github.com/k2-fsa/icefall/blob/master/egs/librispeech/ASR/pruned_transducer_stateless2/train.py#L987&quot;&gt;code link&lt;/a&gt;):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[..]
-for epoch in range(params.start_epoch, params.num_epochs):
-	[..]
-	train_one_epoch(params=params, model=model, optimizer=optimizer, 
-        scheduler=scheduler, sp=sp, train_dl=train_dl, valid_dl=valid_dl, 
-        scaler=scaler,
-tb_writer=tb_writer, world_size=world_size, rank=rank)
-	[..]
-	save_checkpoint(params=params, model=model, optimizer=optimizer, 
-        scheduler=scheduler, sampler=train_dl.sampler, scaler=scaler, rank=rank)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train_one_epoch&lt;/code&gt; looks like (&lt;a href=&quot;https://github.com/k2-fsa/icefall/blob/master/egs/librispeech/ASR/pruned_transducer_stateless2/train.py#L760&quot;&gt;code link&lt;/a&gt;):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for batch_idx, batch in enumerate(train_dl):
-	[..]
-	loss, loss_info = compute_loss(params=params, model=model, sp=sp, batch=batch,
-is_training=True, warmup=(params.batch_idx_train / params.model_warm_step))
-	[..]
-	if batch_idx &amp;gt; 0 and batch_idx % params.valid_interval == 0:
-		valid_loss = compute_validation_loss(params=params, model=model, sp=sp,
-			valid_dl=valid_dl, world_size=world_size)
-	[..]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;One neat feature is that if a training crashes or you ctrl+c it, the current batch will automatically be dumped to disk for you to inspect it.&lt;/p&gt;
-
-&lt;p&gt;I like the overall structure, and appreciate the focus on delivering something first and thinking about unifying it later. The results are very good.
-However, because this is all very new it’s in a state of flux. Things change and sometimes there are bugs. On the bright side everyone involved is very responsive and if something doesn’t work one can get help very quickly.&lt;/p&gt;
-
-&lt;p&gt;Training is similar to speechbrain with the recipe specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train.py&lt;/code&gt; files. Unfortunately there are not many READMEs, but the top of a file usually has documentation. For “egs/librispeech/ASR/pruned_transducer_stateless2” the training command looks like:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PYTHONPATH=/path/to/icefall ./pruned_transducer_stateless2/train.py \
---world-size 4 \
---num-epochs 30 \
---start-epoch 0 \
---use-fp16 1 \
---exp-dir pruned_transducer_stateless2/exp \
---full-libri 1 \
---max-duration 550
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Note setting the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PYTHONPATH&lt;/code&gt; is necessary as icefall is not pip-installable, and instead one uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PYTHONPATH&lt;/code&gt; so that the imports (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;from icefall.utils import bla&lt;/code&gt;) in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;train.py&lt;/code&gt; work.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This gives a high level overview of fairseq, speechbrain and k2. We will go over the code base structure, what the training loop looks like, the procedure for training a model, and I will name stuff I liked or disliked.</summary></entry><entry><title type="html">Why I don’t like the black code formatter</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html" rel="alternate" type="text/html" title="Why I don’t like the black code formatter" /><published>2021-11-18T10:06:02+00:00</published><updated>2021-11-18T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html">&lt;p&gt;First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.&lt;/p&gt;
+&lt;p&gt;A preprint is available with nice results and additional details: &lt;a href=&quot;https://arxiv.org/abs/2206.13236&quot;&gt;https://arxiv.org/abs/2206.13236&lt;/a&gt;&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">The new ASR toolkit k2/icefall gets great results while training models quickly. This is an explanation of how it does that by efficiently calculating the transducer loss and thereby using much less memory. Code is also shown.</summary></entry><entry><title type="html">Why I don’t like the black code formatter</title><link href="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html" rel="alternate" type="text/html" title="Why I don’t like the black code formatter" /><published>2021-11-18T10:06:02+00:00</published><updated>2021-11-18T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/11/18/black-is-disgusting.html">&lt;p&gt;First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.&lt;/p&gt;
 
 &lt;p&gt;However:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;’ is cleaner than “&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;To me, ‘ has less visual noise than “. It’s a single stroke rather than two. Additionally, on US keyboards ‘ does not require pressing shift, “ does.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Black loves newlines, this leads to too much whitespace and makes skimming code harder&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;’ is cleaner than “. To me, ‘ has less visual noise than “. It’s a single stroke rather than two. Additionally, on US keyboards ‘ does not require pressing shift, “ does.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Black loves newlines, this leads to too much whitespace and makes skimming code harder&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Take a look at this image.&lt;/p&gt;
@@ -539,7 +250,9 @@ However, because this is all very new it’s in a state of flux. Things change a
 &lt;p&gt;generally leads to one seeing much less code on one’s screen than originally. This worsens readability. I can see the argument for doing this
 for a function with ten arguments, but one? Nah.&lt;/p&gt;
 
-&lt;p&gt;I might think of more issues this is it for now.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.</summary></entry><entry><title type="html">Why the Temperature Matters for Contrastive Loss</title><link href="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" rel="alternate" type="text/html" title="Why the Temperature Matters for Contrastive Loss" /><published>2021-04-30T10:06:02+00:00</published><updated>2021-04-30T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">&lt;p&gt;Contrastive learning has become very popular recently, see &lt;a href=&quot;https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md&quot;&gt;here&lt;/a&gt; for a good overview of recent papers.&lt;/p&gt;
+&lt;p&gt;I might think of more issues this is it for now.&lt;/p&gt;
+
+&lt;p&gt;2024 Update: &lt;a href=&quot;https://x.com/karpathy/status/1783538648685892026&quot;&gt;Andrej Karpathy agrees&lt;/a&gt;!&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">First off I understand the need for a tool to avoid teammates bickering with each other, and if I joined a team using black I would follow their rules.</summary></entry><entry><title type="html">Why the Temperature Matters for Contrastive Loss</title><link href="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html" rel="alternate" type="text/html" title="Why the Temperature Matters for Contrastive Loss" /><published>2021-04-30T10:06:02+00:00</published><updated>2021-04-30T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/04/30/Why-The-Temperature-Matters-For-Contrastive-Loss.html">&lt;p&gt;Contrastive learning has become very popular recently, see &lt;a href=&quot;https://github.com/HobbitLong/PyContrast/blob/master/AWESOME_CONTRASTIVE_LEARNING.md&quot;&gt;here&lt;/a&gt; for a good overview of recent papers.&lt;/p&gt;
 
 &lt;p&gt;However, one thing which they all use but is not well motivated is the use of a temperature parameter in the softmax that the contrastive loss uses. I want to share why I think it matters.&lt;/p&gt;
 
@@ -583,7 +296,9 @@ It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that i
 
 &lt;p&gt;Of course, it’s not very satisfying to just cross your fingers and train a NN to do ASR. It would be nice to somehow give the model a good prior. But with wav2vec2 I feel a good solution has been found as the performance is very good! This combined with the above perspective has changed my mind on E2E-ASR: I believe it is the way forward.&lt;/p&gt;
 
-&lt;p&gt;edit: In hindsight one thing I want to clarify, although I keep mentioning transformer models those are not really required. What really matters is just that the model is bidirectional, therefore can see into both the past and future, and of course that the outputs are character based and the model learns an internal LM.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there was an advantage to it other than simplicity (which by itself will not help performance).</summary></entry><entry><title type="html">Why you need a billion words to get a good language model</title><link href="https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html" rel="alternate" type="text/html" title="Why you need a billion words to get a good language model" /><published>2021-04-01T10:06:02+00:00</published><updated>2021-04-01T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html">&lt;p&gt;I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position.&lt;/p&gt;
+&lt;p&gt;edit: In hindsight one thing I want to clarify, although I keep mentioning transformer models those are not really required. What really matters is just that the model is bidirectional, therefore can see into both the past and future, and of course that the outputs are character based and the model learns an internal LM.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">I used to be quite skeptical of E2E ASR. I thought that yes, the approach was interesting and worth investigating, but it felt like it was putting too much responsibility on the shoulders of a single system (the neural network) with no priors attached. It did not feel like there was an advantage to it other than simplicity (which by itself will not help performance).</summary></entry><entry><title type="html">Why you need (at least) a billion words to get a good language model</title><link href="https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html" rel="alternate" type="text/html" title="Why you need (at least) a billion words to get a good language model" /><published>2021-04-01T10:06:02+00:00</published><updated>2021-04-01T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/04/01/Why-You-Need-A-Lot-Of-Text-For-A-Good-Vocab.html">&lt;p&gt;2024 Update: The title seems blindingly obvious in light of the current trends of training on trillions of words. Still I think it’s good to point out practically how, for those not aware, language has a surprisingly long tail.&lt;/p&gt;
+
+&lt;p&gt;I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;199989 krisenbewältigungen 2
 199999 gendersensitiv 2
 200002 umgehbar 2
@@ -602,9 +317,9 @@ It cannot. But a transformer-based E2E ASR system can. Thanks to the fact that i
 
 &lt;p&gt;The additional thing to realise is that because the counts are so low there will be a &lt;strong&gt;ton&lt;/strong&gt; of noise in the results. Depending on the corpus some words whose “true” probability is higher will be much lower and vice versa. This is bad.&lt;/p&gt;
 
-&lt;p&gt;This is why you need to train on billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.&lt;/p&gt;
+&lt;p&gt;This is why you need to train on (at least) billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.&lt;/p&gt;
 
-&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; The total count is around 400k by the way (a good chunk of them are rubbish).&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let’s see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let’s see what happens when I get a count of all words and check what is at the nth position. 199989 krisenbewältigungen 2 199999 gendersensitiv 2 200002 umgehbar 2 200005 widersinnigen 2 200016 ausmehrungen 2 The words I’m showing here are legitimite. Good we have them in our vocabulary. But (!) their counts are very low. The thing to realize is we will never be able to actually learn good models for these words because they appear so inoften in our training corpus. Note that the count of 2 starts from the ~160 000th word!1</summary></entry><entry><title type="html">Why does BPE work?</title><link href="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html" rel="alternate" type="text/html" title="Why does BPE work?" /><published>2021-02-09T10:06:02+00:00</published><updated>2021-02-09T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html">&lt;p&gt;BPE is a remarkably effective algorithm for finding a set of subwords. Just count pairs of tokens, merge the most frequent one, repeat until you have the desired number of subwords. Why does this work, and why would just picking the k most frequent ngrams not?&lt;/p&gt;
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; The total count is around 400k by the way (a good chunk of them are rubbish).&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">2024 Update: The title seems blindingly obvious in light of the current trends of training on trillions of words. Still I think it’s good to point out practically how, for those not aware, language has a surprisingly long tail.</summary></entry><entry><title type="html">Deriving BPE from scratch</title><link href="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html" rel="alternate" type="text/html" title="Deriving BPE from scratch" /><published>2021-02-09T10:06:02+00:00</published><updated>2021-02-09T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2021/02/09/Why-does-BPE-work.html">&lt;p&gt;BPE is a remarkably effective algorithm for finding a set of subwords. Just count pairs of tokens, merge the most frequent one, repeat until you have the desired number of subwords. Why does this work, and why would just picking the k most frequent ngrams not?&lt;/p&gt;
 
 &lt;p&gt;Let’s create a simple ‘corpus’* (word counts are what actually matter):&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;low 5
@@ -1115,4 +830,58 @@ fst.write(...)
 
 &lt;p&gt;The self-loops should have costs, what these should be you will have to find out experimentally.&lt;/p&gt;
 
-&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry></feed>
+&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry><entry><title type="html">First post: Ark and scp files in kaldi</title><link href="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" rel="alternate" type="text/html" title="First post: Ark and scp files in kaldi" /><published>2020-10-04T12:40:02+00:00</published><updated>2020-10-04T12:40:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html">&lt;p&gt;This is about the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ark&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.scp&lt;/code&gt; files that are used with kaldi and have spread to other toolkits like ESPNet.
+It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Both file types are structured by having keys and a value for each key.&lt;/p&gt;
+&lt;h1 id=&quot;scp-files&quot;&gt;Scp files&lt;/h1&gt;
+
+&lt;p&gt;In scp files, usually ending with the “.scp” suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
+What this means is that the scp file never contains any data, it just contains something which points to the data you will eventually use. See for example the wav.scp file which will look something like this usually:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 /path/to/file-1.wav
+wav-id-2 /path/to/file-2.wav
+wav-id-3 /path/to/file-3.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It can be a file path, but can also be more complex like:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 sox /path/to/file-1.wav -r 8k - |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Kaldi’s code is written so that it will recognize and execute the above command (starting from after the key), which results in the wav file being read with a sampling rate of 8kHz. This is a convenient way of doing the resampling on the fly (instead of resampling and having to waste space storing a file somewhere).&lt;/p&gt;
+
+&lt;p&gt;Another file one will see a lot when using kaldi is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; file which looks like:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;utt-id-1 /path/to/file-1.ark:44
+utt-id-2 /path/to/file-1.ark:760
+utt-id-3 /path/to/file-1.ark:1520
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The number after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:&lt;/code&gt; is a byte offset.&lt;/p&gt;
+
+&lt;h1 id=&quot;ark-files&quot;&gt;Ark files&lt;/h1&gt;
+
+&lt;p&gt;Instead of the value being a pointer to the data, in ark files the value &lt;strong&gt;is&lt;/strong&gt; the data. Usually this means it is in binary format, so you can’t visually inspect it, however kaldi has binaries for converting from binary to text format. So for example take the ark file from the feats.scp example above and call:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats ark:/path/to/file-1.ark ark,t:/path/to/file-1.ark.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark,t&lt;/code&gt; means that the values in the output will be written in textual format, so you can open the file and see what the values for the (example) MFCC coefficients are for each frame.&lt;/p&gt;
+
+&lt;p&gt;Another example of an ark style file, although it doesn’t have the “.ark” suffix, is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt; file you will find in kaldi data folders. The first field/column is the utterance ID, the rest of the line is the words belonging to that utterance. The words are the data.&lt;/p&gt;
+
+&lt;p&gt;You can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat&lt;/code&gt; to concatenate ark files. And kaldi binaries accepts commands and wildcards in the arguments, so this is valid: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:gunzip -c lat.*.gz|&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Kaldi has a script for subsetting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files you may find useful called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When you call kaldi binaries you often have to prefix with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp:&lt;/code&gt; to tell kaldi what type of file to expect. You can then mix types, for example I could use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt; to subset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; and create a file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats_subset.scp&lt;/code&gt;, and then copy a subset of the feature data by calling&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:feats_subset.scp ark:copied_feats_subset.ark
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Notice how the input argument is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt;, so kaldi knows the input file is pointing to the data I want to use, and the output is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt;, so kaldi knows to actually write the data pointed to to a new file.&lt;/p&gt;
+
+&lt;p&gt;It’s not possible to create just a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; file from an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; file, you have to create both the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files. So you have to do something like this:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:/path/to/feats.ark ark,scp:copied_feats.ark,copied_feats.scp 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For more details check out the official documentation of &lt;a href=&quot;http://kaldi-asr.org/doc/io.html&quot;&gt;kaldi io&lt;/a&gt;. Probably the section “from a command-line perspective” is more relevant to you.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This is about the .ark and .scp files that are used with kaldi and have spread to other toolkits like ESPNet. It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.</summary></entry></feed>
