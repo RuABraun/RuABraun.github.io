@@ -4,9 +4,12 @@ title:  "First post: Ark and scp files in kaldi"
 date:   2020-10-04 14:40:02 +0200
 categories: jekyll update
 ---
+This is about the `.ark` and `.scp` files that are used with kaldi and have spread to other toolkits like ESPNet.
+It's not complicated to understand to them, but I've noticed a surprising number of people who use them don't. This is supposed to be a concise summary of what they are.
+
+---
 
 Both file types are structured by having keys and a value for each key.
-
 # Scp files
 
 In scp files, usually ending with the ".scp" suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 

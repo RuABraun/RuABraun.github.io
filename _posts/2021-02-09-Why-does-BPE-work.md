@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Why does BPE work?
+title: Deriving BPE from scratch
 date: 2021-02-09 12:06:02 +0200
 categories: jekyll update
 ---

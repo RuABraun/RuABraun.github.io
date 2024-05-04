@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Why you need a billion words to get a good language model 
+title: Why you need (at least) a billion words to get a good language model
 date: 2021-04-01 12:06:02 +0200
 categories: jekyll update
 ---
+2024 Update: The title seems blindingly obvious in light of the current trends of training on trillions of words. Still I think it's good to point out practically how, for those not aware, language has a surprisingly long tail.
 
 I have a German text corpus with nearly 90 million words. Seems enough to create a decent language model no? Let's see. The first thing to realise is just covering relatively normal words requires having several hundred thousand words in the vocabulary. Let's see what happens when I get a count of all words and check what is at the nth position.
 ```
@@ -25,6 +26,6 @@ So the main point is that you need to have seen a word a couple times to know ho
 
 The additional thing to realise is that because the counts are so low there will be a **ton** of noise in the results. Depending on the corpus some words whose "true" probability is higher will be much lower and vice versa. This is bad.
 
-This is why you need to train on billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.
+This is why you need to train on (at least) billion word corpuses to get good results. Then all those 2s will turn into 20s, and then the model can learn something.
 
 <sup>1</sup> The total count is around 400k by the way (a good chunk of them are rubbish).

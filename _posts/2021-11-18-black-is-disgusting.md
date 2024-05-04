@@ -9,9 +9,7 @@ First off I understand the need for a tool to avoid teammates bickering with eac
 
 However:
 
-1. ' is cleaner than "
-
-To me, ' has less visual noise than ". It's a single stroke rather than two. Additionally, on US keyboards ' does not require pressing shift, " does.
+1. ' is cleaner than ". To me, ' has less visual noise than ". It's a single stroke rather than two. Additionally, on US keyboards ' does not require pressing shift, " does.
 
 2. Black loves newlines, this leads to too much whitespace and makes skimming code harder
 
@@ -32,3 +30,5 @@ generally leads to one seeing much less code on one's screen than originally. Th
 for a function with ten arguments, but one? Nah.
 
 I might think of more issues this is it for now.
+
+2024 Update: [Andrej Karpathy agrees](https://x.com/karpathy/status/1783538648685892026)!
