@@ -1,5 +1,5 @@
 ---
-ayout: post
+layout: post
 title: Don't underestimate your own edge
 date: 2024-07-27 12:06:02 +0200
 categories: jekyll update
