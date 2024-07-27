@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2024-05-04T20:24:10+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Favourites of 2023</title><link href="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html" rel="alternate" type="text/html" title="Favourites of 2023" /><published>2024-02-26T10:06:02+00:00</published><updated>2024-02-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html">&lt;p&gt;This is a list of stuff I read or saw in 2023 and really liked. I’m going to say a sentence or more about each and maybe include a quote. I’m hoping somebody who stumbles across this finds something they really like that they otherwise wouldn’t have, or someone who knows me might find an interest in common we didn’t know we had!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://ruabraun.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ruabraun.github.io/" rel="alternate" type="text/html" /><updated>2024-07-27T19:37:52+00:00</updated><id>https://ruabraun.github.io/feed.xml</id><title type="html">Sharings</title><author><name>Rudolf A. Braun</name></author><entry><title type="html">Don’t underestimate your own edge</title><link href="https://ruabraun.github.io/jekyll/update/2024/07/27/Dont-underestimate-your-own-edge.html" rel="alternate" type="text/html" title="Don’t underestimate your own edge" /><published>2024-07-27T10:06:02+00:00</published><updated>2024-07-27T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2024/07/27/Dont-underestimate-your-own-edge</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2024/07/27/Dont-underestimate-your-own-edge.html">&lt;p&gt;It is May 27th 2024. Nvidia’s stock is at $1064.69.&lt;/p&gt;
+
+&lt;p&gt;Roughly five years ago Google &lt;a href=&quot;https://blog.google/products/search/search-language-understanding-bert/&quot;&gt;publicly announced&lt;/a&gt; their integration of BERT into Google search. Nvidia’s stock on that date was $51.14.&lt;/p&gt;
+
+&lt;p&gt;I remember thinking about whether investing in Nvidia could be a good idea. Deep learning models were clearly an impactful tool that were only going to get better and be applied to more tasks. The hype had already been building since &lt;a href=&quot;https://en.wikipedia.org/wiki/AlexNet&quot;&gt;2012 with the release of AlexNet&lt;/a&gt; which smashed prior records in a computer vision competition and made people in the field aware of its potential. It was one of the most exciting tools that had recently been developed in science.&lt;/p&gt;
+
+&lt;p&gt;Nvidia had a monopoly on the hardware required to both train and use deep learning models. They were still led by their original founder Jensen Huang and clearly in a fantastic position.
+But I had read just enough about finance to know of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Efficient-market_hypothesis&quot;&gt;Efficient market hypothesis&lt;/a&gt;. Surely if I was aware that Nvidia was in a great position, all the professional investors did too. It must be priced in already!&lt;/p&gt;
+
+&lt;p&gt;Clearly not.&lt;/p&gt;
+
+&lt;p&gt;The takeaway for me is that if you do work in a field and are aware of a great product or service don’t underestimate the degree to which most people will be unaware of them. Even those who you might expect to know better.&lt;/p&gt;
+
+&lt;p&gt;Professional investors don’t buy stock based on how a company is doing now, but on what they expect growth to be like in the future. I think this is main reason Nvidia was underpriced by professionals. They may have known that they were in a good position, but it was only with the release of ChatGPT and the explosion in AI startups that it became clear that there was huge demand for what Nvidia offered and therefore huge growth on the horizon.&lt;/p&gt;
+
+&lt;p&gt;But I believe that for anybody in the industry it should have been obvious that the growth would happen. Deep learning gets such good results it was guaranteed that some use case would be found for it. Some people took decisive action based on deep learning’s effectiveness even earlier than 2019: &lt;a href=&quot;https://en.wikipedia.org/wiki/OpenAI&quot;&gt;OpenAI was founded in 2015&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nvidia’s stock price at the time? $8.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">It is May 27th 2024. Nvidia’s stock is at $1064.69.</summary></entry><entry><title type="html">The Do Everything Abstraction</title><link href="https://ruabraun.github.io/2024/05/20/The-do-everything-abstraction.html" rel="alternate" type="text/html" title="The Do Everything Abstraction" /><published>2024-05-20T00:00:00+00:00</published><updated>2024-05-20T00:00:00+00:00</updated><id>https://ruabraun.github.io/2024/05/20/The-do-everything-abstraction</id><content type="html" xml:base="https://ruabraun.github.io/2024/05/20/The-do-everything-abstraction.html">&lt;p&gt;Premature abstraction is something most people are aware of but I think a more common mistake is the “do everything” abstraction.&lt;/p&gt;
+
+&lt;p&gt;Here’s what happens:
+A coder needs code that accomplishes a task. They think “cool let me create a class/function that does what I need”.&lt;/p&gt;
+
+&lt;p&gt;Sometime later they finish coding it up, pat themselves on the back and move on.&lt;/p&gt;
+
+&lt;p&gt;A week/month/year later it turns out that solution contains a step (one of several) which would be useful on its own. Oh and the final step is also something that would be nice to use. At that point it would be good to refactor.&lt;/p&gt;
+
+&lt;p&gt;The reason this happens is because it’s easy and tempting to think I need code that does “X”, without realizing that doing “X” actually consists of doing “A”, “B”, “C” and that these individual transformations are useful by themselves, and therefore should be separated out.&lt;/p&gt;
+
+&lt;p&gt;Of course this requires having some experience about what tasks are likely to be needed and whether the code is for longterm use.&lt;/p&gt;
+
+&lt;p&gt;But in general I think this is the most common abstraction mistake, going to high-level.&lt;/p&gt;
+
+&lt;p&gt;The opposite can also happen, forcing a user (coder) to call many low-level abstractions repeatedly although they always call the same ones. But this mistake is rarer and (usually) less disruptive.&lt;/p&gt;
+
+&lt;p&gt;Choosing the right level of abstraction is difficult, but I think it’s something a coder should ask themselves when developing something. Who are my users? Do they do one thing 50% of the time and 4 other things the remaining 50? Or do they do one thing 99% of the time? What are the things they could reasonably want to do? Could what they want change?&lt;/p&gt;
+
+&lt;p&gt;Judging these things is hard. It’s so easy to have a flaw in one’s logic that leads one to misjudging the validity of a usecase.&lt;/p&gt;
+
+&lt;p&gt;Because of this difficulty it’s best to just do whatever is simple first because simple is easy to refactor. The “do-everything” abstraction may be right if it does the job and can be easily refactored to support more use-cases but it must be simple! If one can’t make a “do-everything” abstraction without it being complex then that’s a big red warnings sign that what you are doing is bad and you should spend some time thinking about what the core tasks are (what are “A”, “B” and “C”?).&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><summary type="html">Premature abstraction is something most people are aware of but I think a more common mistake is the “do everything” abstraction.</summary></entry><entry><title type="html">Favourites of 2023</title><link href="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html" rel="alternate" type="text/html" title="Favourites of 2023" /><published>2024-02-26T10:06:02+00:00</published><updated>2024-02-26T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2024/02/26/favourites-of-2023.html">&lt;p&gt;This is a list of stuff I read or saw in 2023 and really liked. I’m going to say a sentence or more about each and maybe include a quote. I’m hoping somebody who stumbles across this finds something they really like that they otherwise wouldn’t have, or someone who knows me might find an interest in common we didn’t know we had!&lt;/p&gt;
 
 &lt;p&gt;I suggest skimming and using the bolded bylines to pick out what might interest.&lt;/p&gt;
 &lt;h1 id=&quot;books&quot;&gt;Books&lt;/h1&gt;
@@ -274,7 +312,7 @@ for a function with ten arguments, but one? Nah.&lt;/p&gt;
 
 &lt;p&gt;Particularly not using phones bothered me knowing how inconsistent pronunciations of English words are, it just seemed suboptimal to force the network to memorize that.&lt;/p&gt;
 
-&lt;p&gt;However, I’ve had a bit of a change in thinking recently. This has come not from realizing the existance of some technical fact, but rather thinking about what the point of doing speech recognition actually is from the perspective of a consumer. There are many different use cases of course but in by far the majority of them what the end-user wants is a clean transcript. It should be easy to read, free of disfluences, filler words and repetitions.&lt;br /&gt;
+&lt;p&gt;However, I’ve had a bit of a change in thinking recently. This has come not from realizing the existence of some technical fact, but rather thinking about what the point of doing speech recognition actually is from the perspective of a consumer. There are many different use cases of course but in by far the majority of them what the end-user wants is a clean transcript. It should be easy to read, free of disfluencies, filler words and repetitions.&lt;br /&gt;
 I believe traditional ASR is flawed for achieving this, and E2E ASR is not.&lt;/p&gt;
 
 &lt;p&gt;Traditional ASR is split up into at least two components, the AM and LM. The AM is tasked with modeling the acoustics by recognizing phones. Training it means tuning the model so that it makes a decision to which phone each frame (25ms of audio) belongs to. But outputting clean transcripts means ignoring parts of the audio. So this design decision of having one model which classifies phones makes it hard for the model to learn to output clean transcripts, since the better the AM gets at modeling phones the harder it is to ignore certain sounds in the input audio.&lt;/p&gt;
@@ -767,121 +805,4 @@ This sort of bad alignment can also happen with normal costs of 1/1/1 for ins/de
 
 &lt;p&gt;Finally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;texterrors&lt;/code&gt; also supports ctm files where the time stamps for reference and hypothesis words will be used for alignment. If you &lt;em&gt;really&lt;/em&gt; care about having the most accurate alignment possible, that is what you should use! But it won’t make a big difference. :)&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/RuABraun/texterrors&quot;&gt;Here is a link to it.&lt;/a&gt; Thank you for reading.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This post will be about the python-based tool (“texterrors”) I created for getting error metrics (relevant for ASR). It is split in two parts: First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking here.</summary></entry><entry><title type="html">Doing non-standard stuff with kaldi decoding</title><link href="https://ruabraun.github.io/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html" rel="alternate" type="text/html" title="Doing non-standard stuff with kaldi decoding" /><published>2020-11-06T10:06:02+00:00</published><updated>2020-11-06T10:06:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/11/06/Kaldi-decoding-with-custom-LMs-and-no-HCLG.html">&lt;p&gt;Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found &lt;a href=&quot;https://github.com/RuABraun/fst-util&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;adding-words-to-hclg&quot;&gt;Adding words to HCLG&lt;/h2&gt;
-
-&lt;p&gt;Some scripts you will need can be found &lt;a href=&quot;https://github.com/idiap/icassp-oov-recognition&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This method requires you to use a monophone model. Additionally, your language model needs to have been trained with pocolm, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--limit-unk-history&lt;/code&gt; option, and there should have been some OOVs in the training text.&lt;/p&gt;
-
-&lt;p&gt;For simplicity, the modification is done on a graph without self-loops. So you need to modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/mkgraph.sh&lt;/code&gt; and comment L167: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rm $dir/HCLGa.fst $dir/Ha.fst 2&amp;gt;/dev/null || true&lt;/code&gt; because we will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HCLGa.fst&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Inside the graph dir where the HCLG is there is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;words.txt&lt;/code&gt;. You need to assign IDs to the new words you’re adding and append these to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;words.txt&lt;/code&gt; file (these should be larger than the existing ones obviously).&lt;/p&gt;
-
-&lt;p&gt;Assuming all this is ready you can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;script/compose_hcl.sh&lt;/code&gt; to create the HCL from a lexicon of the OOV words you want to add. Check the script for the input arguments, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;model&lt;/code&gt; is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final.mdl&lt;/code&gt;, isym is phones osym words. Notice it uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create_lfst.py&lt;/code&gt; so you need the fst wrapper installed. There is one hardcoded parameter on L25, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;303&lt;/code&gt;, see &lt;a href=&quot;https://groups.google.com/g/kaldi-help/c/jL8VnwKGRWs/m/-Pe29-G9AgAJ&quot;&gt;here&lt;/a&gt; for what’s about. You can set it to any number larger than the existing phone IDs.&lt;/p&gt;
-
-&lt;p&gt;After calling the script and creating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HCL.fst&lt;/code&gt; you use the fst wrapper to modify the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HCLGa.fst&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from wrappedfst import WrappedFst
-fst = WrappedFst('HCLGa.fst')
-ifst = WrappedFst('HCL.fst')
-unk_id =  # unk symbol
-fst.replace_single(unk_id, ifst)
-fst.write('HCLGa_new.fst')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then add the self-loops (check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkgraph.sh&lt;/code&gt; for how to do that) and you are done. Replace an existing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HCLG.fst&lt;/code&gt; with the new version and you can run decoding as you would normally.&lt;/p&gt;
-
-&lt;h2 id=&quot;no-hclg-just-g&quot;&gt;No HCLG just G&lt;/h2&gt;
-
-&lt;p&gt;Imagine you have an acoustic model that you created via pytorch, and you want to then evaluate how well it does at recognizing phonemes (TIMIT for example). You have a phone LM that you want to incorporate. I’m going to show you how you can do that with kaldi.&lt;/p&gt;
-
-&lt;p&gt;Usually kaldi assumes that you have an HMM graph (the H in HCLG) and possibly context dependency as well (the C), then there’s also the lexicon etc. If you had a pytorch AM that you had trained on the PDF-ids (the targets you get by calling ali-to-pdf on the alignments), you would then use that by saving the loglikelihood output of your NN to a file, then passing that file and the final.mdl, HCLG.fst to latgen-faster-mapped, which will do decoding and generate a lattice (from which you could then take the best path for example).&lt;/p&gt;
-
-&lt;p&gt;But if you want to just model phones, you don’t care about the HCL at all. You really just want to use a G that will act as the phone LM.&lt;/p&gt;
-
-&lt;p&gt;So the first issue to get around is to avoid doing any mapping from transition IDs (the typical input symbols of the HCLG) to PDF-IDs. We can do that by creating a file latgen-faster.cc with the only difference being we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DecodableMatrixScaled&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DecodableMatrixScaledMapped&lt;/code&gt; in the code.&lt;/p&gt;
-
-&lt;p&gt;Then you take the arpa LM that you have trained, convert it using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arpa2fst&lt;/code&gt;, convert the #0 arcs to &lt;eps&gt; and add self-loops to states that have incoming arcs with input labels not equal 0. The point of that is when the AM predicts a sequence &quot;ae ae ae b b&quot; over five frames, the LM should not care about repetitions, we want it to only score the transition &quot;ae&quot; to &quot;b&quot;, and of course we don't want repetitions in the output transcript. Having self-loops fixes that.&lt;/eps&gt;&lt;/p&gt;
-
-&lt;p&gt;Then you call&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;latgen-faster --acoustic-scale=1.0 --beam=13 --determinize-lattice=false G.fst ark,t:loglikelihoods-file&amp;gt; ark:- | lattice-best-path etc.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;to get a hypothesis that you can compare to the reference to get the PER!&lt;/p&gt;
-
-&lt;p&gt;If you wanted to recognize words, all you’d need to do is create a L.fst, compose that with the G.fst (which is then a word LM) and use the LG.fst.&lt;/p&gt;
-
-&lt;h2 id=&quot;g-with-keyword-list&quot;&gt;G with keyword list&lt;/h2&gt;
-
-&lt;p&gt;Imagine you just want to recognize a small number of words and you don’t want to have any sort of prior regarding which one is more likely.&lt;/p&gt;
-
-&lt;p&gt;To do that you just have to create an FST with a single state, and self-loops where each self-loop has a keyword as the input and output symbol.&lt;/p&gt;
-
-&lt;p&gt;In pseudo-code&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fst = Fst()
-state = fst.add_state()
-fst.set_start(state)
-fst.set_final(state)
-for keyword in keywords
-    fst.add_arc(state, state, keyword, keyword, cost)
-fst.write(...)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The self-loops should have costs, what these should be you will have to find out experimentally.&lt;/p&gt;
-
-&lt;p&gt;You probably will have to create the lang/ folder again. To do that just call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepare_lang.sh&lt;/code&gt; with the dict/ of keywords and with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--phone-symbol-table&lt;/code&gt; option set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phones.txt&lt;/code&gt; that you trained the AM model with.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">Here I’m going to describe methods for using kaldi for decoding when you want to do something a bit custom. I will use an OpenFST wrapper and scripts using it which can be found here.</summary></entry><entry><title type="html">First post: Ark and scp files in kaldi</title><link href="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html" rel="alternate" type="text/html" title="First post: Ark and scp files in kaldi" /><published>2020-10-04T12:40:02+00:00</published><updated>2020-10-04T12:40:02+00:00</updated><id>https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi</id><content type="html" xml:base="https://ruabraun.github.io/jekyll/update/2020/10/04/First-post-ark-and-scp-files-kaldi.html">&lt;p&gt;This is about the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ark&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.scp&lt;/code&gt; files that are used with kaldi and have spread to other toolkits like ESPNet.
-It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Both file types are structured by having keys and a value for each key.&lt;/p&gt;
-&lt;h1 id=&quot;scp-files&quot;&gt;Scp files&lt;/h1&gt;
-
-&lt;p&gt;In scp files, usually ending with the “.scp” suffix, the first column (aka field) is the key (usually an utterance ID). The rest of the line is treated as a pointer to data (the pointer is the value). 
-What this means is that the scp file never contains any data, it just contains something which points to the data you will eventually use. See for example the wav.scp file which will look something like this usually:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 /path/to/file-1.wav
-wav-id-2 /path/to/file-2.wav
-wav-id-3 /path/to/file-3.wav
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It can be a file path, but can also be more complex like:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wav-id-1 sox /path/to/file-1.wav -r 8k - |
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Kaldi’s code is written so that it will recognize and execute the above command (starting from after the key), which results in the wav file being read with a sampling rate of 8kHz. This is a convenient way of doing the resampling on the fly (instead of resampling and having to waste space storing a file somewhere).&lt;/p&gt;
-
-&lt;p&gt;Another file one will see a lot when using kaldi is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; file which looks like:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;utt-id-1 /path/to/file-1.ark:44
-utt-id-2 /path/to/file-1.ark:760
-utt-id-3 /path/to/file-1.ark:1520
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The number after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:&lt;/code&gt; is a byte offset.&lt;/p&gt;
-
-&lt;h1 id=&quot;ark-files&quot;&gt;Ark files&lt;/h1&gt;
-
-&lt;p&gt;Instead of the value being a pointer to the data, in ark files the value &lt;strong&gt;is&lt;/strong&gt; the data. Usually this means it is in binary format, so you can’t visually inspect it, however kaldi has binaries for converting from binary to text format. So for example take the ark file from the feats.scp example above and call:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats ark:/path/to/file-1.ark ark,t:/path/to/file-1.ark.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark,t&lt;/code&gt; means that the values in the output will be written in textual format, so you can open the file and see what the values for the (example) MFCC coefficients are for each frame.&lt;/p&gt;
-
-&lt;p&gt;Another example of an ark style file, although it doesn’t have the “.ark” suffix, is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt; file you will find in kaldi data folders. The first field/column is the utterance ID, the rest of the line is the words belonging to that utterance. The words are the data.&lt;/p&gt;
-
-&lt;p&gt;You can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat&lt;/code&gt; to concatenate ark files. And kaldi binaries accepts commands and wildcards in the arguments, so this is valid: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:gunzip -c lat.*.gz|&lt;/code&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Kaldi has a script for subsetting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files you may find useful called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;When you call kaldi binaries you often have to prefix with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp:&lt;/code&gt; to tell kaldi what type of file to expect. You can then mix types, for example I could use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils/subset_scp.pl&lt;/code&gt; to subset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats.scp&lt;/code&gt; and create a file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feats_subset.scp&lt;/code&gt;, and then copy a subset of the feature data by calling&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:feats_subset.scp ark:copied_feats_subset.ark
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Notice how the input argument is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt;, so kaldi knows the input file is pointing to the data I want to use, and the output is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt;, so kaldi knows to actually write the data pointed to to a new file.&lt;/p&gt;
-
-&lt;p&gt;It’s not possible to create just a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; file from an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; file, you have to create both the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ark&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; files. So you have to do something like this:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;copy-feats scp:/path/to/feats.ark ark,scp:copied_feats.ark,copied_feats.scp 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For more details check out the official documentation of &lt;a href=&quot;http://kaldi-asr.org/doc/io.html&quot;&gt;kaldi io&lt;/a&gt;. Probably the section “from a command-line perspective” is more relevant to you.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This is about the .ark and .scp files that are used with kaldi and have spread to other toolkits like ESPNet. It’s not complicated to understand to them, but I’ve noticed a surprising number of people who use them don’t. This is supposed to be a concise summary of what they are.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://github.com/RuABraun/texterrors&quot;&gt;Here is a link to it.&lt;/a&gt; Thank you for reading.&lt;/p&gt;</content><author><name>Rudolf A. Braun</name></author><category term="jekyll" /><category term="update" /><summary type="html">This post will be about the python-based tool (“texterrors”) I created for getting error metrics (relevant for ASR). It is split in two parts: First a refresher on standard WER calculation and an illustration of how this can be suboptimal when interested in analysing errors. Then an introduction to the approach I use which fixes the problems mentioned. You can skip to the second part by clicking here.</summary></entry></feed>
