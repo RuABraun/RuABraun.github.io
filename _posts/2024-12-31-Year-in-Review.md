@@ -83,7 +83,7 @@ How did Trump manage to come back from his 2020 election loss and Jan 6? How did
 
 I had never looked into Luckey's story before and I'm glad I waited for this deep dive so all the details were new and exciting to me. It's refreshing to read about someone who's just excited to get things done but also has a relatively humble background and remembers that but doesn't let it hold him back. Exciting to see him succeed despite his detractors, who seem to be acting out of deference to what a social media hive says rather than reality.
 
-### [Last Boys at the Beginning of History](https://thepointmag.com/politics/last-boys-at-the-beginning-of-history/)
+## [Last Boys at the Beginning of History](https://thepointmag.com/politics/last-boys-at-the-beginning-of-history/)
 
 **An up close and personal examination of the young new right.**
 
@@ -98,8 +98,7 @@ This is about a world I didn't know existed and I instinctively recoiled from so
 
 **The best movies mix genres and 5 years after Parasite we have another gem.
 
-To me this movie is a class commentary. It's about how for most people they're just trying to get by and if possible ahead. That's Anora, Toros (the priest), Igor and most of the other characters. All their actions are to some level expected being motivated by the need to not fall behind and seize opportunity where it exists. Separately though, there are a class of people who don't have to worry about getting by. See Ivan. His actions are the ones we're curious to know, because all the other's are based on what he does. And as long as that uncertainty exists we get to see the comedy and the tragedy of the other class trying to get by. And what a comedy! What could've been a mundane plot is turned into something marvelous by the detail and care put into in the execution.
-The ending really makes the movie for me. I've never seen such a switch in tone pulled of so seamlessly.
+To me this movie is a class commentary. It's about how for most people they're just trying to get by and if possible ahead. That's Anora, Toros (the priest), Igor and most of the other characters. All their actions are to some level expected being motivated by the need to not fall behind and seize opportunity where it exists. Separately though, there are a class of people who don't have to worry about getting by. See Ivan. His actions are the ones we're curious to know, because all the other's are based on what he does. And as long as that uncertainty exists we get to see the comedy and the tragedy of the other class trying to get by. And what a comedy! What could've been a mundane plot is turned into something marvelous by the detail and care put into in the execution. And, of course, what an ending.
 
 
 
