@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Don't underestimate your own edge
-date: 2024-07-27 12:06:02 +0200
+date: 2024-05-27 12:06:02 +0200
 categories: jekyll update
 ---
 
@@ -19,8 +19,7 @@ Clearly not.
 
 The takeaway for me is that if you do work in a field and are aware of a great product or service don't underestimate the degree to which most people will be unaware of them. Even those who you might expect to know better.
 
-To be fair, professional investors don't buy stock based on how a company is doing now, but on what they expect growth to be like in the future. I think this is main reason Nvidia was underpriced by professionals. They may have known that they were in a good position, but it was only with the release of ChatGPT and the explosion in AI startups that it became clear that there was huge demand for what Nvidia offered and therefore huge growth on the horizon.
+To be fair, professional investors don't buy stock based on how a company is doing now, but on what they expect growth to be like in the future. I think this is the main reason Nvidia was underpriced by professionals. They may have known that they were in a good position, but it was only with the release of ChatGPT and the explosion in AI usage that it became clear that there was huge demand for what Nvidia offered and therefore huge growth on the horizon.
 
-But I believe that for anybody in the industry it should have been obvious that the growth would happen. Deep learning gets such good results it was guaranteed that some use case would be found for it. Some people took decisive action based on deep learning's effectiveness even earlier than 2019: [OpenAI was founded in 2015](https://en.wikipedia.org/wiki/OpenAI).
-
-Nvidia's stock price at the time? $8.
+But I believe that for anybody in the industry it should have been obvious that the growth would happen. Deep learning gets such good results it was guaranteed that some use case would be found for it. So, going back to what is the takeaway, even if most actors are aware of a breakthrough the implications may only be clear to those who work in the domain.
+Some people took decisive action based on deep learning's effectiveness even earlier than 2019: [OpenAI was founded in 2015](https://en.wikipedia.org/wiki/OpenAI). Nvidia's stock price at the time? $8.
